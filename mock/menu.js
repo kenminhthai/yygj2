@@ -154,6 +154,27 @@ let database = [
     name: 'Test Navigation22',
     route: '/navigation/navigation2/navigation2',
   },
+  {
+    id: '71',
+    mpid: '7',
+    bpid: '7',
+    name: ' 贷款记录查询',
+    route: '/loans/record',
+  },
+  {
+    id: '72',
+    mpid: '7',
+    bpid: '7',
+    name: ' 测试',
+    route: '/rongziguanli/test',
+  },
+  {
+    id: '73',
+    mpid: '7',
+    bpid: '7',
+    name: '白条申请',
+    route: '/rongziguanli/apply',
+  },
 ]
 
 module.exports = {
