@@ -57,8 +57,19 @@ let data = [
     audit_date:'',
   }
 ]
+let buttons = [
+  {
+    name:'会员申请',
+    url:'/yygj/ptmember/applyMember'
+  },
+  {
+    name:'申请审核',
+    url:'/yygj/ptmember/applyCheck'
+  }
+]
 let CompanyList = {
   columns,
-  data
+  data,
+  buttons
 }
 export default CompanyList

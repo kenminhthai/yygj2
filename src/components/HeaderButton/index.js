@@ -16,9 +16,10 @@ class HeaderButtons extends React.Component {
       <ButtonGroup>
         {this.props.items.map((item, index) => {
             return(
-                  <Link to={item.url}>
+                <Link to={item.url}>
                   <Button type="primary" size={"large"} className={styles.buttons}  key={index}>{item.name}</Button>
-                  </Link>)
+                  </Link>
+            )
         })}
       </ButtonGroup>
     )
