@@ -3,5 +3,5 @@ import Menu from './Menu'
 import Bread from './Bread'
 import Sider from './Sider'
 import styles from './Layout.less'
-
-export { Header, Menu, Bread, Sider, styles }
+import Router from '../../router/router'
+export { Header, Menu, Bread, Sider, styles, Router }

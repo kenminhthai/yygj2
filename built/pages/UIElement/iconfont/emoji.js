@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+require("../../../svg/emoji/vomiting.svg");
+require("../../../svg/emoji/smirking.svg");
+require("../../../svg/emoji/surprised.svg");
+require("../../../svg/emoji/unamused.svg");
+require("../../../svg/emoji/zombie.svg");
+require("../../../svg/emoji/tired.svg");
+require("../../../svg/emoji/tongue.svg");
+require("../../../svg/emoji/wink.svg");
