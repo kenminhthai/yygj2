@@ -6,7 +6,7 @@ let database = [
     id: '1',
     icon: 'user',
     name: 'pt企业会员管理',
-    route: '/yygj/ptmember',
+    route: '/yygj/platform',
   },
   {
     id: '2',

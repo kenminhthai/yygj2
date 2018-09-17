@@ -60,11 +60,11 @@ let data = [
 let buttons = [
   {
     name:'会员申请',
-    url:'/yygj/ptmember/applyMember'
+    url:'/yygj/platform/applyMember'
   },
   {
     name:'申请审核',
-    url:'/yygj/ptmember/applyCheck'
+    url:'/yygj/platform/applyCheck'
   }
 ]
 let CompanyList = {
