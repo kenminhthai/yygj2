@@ -96,19 +96,19 @@ let database = [
     id: '16',
     icon: 'user',
     name: 'fw框架协议维护',
-    route: '/yygj/fwframepreserve',
+    route: '/yygj/service/fwFramePreserve',
   },
   {
     id: '17',
     icon: 'user',
     name: 'fw框架协议确认',
-    route: '/yygj/fwframeverify',
+    route: '/yygj/service/fwFramePreserve',
   },
   {
     id: '18',
     icon: 'user',
     name: 'fw订单维护',
-    route: '/yygj/fworderpreserve',
+    route: '/yygj/service/fworderpreserve',
   },
   {
     id: '19',
