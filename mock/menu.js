@@ -24,7 +24,7 @@ let database = [
     id: '4',
     icon: 'user',
     name: 'sy订单维护',
-    route: '/yygj/syorderpreserve',
+    route: '/yygj/business/orderPreserve',
   },
   {
     id: '5',
@@ -60,7 +60,7 @@ let database = [
     id: '10',
     icon: 'user',
     name: 'gy订单维护',
-    route: '/yygj/gyorderpreserve',
+    route: '/yygj/industrial/orderPreserve',
   },
   {
     id: '11',
@@ -108,7 +108,7 @@ let database = [
     id: '18',
     icon: 'user',
     name: 'fw订单维护',
-    route: '/yygj/service/fworderpreserve',
+    route: '/yygj/service/orderPreserve',
   },
   {
     id: '19',

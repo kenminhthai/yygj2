@@ -17,7 +17,7 @@ class HeaderButtons extends React.Component {
         {this.props.items.map((item, index) => {
           return(
             <Link to={item.url}>
-              <Button  className={styles.buttons}  key={index}>{item.name}</Button>
+              <Button  type="primary" className={styles.buttons}  key={index}>{item.name}</Button>
             </Link>
           )
         })}

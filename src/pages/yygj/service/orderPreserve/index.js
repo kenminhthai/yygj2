@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'antd';
-import CompanyList from '../../../../mock/companyList'
-import {HeaderButton} from '../../../components'
+import ServiceOrderList from '../../../../../mock/serviceOrderList'
+import {HeaderButton} from '../../../../components'
 
 function applyMember(){
 
@@ -21,9 +21,9 @@ class Ptmember extends React.Component{
   render(){
     return(
       <div>
-        <HeaderButton items={CompanyList.buttons}/>
+        <HeaderButton items={ServiceOrderList.buttons}/>
         <div id={"content"}>
-          <Table columns={CompanyList.columns} dataSource={CompanyList.data} size="small" />
+          <Table columns={ServiceOrderList.columns} dataSource={ServiceOrderList.data} size="small" />
         </div>
       </div>
     )

@@ -36,6 +36,10 @@ let columns = [
     title: '订单状态',
     dataIndex: 'order_status',
   },
+  {
+    title: '关联订单',
+    dataIndex: 'associated_order',
+  },
 ]
 let data = [
   {
@@ -49,6 +53,7 @@ let data = [
     agreed_delivery_date:'2018-10-08',
     agreed_payment_date:'2018-10-31',
     order_status:'草稿',
+    associated_order:'-',
   },
   {
     key:'2',
@@ -61,6 +66,7 @@ let data = [
     agreed_delivery_date:'2018-10-08',
     agreed_payment_date:'2018-10-31',
     order_status:'待确认',
+    associated_order:'-',
   },
   {
     key:'3',
@@ -73,10 +79,26 @@ let data = [
     agreed_delivery_date:'2018-10-08',
     agreed_payment_date:'2018-10-31',
     order_status:'已确认',
+    associated_order:'-',
   },
 ]
-let OrderList = {
+let buttons = [
+  {
+    name:'订单新增',
+    url:'/yygj/service/orderPreserve/addOrder'
+  },
+  {
+    name:'订单发送',
+    url:'/yygj/service/orderPreserve/sendOrder'
+  },
+{
+  name:'订单删除',
+    url:'/yygj/service/orderPreserve/deleteOrder'
+},
+]
+let ServiceOrderList = {
   columns,
   data,
+  buttons
 }
-export default OrderList
+export default ServiceOrderList
