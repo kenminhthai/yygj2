@@ -67,27 +67,43 @@ class ApplyMember extends React.Component{
         {/*<HeaderButton items={CompanyList.buttons}/>*/}
         <Form >
           <Card title={"企业基本信息"}>
+            <Row gutter={21}>
+              <Col span={7} offset={1}>
+                <FormItem {...formItemThreeLayout} label={"签订日期："} >
+                  <Input  id="" />
+                </FormItem>
+              </Col>
+              <Col span={7} className={styles.formItemThreeLayout}>
+                <FormItem {...formItemThreeLayout} label={"合同类型："} >
+                  <Select  defaultValue="框架协议" >
+                    <Option value="框架协议">Jack</Option>
+                  </Select>
+                </FormItem>
+              </Col>
+              <Col span={7} className={styles.formItemThreeLayout}>
+                <FormItem {...formItemThreeLayout} label={"合同性质："} >
+                  <Select  defaultValue="医药服务" >
+                    <Option value="医药服务">Jack</Option>
+                  </Select>
+                </FormItem>
+              </Col>
+            </Row>
             <Row gutter={21} >
               <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"组织机构代码"} >
-                  <Input disabled placeholder="组织机构代码" id="" />
+                <FormItem {...formItemThreeLayout} label={"合同维护方："} >
+                  <Input disabled placeholder="登录会员" id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"工商登记注册号"} >
-                  <Input disabled placeholder="工商登记注册号" id="" />
-                </FormItem>
-              </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"机构信用代码"} >
-                  <Input disabled placeholder="机构信用代码 " id="" />
+                <FormItem {...formItemThreeLayout} label={"合同确认方："} >
+                  <Input disabled placeholder="医药工业" id="" />
                 </FormItem>
               </Col>
             </Row>
             <Row gutter={21}>
               <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"企业注册日期"} >
-                  <Input disabled placeholder="企业注册日期" id="" />
+                <FormItem {...formItemThreeLayout} label={"合同编号："} >
+                  <Input   id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
