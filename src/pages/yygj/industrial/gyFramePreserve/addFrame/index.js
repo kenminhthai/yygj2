@@ -172,7 +172,7 @@ class damagePresure extends React.Component{
                 <div>
                   <Button onClick={save} name="保存" type="primary" className={styles.button}>保存</Button>
                   <Button onClick={saveAndsend} type="primary" name="保存并发送" className={styles.button}>保存并发送</Button>
-                  <Button href={"/yygj/service/fwFramePreserve/addFrame"} type="primary" name="取消" className={styles.button}>取消</Button>
+                  <Button href={"/yygj/indusial/gyFramePreserve/addFrame"} type="primary" name="取消" className={styles.button}>取消</Button>
                 </div>
               </Col>
             </Row>

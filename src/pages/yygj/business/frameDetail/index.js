@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './index.less';
 import { Form, Input, Col,Row,Select,Cascader, Table,Button, Card ,DatePicker} from 'antd';
 import {Upload} from "antd/lib/index";
-import FrameList from "../../../../../../mock/FrameList";
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const Dragger = Upload.Dragger;
@@ -83,19 +82,19 @@ class damagePresure extends React.Component{
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"签订日期："} >
-                  <DatePicker defaultValue={moment(date, dateFormat)}/>
+                  <Input disabled id={""}/>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"合同类型："} >
-                  <Select  defaultValue="框架协议" >
+                  <Select disabled defaultValue="框架协议" >
                     <Option value="框架协议">Jack</Option>
                   </Select>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"合同性质："} >
-                  <Select  defaultValue="医药服务" >
+                  <Select disabled defaultValue="医药服务" >
                     <Option value="医药服务">Jack</Option>
                   </Select>
                 </FormItem>
@@ -116,26 +115,24 @@ class damagePresure extends React.Component{
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"合同编号："} >
-                  <Input   id="" />
+                  <Input  disabled id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"合同文本："} >
-                  <Dragger className={styles.D}>
-                    点击上传合同电子文档
-                  </Dragger>
+                  <Input  disabled id="" />
                 </FormItem>
               </Col>
             </Row>
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
-                  <Input   id="" />
+                  <Input  disabled id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"结束日期："} >
-                  <Input  id="" />
+                  <Input disabled id="" />
                 </FormItem>
               </Col>
             </Row>
@@ -170,9 +167,7 @@ class damagePresure extends React.Component{
             <Row gutter={24}>
               <Col offset={8}>
                 <div>
-                  <Button onClick={save} name="保存" type="primary" className={styles.button}>保存</Button>
-                  <Button onClick={saveAndsend} type="primary" name="保存并发送" className={styles.button}>保存并发送</Button>
-                  <Button href={"/yygj/service/fwFramePreserve/addFrame"} type="primary" name="取消" className={styles.button}>取消</Button>
+                  <Button href={"/yygj/business/syFramePreserve/addFrame"} type="primary" name="确定" className={styles.button}>确定</Button>
                 </div>
               </Col>
             </Row>
