@@ -1,33 +1,46 @@
 import React from 'react'
-import { Table } from 'antd';
-import ServiceOrderList from '../../../../../mock/serviceOrderList'
-import {HeaderButton} from '../../../../components'
+import { Table,Button } from 'antd';
+import { connect } from 'dva';
+import  Link  from 'umi/link';
 
-function applyMember(){
+const namespace = 'serviceOrderData';
+const ButtonGroup = Button.Group;
 
-}
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+  },
+};
 
-function applyCheck(){
-  alert('审核通过')
-}
-
-class Ptmember extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-
-    };
+const mapStateToProps = (state) =>{
+  const serviceOrderData = state[namespace];
+  const colums = serviceOrderData.colums;
+  const orderlist = serviceOrderData.orderlist;
+  const buttons = serviceOrderData.buttons;
+  return{
+    colums, orderlist, buttons
   }
+}
+
+@connect(mapStateToProps)
+class ServiceOrderPreserve extends React.Component{
   render(){
     return(
       <div>
-        <HeaderButton items={ServiceOrderList.buttons}/>
-        <div id={"content"}>
-          <Table columns={ServiceOrderList.columns} dataSource={ServiceOrderList.data} size="small" />
+        <ButtonGroup>
+          {this.props.buttons.map((item, index) => {
+            return(
+              <Link to={item.url}>
+                <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+              </Link>
+            )
+          })}
+        </ButtonGroup>
+        <div>
+          <Table columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
         </div>
       </div>
     )
   }
 
 }
-export default (Ptmember)
+export default ServiceOrderPreserve

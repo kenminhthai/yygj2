@@ -1,26 +1,11 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,Cascader,Upload, DatePicker, message, Button, Table, Card } from 'antd';
-import FileList from "../../../../../../mock/fileList";
+import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card } from 'antd';
+import Link from 'umi/link'
+import { connect } from 'dva';
+
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
-const Dragger = Upload.Dragger;
-const props = {
-  name: 'file',
-  multiple: true,
-  action: '//jsonplaceholder.typicode.com/posts/',
-  onChange(info) {
-    const status = info.file.status;
-    if (status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully.`);
-    } else if (status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
 const formItemOneLayout = {
   labelCol: {
     sm: { span: 2 },
@@ -54,40 +39,31 @@ const formItemFourLayout = {
   },
 };
 
-const options = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
-class ApplyMember extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-
-    };
+const mapStateToProps = (state) =>{
+  const commonData = state["commonData"];
+  const colums = commonData.file.colums;
+  const filelist = commonData.file.filelist;
+  const serviceOrderData = state["serviceOrderData"];
+  const buttons = serviceOrderData.buttons;
+  return{
+    colums,  filelist, buttons
   }
+}
+
+@connect(mapStateToProps)
+class ServiceAddOrder extends React.Component{
   render(){
     return(
       <div>
-        {/*<HeaderButton items={CompanyList.buttons}/>*/}
+        <ButtonGroup>
+          {this.props.buttons.map((item, index) => {
+            return(
+              <Link to={item.url}>
+                <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+              </Link>
+            )
+          })}
+        </ButtonGroup>
         <Form>
           <Card title={"订单信息"}>
             <Row gutter={24}>
@@ -149,7 +125,7 @@ class ApplyMember extends React.Component{
           </Card>
           <Card title={"关联订单明细"}>
             <div style={{width:'50%'}}>
-              <Table columns={FileList.columns} dataSource={FileList.data} size={"small"}/>
+              <Table columns={this.props.colums} dataSource={this.props.filelist} size="small" />
             </div>
           </Card>
           <Card title={"发票信息"}>
@@ -178,7 +154,7 @@ class ApplyMember extends React.Component{
           </Card>
           <Card title={"上传文件"}>
             <div style={{width:'50%'}}>
-              <Table columns={FileList.columns} dataSource={FileList.data} size={"small"}/>
+              <Table columns={this.props.colums} dataSource={this.props.filelist} size="small" />
             </div>
             <Row gutter={24}>
               <Col offset={8}>
@@ -196,4 +172,4 @@ class ApplyMember extends React.Component{
   }
 
 }
-export default ApplyMember
+export default ServiceAddOrder

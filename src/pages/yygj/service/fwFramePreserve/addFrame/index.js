@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './index.less';
 import { Form, Input, Col,Row,Select,Cascader, Table,Button, Card } from 'antd';
-import FileList from '../../../../../../mock/fileList'
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const formItemOneLayout = {
@@ -167,7 +166,6 @@ class ApplyMember extends React.Component{
           </Card>
           <Card title={"文件列表"}>
             <div style={{paddingLeft:'120px',paddingRight:'120px'}}>
-              <Table columns={FileList.columns} dataSource={FileList.data} size={"small"}/>
             </div>
             <Row gutter={24}>
               <Col offset={8}>

@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from './index.less';
 import { Form, Input, Col,Row,Select,Cascader, Table,Button, Card } from 'antd';
-import FileList from '../../../../../mock/fileList'
-import CompanyList from "../../../../../mock/companyList";
+import { connect } from 'dva';
+import  Link  from 'umi/link';
+
+const namespace = 'commonData';
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const formItemOneLayout = {
@@ -53,9 +55,20 @@ const options = [{
     }],
   }],
 }];
+const mapStateToProps = (state) =>{
+  const commonData = state["commonData"];
+  const colums = commonData.file.colums;
+  const filelist = commonData.file.filelist;
+  const platformData = state["platformData"];
+  const buttons = platformData.buttons;
+  const citychoice = platformData.citychoice
+  return{
+    colums, buttons, filelist, citychoice
+  }
+}
 
-
-class ApplyMember extends React.Component{
+@connect(mapStateToProps)
+class ApplyCheck extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -65,7 +78,6 @@ class ApplyMember extends React.Component{
   render(){
     return(
       <div>
-        {/*<HeaderButton items={CompanyList.buttons}/>*/}
         <Form >
           <Card title={"企业基本信息"}>
             <FormItem {...formItemOneLayout} label={"企业名称"} >
@@ -80,7 +92,7 @@ class ApplyMember extends React.Component{
             <Row gutter={24}>
               <Col span={12}>
                 <FormItem {...formItemTwoLayout} label={"所在地区"} >
-                  <Cascader disabled options={options} placeholder="所在地区" />
+                  <Cascader disabled options={this.props.citychoice} placeholder="所在地区" />
                 </FormItem>
               </Col>
               <Col span={12} >
@@ -210,7 +222,7 @@ class ApplyMember extends React.Component{
           </Card>
           <Card title={"文件列表"}>
             <div style={{paddingLeft:'120px',paddingRight:'120px'}}>
-              <Table columns={FileList.columns} dataSource={FileList.data} size={"small"}/>
+              <Table columns={this.props.colums} dataSource={this.props.filelist} size="small" />
             </div>
             <Row gutter={24}>
               <Col offset={8}>
@@ -227,4 +239,4 @@ class ApplyMember extends React.Component{
   }
 
 }
-export default ApplyMember
+export default ApplyCheck
