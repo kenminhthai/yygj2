@@ -12,6 +12,7 @@ let columns = [
   {
     title: '合同编号',
     dataIndex: 'frameID',
+    render:text => <a href="javascript:;">{text}</a>,
   },
   {
     title: '合同日期',

@@ -1,9 +1,17 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,Cascader, Table,Button, Card } from 'antd';
-import FileList from '../../../../../../mock/fileList'
+import { Form, Input, Col,Row,Select,Cascader, Table,Button, Card ,DatePicker} from 'antd';
+import {Upload} from "antd/lib/index";
+import FrameList from "../../../../../../mock/FrameList";
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
+const Dragger = Upload.Dragger;
+import moment from 'moment';
+const { MonthPicker, RangePicker } = DatePicker;
+const date = new Date()
+
+const dateFormat = 'YYYY-MM-DD';
+
 const formItemOneLayout = {
   labelCol: {
     sm: { span: 3 },
@@ -54,7 +62,13 @@ const options = [{
 }];
 
 
-class ApplyMember extends React.Component{
+function save(){
+  alert("已保存")
+}
+function saveAndsend(){
+  alert("已保存，已发送")
+}
+class damagePresure extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -64,13 +78,12 @@ class ApplyMember extends React.Component{
   render(){
     return(
       <div>
-        {/*<HeaderButton items={CompanyList.buttons}/>*/}
         <Form >
-          <Card title={"企业基本信息"}>
+          <Card>
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"签订日期："} >
-                  <Input  id="" />
+                  <DatePicker defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
@@ -107,74 +120,60 @@ class ApplyMember extends React.Component{
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"企业联系电话"} >
-                  <Input disabled placeholder="企业联系电话" id="" />
+                <FormItem {...formItemThreeLayout} label={"合同文本："} >
+                  <Dragger className={styles.D}>
+                    点击上传合同电子文档
+                  </Dragger>
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={21}>
+              <Col span={7} offset={1}>
+                <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
+                  <Input   id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"企业传真"} >
-                  <Input disabled placeholder="企业传真 " id="" />
+                <FormItem {...formItemThreeLayout} label={"结束日期："} >
+                  <Input  id="" />
                 </FormItem>
               </Col>
             </Row>
           </Card>
-          <Card title={"企业法人信息"}>
+          <Card >
             <Row gutter={24}>
               <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"企业法人"} >
-                  <Input disabled placeholder="企业法人" id="" />
+                <FormItem {...formItemTwoLayout} label={"录入日期："} >
+                  <Input disabled placeholder="2018/9/16" id="" />
                 </FormItem>
               </Col>
               <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"法人证件类型"} >
-                  <Select disabled defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
-                  </Select>
+                <FormItem {...formItemTwoLayout} label={"录入用户："} >
+                  <Input disabled placeholder="登录会员" id="" />
                 </FormItem>
               </Col>
             </Row>
             <Row gutter={24}>
               <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"法人证件号码"} >
-                  <Input disabled placeholder="法人证件号码" id="" />
-                </FormItem>
-              </Col>
-            </Row>
-          </Card>
-          <Card title={"企业法人信息"}>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"企业联系人"} >
-                  <Input disabled placeholder="企业联系人" id="" />
+                <FormItem {...formItemTwoLayout} label={"确认日期："} >
+                  <Input disabled placeholder="2018/9/16" id="" />
                 </FormItem>
               </Col>
               <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"企业联系人职务"} >
-                  <Input disabled placeholder="企业联系人职务" id="" />
-                </FormItem>
-              </Col>
-            </Row>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"联系人手机"} >
-                  <Input disabled placeholder="联系人手机" id="" />
+                <FormItem {...formItemTwoLayout} label={"确认用户："} >
+                  <Input disabled placeholder="" id="" />
                 </FormItem>
               </Col>
             </Row>
           </Card>
-          <Card title={"文件列表"}>
-            <div style={{paddingLeft:'120px',paddingRight:'120px'}}>
-              <Table columns={FileList.columns} dataSource={FileList.data} size={"small"}/>
-            </div>
+          <Card>
             <Row gutter={24}>
               <Col offset={8}>
-                <ButtonGroup>
-                  <Button type="dashed" size={"large"}className={styles.firstButton}>同意</Button>
-                  <Button type="danger" size={"large"}>拒绝</Button>
-                </ButtonGroup>
+                <div>
+                  <Button onClick={save} name="保存" type="primary" className={styles.button}>保存</Button>
+                  <Button onClick={saveAndsend} type="primary" name="保存并发送" className={styles.button}>保存并发送</Button>
+                  <Button href={"/yygj/service/fwFramePreserve/addFrame"} type="primary" name="取消" className={styles.button}>取消</Button>
+                </div>
               </Col>
             </Row>
           </Card>
@@ -182,6 +181,5 @@ class ApplyMember extends React.Component{
       </div>
     )
   }
-
 }
-export default ApplyMember
+export default damagePresure

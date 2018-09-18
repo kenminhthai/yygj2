@@ -10,68 +10,63 @@ let columns = [
     dataIndex: 'date_typeIn',
   },
   {
-    title: '合同编号',
-    dataIndex: 'frameID',
+    title: '货损编号',
+    dataIndex: 'cargo_ID',
+    render:text => <a href="javascript:;">{text}</a>,
   },
   {
-    title: '合同日期',
-    dataIndex: 'frame_date',
+    title: '发起机构',
+    dataIndex: 'org_begin',
   },
   {
-    title: '合同类型',
-    dataIndex: 'frame_type',
+    title: '确认机构',
+    dataIndex: 'org_end',
   },
   {
-    title: '合同性质',
-    dataIndex: 'frame_character',
+    title: '货损价值',
+    dataIndex: 'cargo_num',
   },
   {
-    title: '合同维护方',
-    dataIndex: 'frame_preserve_person',
+    title: '所属订单',
+    dataIndex: 'cargo_order',
   },
   {
-    title: '合同确认方',
-    dataIndex: 'frame_insure_person',
+    title: '确认日期',
+    dataIndex: 'date_insure',
   },
   {
-    title: '记录状态',
+    title: '发票确认日期',
+    dataIndex: 'date_bill_insure',
+  },
+  {
+    title: '货损状态',
     dataIndex: 'status',
-  },
-  {
-    title: '合同开始日期',
-    dataIndex: 'date_frame_begin',
-  },
-  {
-    title: '合同结束日期',
-    dataIndex: 'date_frame_end',
   },
 ]
 let data = [
   {
     choose:"",
     date_typeIn:'20180916',
-    frameID:'0001',
-    frame_date:'2020-10-20',
-    frame_type:'医药合同',
-    frame_character:'医药服务',
-    frame_preserve_person:'李四',
-    frame_insure_person:'张三',
-    status:'待发送/待确认/已确认',
-    date_frame_begin:'20180916',
-    date_frame_end:'20181016',
+    cargo_ID:'0001',
+    org_begin:'XXX',
+    org_end:'SSS',
+    cargo_num:'1000',
+    cargo_order:'0001',
+    date_insure:'20180916',
+    date_bill_insure:'20180918',
+    status:'待发送/待确认/发票待确认/完成',
   },
   {
     choose:"",
-    date_typeIn:'20180916',
-    frameID:'0001',
-    frame_date:'2020-10-20',
-    frame_type:'医药合同',
-    frame_character:'医药服务',
-    frame_preserve_person:'李四',
-    frame_insure_person:'张三',
-    status:'待发送/待确认/已确认',
-    date_frame_begin:'20180916',
-    date_frame_end:'20181016',
+    date_typeIn:'20180915',
+    cargo_ID:'0002',
+    org_begin:'ZZZ',
+    org_end:'XXX',
+    cargo_num:'10000',
+    cargo_order:'0002',
+    date_insure:'20180917',
+    date_bill_insure:'20180918',
+    status:'待发送/待确认/发票待确认/完成',
   },
 ]
 let buttons = [
@@ -88,11 +83,100 @@ let buttons = [
     url:'/yygj/ptmember/applyCheck'
   }
 ]
+let columns_detail = [
+  {
+    title: '序号',
+    dataIndex: 'id',
+    render:text => <a href="javascript:;">{text}</a>,
+  },
+  {
+    title: '商品名称',
+    dataIndex: 'name',
+  },
+  {
+    title: '数量',
+    dataIndex: 'quantity',
+  },
+  {
+    title: '货损价值',
+    dataIndex: 'cost',
+  },
+]
+let data_detail = [
+  {
+    id:"1",
+    name:'阿司匹林',
+    quantity:'100',
+    cost:'500',
+  },
+]
+let columns_file = [
+  {
+    title: '文件类型',
+    dataIndex: 'type',
+  },
+  {
+    title: '文件',
+    dataIndex: 'files',
+  },
+  {
+    title: '操作',
+    dataIndex: 'option',
+    render:text => <a href="javascript:;">{text}</a>,
 
+  },
+]
+let data_file = [
+  {
+    type:"货损单",
+    files:'',
+    option:'+ -',
+  },
+  {
+    type:"冲正发票",
+    files:'',
+    option:'+ -',
+  },
+]
+
+let columns_insure_bill =[
+  {
+    title: '文件类型',
+    dataIndex: 'type',
+  },
+  {
+    title: '文件',
+    dataIndex: 'files',
+  },
+  {
+    title: '操作',
+    dataIndex: 'option',
+    render:text => <a href="javascript:;">{text}</a>,
+
+  },
+]
+let data_insure_bill =[
+  {
+    type:"货损单",
+    files:'',
+    option:'查看',
+  },
+  {
+    type:"冲正发票",
+    files:'',
+    option:'查看',
+  },
+]
 let cargoList = {
   columns,
   data,
   buttons,
+  columns_detail,
+  data_detail,
+  columns_file,
+  data_file,
+  columns_insure_bill,
+  data_insure_bill,
 }
 
 

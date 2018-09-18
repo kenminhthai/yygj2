@@ -2,12 +2,10 @@ import React from 'react'
 import styles from './index.less';
 import { Form, Input, Col,Row,Select,Cascader, Table,Button, Card ,DatePicker} from 'antd';
 import {Upload} from "antd/lib/index";
-import FrameList from "../../../../../../mock/FrameList";
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const Dragger = Upload.Dragger;
 import moment from 'moment';
-import cargoList from "../../../../../../mock/cargoList";
 const { MonthPicker, RangePicker } = DatePicker;
 const date = new Date()
 
@@ -83,77 +81,93 @@ class damagePresure extends React.Component{
           <Card>
             <Row gutter={21}>
               <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"货损维护："} >
-                  <Input disabled id="" />
+                <FormItem {...formItemThreeLayout} label={"签订日期："} >
+                  <Input disabled id={""}/>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"录入日期："} >
-                  <Input disabled placeholder="20180916" id="" />
+                <FormItem {...formItemThreeLayout} label={"合同类型："} >
+                  <Select disabled defaultValue="框架协议" >
+                    <Option value="框架协议">Jack</Option>
+                  </Select>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"所属订单："} >
-                  <Select disabled defaultValue="会员已有订单" >
-                    <Option value="会员已有订单">会员已有订单</Option>
+                <FormItem {...formItemThreeLayout} label={"合同性质："} >
+                  <Select disabled defaultValue="医药服务" >
+                    <Option value="医药服务">Jack</Option>
                   </Select>
                 </FormItem>
               </Col>
             </Row>
             <Row gutter={21} >
               <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"发起机构："} >
-                  <Input disabled placeholder="" id="" />
+                <FormItem {...formItemThreeLayout} label={"合同维护方："} >
+                  <Input disabled placeholder="登录会员" id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"确认机构："} >
-                  <Input disabled placeholder="" id="" />
+                <FormItem {...formItemThreeLayout} label={"合同确认方："} >
+                  <Input disabled placeholder="医药工业" id="" />
                 </FormItem>
               </Col>
             </Row>
             <Row gutter={21}>
               <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"货损价值："} >
+                <FormItem {...formItemThreeLayout} label={"合同编号："} >
                   <Input  disabled id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"确认日期："} >
-                  <Input disabled placeholder="20180916" id="" />
-                </FormItem>
-              </Col>
-              <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"发票确认日期："} >
-                  <Input disabled placeholder="20180916" id="" />
+                <FormItem {...formItemThreeLayout} label={"合同文本："} >
+                  <Input  disabled id="" />
                 </FormItem>
               </Col>
             </Row>
             <Row gutter={21}>
               <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"冲正发票号："} >
-                  <Input disabled placeholder="101010101010101010" id="" />
+                <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
+                  <Input  disabled id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"货损状态："} >
-                  <Input  disabled placeholder="" id="" />
+                <FormItem {...formItemThreeLayout} label={"结束日期："} >
+                  <Input disabled id="" />
                 </FormItem>
               </Col>
             </Row>
           </Card>
-          <Card title={"货损明细"}>
-            <Table columns={cargoList.columns_detail} dataSource={cargoList.data_detail} size="small" />
-          </Card>
-          <Card title={"上传文件"}>
-            <Table columns={cargoList.columns_insure_bill} dataSource={cargoList.data_insure_bill} size="small" />
+          <Card >
+            <Row gutter={24}>
+              <Col span={12}>
+                <FormItem {...formItemTwoLayout} label={"录入日期："} >
+                  <Input disabled placeholder="2018/9/16" id="" />
+                </FormItem>
+              </Col>
+              <Col span={12} >
+                <FormItem {...formItemTwoLayout} label={"录入用户："} >
+                  <Input disabled placeholder="登录会员" id="" />
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={12}>
+                <FormItem {...formItemTwoLayout} label={"确认日期："} >
+                  <Input disabled placeholder="2018/9/16" id="" />
+                </FormItem>
+              </Col>
+              <Col span={12} >
+                <FormItem {...formItemTwoLayout} label={"确认用户："} >
+                  <Input disabled placeholder="" id="" />
+                </FormItem>
+              </Col>
+            </Row>
           </Card>
           <Card>
             <Row gutter={24}>
               <Col offset={8}>
                 <div>
-                  <Button onClick={save} name="确认" type="primary" className={styles.button}>确认</Button>
-                  <Button href={"/yygj/business/syCargoDamage"} type="primary" name="关闭" className={styles.button}>关闭</Button>
+                  <Button href={"/yygj/business/syFramePreserve/addFrame"} type="primary" name="确定" className={styles.button}>确定</Button>
                 </div>
               </Col>
             </Row>

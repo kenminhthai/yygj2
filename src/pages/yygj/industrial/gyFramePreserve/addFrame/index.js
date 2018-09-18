@@ -6,9 +6,7 @@ import FrameList from "../../../../../../mock/FrameList";
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const Dragger = Upload.Dragger;
-import {HeaderButton} from '../../../../../components'
 import moment from 'moment';
-
 const { MonthPicker, RangePicker } = DatePicker;
 const date = new Date()
 
@@ -64,7 +62,13 @@ const options = [{
 }];
 
 
-class ApplyMember extends React.Component{
+function save(){
+  alert("已保存")
+}
+function saveAndsend(){
+  alert("已保存，已发送")
+}
+class damagePresure extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -164,29 +168,12 @@ class ApplyMember extends React.Component{
           </Card>
           <Card>
             <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"企业联系人"} >
-                  <Input disabled placeholder="企业联系人" id="" />
-                </FormItem>
-              </Col>
-              <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"企业联系人职务"} >
-                  <Input disabled placeholder="企业联系人职务" id="" />
-                </FormItem>
-              </Col>
-            </Row>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"联系人手机"} >
-                  <Input disabled placeholder="联系人手机" id="" />
-                </FormItem>
-              </Col>
-            </Row>
-          </Card>
-          <Card>
-            <Row gutter={24}>
               <Col offset={8}>
-                <HeaderButton items={FrameList.buttons_addFrame}/>
+                <div>
+                  <Button onClick={save} name="保存" type="primary" className={styles.button}>保存</Button>
+                  <Button onClick={saveAndsend} type="primary" name="保存并发送" className={styles.button}>保存并发送</Button>
+                  <Button href={"/yygj/indusial/gyFramePreserve/addFrame"} type="primary" name="取消" className={styles.button}>取消</Button>
+                </div>
               </Col>
             </Row>
           </Card>
@@ -195,4 +182,4 @@ class ApplyMember extends React.Component{
     )
   }
 }
-export default ApplyMember
+export default damagePresure
