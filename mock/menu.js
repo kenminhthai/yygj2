@@ -12,13 +12,13 @@ let database = [
     id: '2',
     icon: 'user',
     name: 'sy框架协议维护',
-    route: '/yygj/syframepreserve',
+    route: '/yygj/business/syFramePreserve',
   },
   {
     id: '3',
     icon: 'user',
     name: 'sy框架协议确认',
-    route: '/yygj/syframeverify',
+    route: '/yygj/business/syFrameInsure',
   },
   {
     id: '4',
@@ -36,7 +36,7 @@ let database = [
     id: '6',
     icon: 'user',
     name: 'sy货损管理',
-    route: '/yygj/sydamagemanage',
+    route: '/yygj/business/syCargoDamage',
   },
   {
     id: '7',
@@ -48,13 +48,13 @@ let database = [
     id: '8',
     icon: 'user',
     name: 'gy框架协议维护',
-    route: '/yygj/gyframepreserve',
+    route: '/yygj/industrial/gyFramePreserve',
   },
   {
     id: '9',
     icon: 'user',
     name: 'gy框架协议确认',
-    route: '/yygj/gyframeverify',
+    route: '/yygj/industrial/gyFrameInsure',
   },
   {
     id: '10',
@@ -102,7 +102,7 @@ let database = [
     id: '17',
     icon: 'user',
     name: 'fw框架协议确认',
-    route: '/yygj/service/fwFramePreserve',
+    route: '/yygj/service/fwFrameInsure',
   },
   {
     id: '18',
