@@ -47,13 +47,13 @@ let database = [
   {
     id: '8',
     icon: 'user',
-    name: 'sy框架协议维护',
+    name: 'gy框架协议维护',
     route: '/yygj/gyframepreserve',
   },
   {
     id: '9',
     icon: 'user',
-    name: 'sy框架协议确认',
+    name: 'gy框架协议确认',
     route: '/yygj/gyframeverify',
   },
   {

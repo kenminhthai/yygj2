@@ -30,18 +30,34 @@ const EnumRoleType = {
   ADMIN: 'admin',
   DEFAULT: 'guest',
   DEVELOPER: 'developer',
+  PLATFORM:'platform',
+  BUSINESS:'business',
+  INDUSTRIAL:'industrial',
+  SERVICE:'service',
 }
 
 const userPermission = {
-  DEFAULT: {
-    visit: ['1', '2', '21', '7', '5', '51', '52', '53'],
-    role: EnumRoleType.DEFAULT,
-  },
   ADMIN: {
     role: EnumRoleType.ADMIN,
   },
   DEVELOPER: {
     role: EnumRoleType.DEVELOPER,
+  },
+  PLATFORM:{
+    visit:['1'],
+    role:EnumRoleType.PLATFORM
+  },
+  BUSINESS:{
+    visit:['2','3','4','5','6','7'],
+    role:EnumRoleType.BUSINESS
+  },
+  INDUSTRIAL:{
+    visit:['8','9','10','11','12','13','14','15'],
+    role:EnumRoleType.INDUSTRIAL
+  },
+  SERVICE:{
+    visit:['16','17','18','19','20','21'],
+    role:EnumRoleType.SERVICE
   },
 }
 
@@ -51,16 +67,30 @@ const adminUsers = [
     username: 'admin',
     password: 'admin',
     permissions: userPermission.ADMIN,
-  }, {
+  },
+  {
     id: 1,
-    username: 'guest',
-    password: 'guest',
-    permissions: userPermission.DEFAULT,
-  }, {
+    username: 'pingtai',
+    password: 'pingtai',
+    permissions: userPermission.PLATFORM,
+  },
+  {
     id: 2,
-    username: '吴彦祖',
-    password: '123456',
-    permissions: userPermission.DEVELOPER,
+    username: 'shangye',
+    password: 'shangye',
+    permissions: userPermission.BUSINESS,
+  },
+  {
+    id: 3,
+    username: 'gongye',
+    password: 'gongye',
+    permissions: userPermission.INDUSTRIAL,
+  },
+  {
+    id: 4,
+    username: 'fuwu',
+    password: 'fuwu',
+    permissions: userPermission.SERVICE,
   },
 ]
 
