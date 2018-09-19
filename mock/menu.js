@@ -84,13 +84,13 @@ let database = [
     id: '14',
     icon: 'user',
     name: 'gy融资申请',
-    route: '/yygj/gyapply',
+    route: '/yygj/industrial/financingApply',
   },
   {
     id: '15',
     icon: 'user',
     name: 'gy融资还款',
-    route: '/yygj/gyrefund',
+    route: '/yygj/industrial/financingRefund',
   },
   {
     id: '16',
@@ -120,14 +120,14 @@ let database = [
     id: '20',
     icon: 'user',
     name: 'fw融资申请',
-    route: '/yygj/fwapply',
+    route: '/yygj/service/financingApply',
   },
 
   {
     id: '21',
     icon: 'user',
     name: 'fw融资还款',
-    route: '/yygj/fwrefund',
+    route: '/yygj/service/financingRefund',
   },
 ]
 
