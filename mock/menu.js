@@ -114,7 +114,7 @@ let database = [
     id: '19',
     icon: 'user',
     name: 'fw订单确认',
-    route: '/yygj/fworderverify',
+    route: '/yygj/service/orderAffirm',
   },
   {
     id: '20',

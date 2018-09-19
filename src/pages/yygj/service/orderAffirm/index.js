@@ -5,7 +5,7 @@ import {Button} from "antd";
 import  Link  from 'umi/link';
 
 const ButtonGroup = Button.Group;
-const namespace = "industrialOrderAffirm"
+const namespace = "serviceOrderAffirm"
 function applyMember(){
 
 }
@@ -29,7 +29,7 @@ const mapStateToProps = (state) =>{
 }
 
 @connect(mapStateToProps)
-class IndustrialOrderAffirmList extends React.Component{
+class ServiceOrderAffirmList extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -56,4 +56,4 @@ class IndustrialOrderAffirmList extends React.Component{
   }
 
 }
-export default IndustrialOrderAffirmList
+export default ServiceOrderAffirmList

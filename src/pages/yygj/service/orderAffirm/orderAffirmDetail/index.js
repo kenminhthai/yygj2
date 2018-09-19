@@ -44,7 +44,7 @@ const mapStateToProps = (state) =>{
   const commonData = state["commonData"];
   const colums = commonData.file.colums;
   const filelist = commonData.file.filelist;3
-  const businessOrderData = state["industrialOrderAffirm"];
+  const businessOrderData = state["serviceOrderAffirm"];
   const buttons = businessOrderData.buttons;
   return{
     colums, filelist, buttons
@@ -52,7 +52,7 @@ const mapStateToProps = (state) =>{
 }
 
 @connect(mapStateToProps)
-class IndustrialOrderAffirmDetail extends React.Component{
+class ServiceOrderAffirmDetail extends React.Component{
   render(){
     return(
       <div>
@@ -185,4 +185,4 @@ class IndustrialOrderAffirmDetail extends React.Component{
   }
 
 }
-export default IndustrialOrderAffirmDetail
+export default ServiceOrderAffirmDetail
