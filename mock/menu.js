@@ -66,7 +66,7 @@ let database = [
     id: '11',
     icon: 'user',
     name: 'gy订单确认',
-    route: '/yygj/gyorderverify',
+    route: '/yygj/industrial/orderAffirm',
   },
   {
     id: '12',
