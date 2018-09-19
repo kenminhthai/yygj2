@@ -30,7 +30,7 @@ let database = [
     id: '5',
     icon: 'user',
     name: 'sy订单确认',
-    route: '/yygj/syorderverify',
+    route: '/yygj/business/orderAffirm',
   },
   {
     id: '6',
