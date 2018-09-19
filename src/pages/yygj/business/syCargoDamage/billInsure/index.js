@@ -1,34 +1,12 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,Cascader, Table,Button, Card ,DatePicker} from 'antd';
-import {Upload} from "antd/lib/index";
-import FrameList from "../../../../../../mock/FrameList";
-const ButtonGroup = Button.Group;
+import { Form, Input, Col,Row,Select, Table,Button, Card ,} from 'antd';
+
+
 const FormItem = Form.Item;
-const Dragger = Upload.Dragger;
-import moment from 'moment';
+
 import cargoList from "../../../../../../mock/cargoList";
-const { MonthPicker, RangePicker } = DatePicker;
-const date = new Date()
 
-const dateFormat = 'YYYY-MM-DD';
-
-const formItemOneLayout = {
-  labelCol: {
-    sm: { span: 3 },
-  },
-  wrapperCol: {
-    sm: { span: 20 },
-  },
-};
-const formItemTwoLayout = {
-  labelCol: {
-    sm: { span: 6 },
-  },
-  wrapperCol: {
-    sm: { span: 16 },
-  },
-};
 const formItemThreeLayout = {
   labelCol: {
     sm: { span: 7 },
@@ -38,37 +16,10 @@ const formItemThreeLayout = {
   },
 };
 
-const options = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
-
-
 function save(){
   alert("已保存")
 }
-function saveAndsend(){
-  alert("已保存，已发送")
-}
+
 class damagePresure extends React.Component{
   constructor(props){
     super(props);

@@ -1,39 +1,45 @@
 import React from 'react'
-import { Table ,Button} from 'antd';
-import FrameList from '../../../../../mock/FrameList'
-function insure(){
-  alert("已确认")
-}
+import { Table ,Button} from 'antd'
+import { connect } from 'dva'
+const ButtonGroup = Button.Group
+import  Link  from 'umi/link'
+
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
-  getCheckboxProps: record => ({
-    disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    name: record.name,
-  }),
-};
+}
 
-
-class syFramePreserve extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-
-    };
+const namespace = 'businessFrameData'
+const mapStateToProps = (state) =>{
+  const DataList = state[namespace]
+  const columns  = DataList.columns
+  const data     = DataList.data
+  const buttons  = DataList.buttons_Insure
+  return{
+    columns, data,buttons,
   }
+}
+@connect(mapStateToProps)
+class CargoDamage extends React.Component{
   render(){
     return(
       <div>
-        <div>
-          <Button onClick={insure} type="primary" name="协议确认">协议确认</Button>
-        </div>
-        <div id={"content"}>
-          <Table rowSelection={rowSelection} columns={FrameList.columns} dataSource={FrameList.data} size="small" />
-        </div>
+        <ButtonGroup>
+          {
+            this.props.buttons.map((item, index) => {
+              return(
+                <Link to={item.url}>
+                  <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                </Link>
+              )
+            })
+          }
+        </ButtonGroup>
+        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" />
       </div>
     )
   }
 
 }
-export default (syFramePreserve)
+export default CargoDamage

@@ -10,12 +10,12 @@ const rowSelection = {
   },
 }
 
-const namespace = 'industralFrameData'
+const namespace = 'businessPayData'
 const mapStateToProps = (state) =>{
   const DataList = state[namespace]
-  const columns =DataList.columns
-  const data = DataList.data
-  const buttons = DataList.buttons_Insure
+  const columns  = DataList.columns
+  const data     = DataList.data
+  const buttons  = DataList.buttons
   return{
     columns, data,buttons,
   }

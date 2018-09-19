@@ -1,25 +1,18 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,Cascader, Table,Button, Card ,DatePicker} from 'antd';
+import { Form, Input, Col,Row,Select,Button, Card ,DatePicker} from 'antd';
 import {Upload} from "antd/lib/index";
-import FrameList from "../../../../../../mock/FrameList";
-const ButtonGroup = Button.Group;
+import { connect } from 'dva'
+import  Link  from 'umi/link'
+import moment from 'moment';
+
+const ButtonGroup = Button.Group
 const FormItem = Form.Item;
 const Dragger = Upload.Dragger;
-import moment from 'moment';
 const { MonthPicker, RangePicker } = DatePicker;
 const date = new Date()
-
 const dateFormat = 'YYYY-MM-DD';
 
-const formItemOneLayout = {
-  labelCol: {
-    sm: { span: 3 },
-  },
-  wrapperCol: {
-    sm: { span: 20 },
-  },
-};
 const formItemTwoLayout = {
   labelCol: {
     sm: { span: 6 },
@@ -37,37 +30,25 @@ const formItemThreeLayout = {
   },
 };
 
-const options = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
-
-
-function save(){
-  alert("已保存")
+const namespace = 'industralFrameData'
+const mapStateToProps = (state) =>{
+  const DataList               = state[namespace]
+  const columns                = DataList.columns
+  const data                   = DataList.data
+  const buttons                = DataList.buttons
+  const options_frameType      = DataList.options_frameType
+  const options_frameCharacter = DataList.options_frameCharacter
+  const buttons_page_addFrame  = DataList.buttons_page_addFrame
+  return{
+    columns,
+    data,
+    buttons,
+    options_frameType,
+    options_frameCharacter,
+    buttons_page_addFrame,
+  }
 }
-function saveAndsend(){
-  alert("已保存，已发送")
-}
+@connect(mapStateToProps)
 class damagePresure extends React.Component{
   constructor(props){
     super(props);
@@ -89,14 +70,26 @@ class damagePresure extends React.Component{
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"合同类型："} >
                   <Select  defaultValue="框架协议" >
-                    <Option value="框架协议">Jack</Option>
+                    {
+                      this.props.options_frameType.map((item, index) => {
+                        return(
+                          <Option value={item.value} key={index} >{item.name}</Option>
+                        )
+                      })
+                    }
                   </Select>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"合同性质："} >
                   <Select  defaultValue="医药服务" >
-                    <Option value="医药服务">Jack</Option>
+                    {
+                      this.props.options_frameCharacter.map((item, index) => {
+                        return(
+                          <Option value={item.value} key={index} >{item.name}</Option>
+                        )
+                      })
+                    }
                   </Select>
                 </FormItem>
               </Col>
@@ -169,11 +162,17 @@ class damagePresure extends React.Component{
           <Card>
             <Row gutter={24}>
               <Col offset={8}>
-                <div>
-                  <Button onClick={save} name="保存" type="primary" className={styles.button}>保存</Button>
-                  <Button onClick={saveAndsend} type="primary" name="保存并发送" className={styles.button}>保存并发送</Button>
-                  <Button href={"/yygj/indusial/gyFramePreserve/addFrame"} type="primary" name="取消" className={styles.button}>取消</Button>
-                </div>
+                <ButtonGroup>
+                  {
+                    this.props.buttons_page_addFrame.map((item, index) => {
+                      return(
+                        <Link to={item.url}>
+                          <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                        </Link>
+                      )
+                    })
+                  }
+                </ButtonGroup>
               </Col>
             </Row>
           </Card>

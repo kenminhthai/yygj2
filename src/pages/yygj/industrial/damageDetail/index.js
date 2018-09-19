@@ -21,20 +21,20 @@ const rowSelection = {
   },
 }
 
-const namespace = 'businessDamageData'
+const namespace = 'industralDamageData'
 const mapStateToProps  = (state) =>{
   const DataList               = state[namespace]
   const columns_detail         = DataList.columns_detail
   const data_detail            = DataList.data_detail
-  const columns_file           = DataList.columns_file
-  const data_file              = DataList.data_file
-  const buttons_demagePreserve = DataList.buttons_demagePreserve
+  const columns_file           = DataList.columns_file_detail
+  const data_file              = DataList.data_file_detail
+  const buttons                = DataList.buttons
   return{
     columns_detail,
     data_detail,
     columns_file,
     data_file,
-    buttons_demagePreserve,
+    buttons,
   }
 }
 @connect(mapStateToProps)
@@ -53,7 +53,7 @@ class damagePresure extends React.Component{
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"货损维护："} >
-                  <Input  id="" />
+                  <Input  disabled id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
@@ -63,7 +63,7 @@ class damagePresure extends React.Component{
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"所属订单："} >
-                  <Select  defaultValue="会员已有订单" >
+                  <Select disabled defaultValue="会员已有订单" >
                     <Option value="会员已有订单">会员已有订单</Option>
                   </Select>
                 </FormItem>
@@ -84,7 +84,7 @@ class damagePresure extends React.Component{
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"货损价值："} >
-                  <Input   id="" />
+                  <Input disabled  id="" />
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
@@ -122,7 +122,7 @@ class damagePresure extends React.Component{
               <Col offset={8}>
                 <ButtonGroup>
                   {
-                    this.props.buttons_demagePreserve.map((item, index) => {
+                    this.props.buttons.map((item, index) => {
                       return(
                         <Link to={item.url}>
                           <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>

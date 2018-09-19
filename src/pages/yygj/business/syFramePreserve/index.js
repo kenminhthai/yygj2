@@ -1,54 +1,45 @@
 import React from 'react'
-import { Table,Button } from 'antd';
-import FrameList from '../../../../../mock/FrameList'
-import {HeaderButton} from '../../../../components'
-import styles from './index.less'
+import { Table ,Button} from 'antd'
+import { connect } from 'dva'
+import  Link  from 'umi/link'
+const ButtonGroup = Button.Group
 
-function applyMember(){
-
-}
-
-function applyCheck(){
-  alert('审核通过')
-}
-function send() {
-  alert("已发送")
-}
-function del(){
-  alert("已删除")
-}
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
-  getCheckboxProps: record => ({
-    disabled: record.name === 'Disabled User', // Column configuration not to be checked
-    name: record.name,
-  }),
-};
+}
 
-
-class Ptmember extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-
-    };
+const namespace = 'businessFrameData'
+const mapStateToProps = (state) =>{
+  const DataList = state[namespace]
+  const columns  = DataList.columns
+  const data     = DataList.data
+  const buttons  = DataList.buttons
+  return{
+    columns, data,buttons,
   }
+}
+@connect(mapStateToProps)
+class CargoDamage extends React.Component{
   render(){
     return(
       <div>
-        {/*<HeaderButton items={FrameList.buttons}/>*/}
-        <div>
-          <Button href={"/yygj/service/fwFramePreserve/addFrame"} name="添加协议" type="primary" className={styles.button}>添加协议</Button>
-          <Button onClick={send} type="primary" name="发送协议" className={styles.button}>发送协议</Button>
-          <Button onClick={del} type="primary" name="删除协议" className={styles.button}>删除协议</Button>
-        </div>
-        <div id={"content"}>
-          <Table rowSelection={rowSelection} columns={FrameList.columns} dataSource={FrameList.data} size="small" />
-        </div>
+        <ButtonGroup>
+          {
+            this.props.buttons.map((item, index) => {
+              return(
+                <Link to={item.url}>
+                  <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                </Link>
+              )
+            })
+          }
+        </ButtonGroup>
+        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" />
       </div>
     )
   }
+
 }
-export default (Ptmember)
+export default CargoDamage

@@ -1,14 +1,9 @@
 import React from 'react'
 import styles from './index.less';
 import { Form, Input, Col,Row,Select, Table,Button, Card } from 'antd';
+import { connect } from 'dva'
 
 const FormItem = Form.Item;
-
-
-import cargoList from "../../../../../mock/cargoList";
-
-
-
 const formItemThreeLayout = {
   labelCol: {
     sm: { span: 7 },
@@ -17,10 +12,28 @@ const formItemThreeLayout = {
     sm: { span: 17 },
   },
 };
-
-
-
-
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+  },
+}
+const namespace = 'businessDamageData'
+const mapStateToProps  = (state) =>{
+  const DataList               = state[namespace]
+  const columns_detail         = DataList.columns_detail
+  const data_detail            = DataList.data_detail
+  const columns_file           = DataList.columns_file_detail
+  const data_file              = DataList.data_file_detail
+  const buttons_demagePreserve = DataList.buttons_demagePreserve
+  return{
+    columns_detail,
+    data_detail,
+    columns_file,
+    data_file,
+    buttons_demagePreserve,
+  }
+}
+@connect(mapStateToProps)
 
 class damagePresure extends React.Component{
   constructor(props){
@@ -96,10 +109,10 @@ class damagePresure extends React.Component{
             </Row>
           </Card>
           <Card title={"货损明细"}>
-            <Table columns={cargoList.columns_detail} dataSource={cargoList.data_detail} size="small" />
+            <Table rowSelection={rowSelection} columns={this.props.columns_detail} dataSource={this.props.data_detail} size="small" />
           </Card>
           <Card title={"上传文件"}>
-            <Table columns={cargoList.columns_file} dataSource={cargoList.data_file} size="small" />
+            <Table rowSelection={rowSelection} columns={this.props.columns_file} dataSource={this.props.data_file} size="small" />
           </Card>
           <Card>
             <Row gutter={24}>

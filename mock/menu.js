@@ -42,7 +42,7 @@ let database = [
     id: '7',
     icon: 'user',
     name: 'sy贸易订单付款',
-    route: '/yygj/syorderpay',
+    route: '/yygj/business/sypay',
   },
   {
     id: '8',
@@ -72,13 +72,13 @@ let database = [
     id: '12',
     icon: 'user',
     name: 'gy货损管理',
-    route: '/yygj/gydamagemanage',
+    route: '/yygj/industrial/gyCargoDamage',
   },
   {
     id: '13',
     icon: 'user',
     name: 'gy贸易订单付款',
-    route: '/yygj/gyorderpayy',
+    route: '/yygj/industrial/gypay',
   },
   {
     id: '14',
