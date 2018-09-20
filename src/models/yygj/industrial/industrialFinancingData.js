@@ -24,7 +24,7 @@ export default {
       {
         title: '融资协议',
         dataIndex: 'frameID',
-        render:text => <a href="yygj/industrial/financingDetail">{text}</a>,
+        render:text => <a href="/yygj/industrial/financingRefund/financingProtocol">{text}</a>,
       },
       {
         title: '所属申请',
