@@ -19,7 +19,7 @@ export default {
       {
         title: '所属订单',
         dataIndex: 'orderID',
-        render:text => <a href="javascript:;">{text}</a>,
+        render:text => <a href="/yygj/business/sypay/orderDetail">{text}</a>,
       },
       {
         title: '收款方机构',

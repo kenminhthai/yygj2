@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "antd": "^3.9.0",
+    "apollo-boost": "^0.1.16",
     "axios": "^0.18.0",
     "babel-eslint": "^9.0.0",
     "classnames": "^2.2.6",
@@ -16,6 +17,7 @@
     "echarts-for-react": "^2.0.14",
     "echarts-gl": "^1.1.1",
     "echarts-liquidfill": "^2.0.2",
+    "graphql": "^14.0.2",
     "highcharts-exporting": "^0.1.7",
     "highcharts-more": "^0.1.7",
     "jsonp": "^0.2.1",
@@ -30,6 +32,7 @@
     "query-string": "^6.1.0",
     "rc-tween-one": "^2.2.3",
     "react-adsense": "^0.0.6",
+    "react-apollo": "^2.1.11",
     "react-countup": "^4.0.0-alpha.6",
     "react-draft-wysiwyg": "^1.12.13",
     "react-helmet": "^5.2.0",
