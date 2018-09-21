@@ -101,7 +101,7 @@ export default {
       {
         title: '申请编号',
         dataIndex: 'ID',
-        render:text => <a href="yygj/industrial/financingDetail">{text}</a>,
+        render:text => <a href="/yygj/industrial/financingDetail">{text}</a>,
       },
       {
         title: '申请日期',
@@ -122,12 +122,12 @@ export default {
       {
         title: '所属订单',
         dataIndex: 'order_superior',
-        render:text => <a href="yygj/industrial/financingDetail">{text}</a>,
+        render:text => <a href="/yygj/industrial/financingApply/orderDetail">{text}</a>,
       },
       {
         title: '关联订单',
         dataIndex: 'order_relevance',
-        render:text => <a href="yygj/industrial/financingDetail">{text}</a>,
+        render:text => <a href="/yygj/industrial/financingApply/orderDetail">{text}</a>,
       },
       {
         title: '订单金额',
