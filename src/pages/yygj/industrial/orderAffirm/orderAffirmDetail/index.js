@@ -47,11 +47,13 @@ const ok = () =>{
 const mapStateToProps = (state) =>{
   const commonData = state["commonData"];
   const colums = commonData.file.colums;
-  const filelist = commonData.file.filelist;3
+  const filelist = commonData.file.filelist;
+  const colums2 = commonData.file2.colums;
+  const filelist2 = commonData.file2.filelist;
   const businessOrderData = state["industrialOrderAffirm"];
   const buttons = businessOrderData.buttons;
   return{
-    colums, filelist, buttons
+    colums, filelist, buttons, colums2, filelist2
   }
 }
 
@@ -95,11 +97,11 @@ class IndustrialOrderAffirmDetail extends React.Component{
             <Row gutter={24}>
               <Col span={6}>
                 <FormItem {...formItemFourLayout} label={"所属合同"} >
-                  <Select disabled defaultValue="医药工业" >
-                    <Option value="industrial">医药工业</Option>
-                    <Option value="bussiness">医药商业</Option>
-                    <Option value="service">医药服务</Option>
-                    <Option value="platform">医药平台</Option>
+                  <Select defaultValue="hetong1" disabled>
+                    <Option value="hetong1">合同1</Option>
+                    <Option value="hetong2">合同2</Option>
+                    <Option value="hetong3">合同3</Option>
+                    <Option value="hetong4">合同4</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -146,7 +148,7 @@ class IndustrialOrderAffirmDetail extends React.Component{
           </Card>
           <Card title={"明细信息"}>
             <div style={{width:'50%'}}>
-              <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
+              <Table columns={this.props.colums2} dataSource={this.props.filelist2} size={"small"}/>
             </div>
           </Card>
           <Card title={"发票信息"}>
