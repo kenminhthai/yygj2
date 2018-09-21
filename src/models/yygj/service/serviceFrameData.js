@@ -97,7 +97,7 @@ export default {
     buttons_Insure:[
       {
         name:'确认协议',
-        url:'./syFrameInsure',
+        url:'/yygj/service/fwFrameInsure',
         fun:insure,
       },
     ],
