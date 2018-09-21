@@ -4,6 +4,7 @@ import { Form, Input, Col,Row,Select,Button, Card ,Table} from 'antd';
 import { connect } from 'dva'
 const FormItem = Form.Item;
 import Link from 'umi/link'
+
 const formItemOneLayout = {
   labelCol: {
     sm: { span: 2 },
@@ -160,10 +161,16 @@ class damagePresure extends React.Component{
           </Card>
           <Card>
             <Row gutter={24}>
-              <Col offset={10}>
+              <Col offset={8}>
                 <div>
                   <Link to={"/yygj/service/financingApply"}>
-                  <Button  type="primary" name="确定" className={styles.button}>确定</Button>
+                    <Button type="primary" name="确定" className={styles.button}>保存</Button>
+                  </Link>
+                  <Link to={"/yygj/service/financingApply"}>
+                    <Button type="primary" name="确定" className={styles.button}>保存并发送</Button>
+                  </Link>
+                  <Link to={"/yygj/service/financingApply"}>
+                    <Button  type="primary" name="确定" className={styles.button}>取消</Button>
                   </Link>
                 </div>
               </Col>

@@ -1,4 +1,6 @@
-
+function save() {
+  alert("已保存")
+}
 function send() {
   alert("已发送")
 }
@@ -104,7 +106,7 @@ export default {
       {
         name:'保存',
         url:'/yygj/business/syFramePreserve',
-        fun:send,
+        fun:save,
       },
       {
         name:'保存并发送',

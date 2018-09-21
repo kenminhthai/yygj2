@@ -124,12 +124,14 @@ class damagePresure extends React.Component{
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
-                  <Input   id="" />
+                  <DatePicker />
+
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"结束日期："} >
-                  <Input  id="" />
+                  <DatePicker />
+
                 </FormItem>
               </Col>
             </Row>

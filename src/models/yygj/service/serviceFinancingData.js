@@ -97,63 +97,90 @@ export default {
         title: '',
         dataIndex: 'choose',
         render:text => <a href="javascript:;">{text}</a>,
+        width:10,
       },
       {
         title: '申请编号',
         dataIndex: 'ID',
         render:text => <a href="/yygj/service/financingDetail">{text}</a>,
+        width:80,
+
       },
       {
         title: '申请日期',
         dataIndex: 'date_apply',
+        width:80,
+
       },
       {
         title: '融资类型',
         dataIndex: 'financing_type',
+        width:80,
+
       },
       {
         title: '申请机构',
         dataIndex: 'apply_org',
+        width:80,
+
       },
       {
         title: '资金方',
         dataIndex: 'capital_loaner',
+        width:60,
+
       },
       {
         title: '所属订单',
         dataIndex: 'order_superior',
-        render:text => <a href="/yygj/service/financingApply/orderDetail">{text}</a>,
+        render:text => <a href="/yygj/industrial/financingApply/orderDetail">{text}</a>,
+        width:80,
+
       },
       {
         title: '关联订单',
         dataIndex: 'order_relevance',
-        render:text => <a href="/yygj/service/financingApply/orderDetail">{text}</a>,
+        render:text => <a href="/yygj/industrial/financingApply/orderDetail">{text}</a>,
+        width:80,
+
       },
       {
         title: '订单金额',
         dataIndex: 'money_order',
+        width:80,
+
       },
       {
         title: '剩余金额',
         dataIndex: 'money_residue',
+        width:80,
+
       },
       {
         title: '申请金额',
         dataIndex: 'money_apply',
+        width:80,
       },
       {
         title: '受理日期',
         dataIndex: 'date_handle',
+        width:80,
+
       },
       {
         title: '审批日期',
         dataIndex: 'date_examine',
+        width:80,
+
       },
       {
         title: '申请状态',
         dataIndex: 'status_apply',
+        width:80,
+
       },
     ],
+
     data_apply: [
       {
         choose:'',
@@ -169,13 +196,13 @@ export default {
         money_apply:'200万',
         date_handle:'20180916',
         date_examine:'20180917',
-        status_apply:'待发送/待受理/待审批/拒绝受理/审批同意/审批拒绝',
+        status_apply:'待发送',
       },
     ],
     buttons_apply:[
       {
         name:'申请新增',
-        url:'/yygj/service/financingDetail',
+        url:'/yygj/service/financingApply/addFinancing',
         fun:'',
       },
       {

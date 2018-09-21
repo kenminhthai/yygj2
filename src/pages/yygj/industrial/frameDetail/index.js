@@ -146,7 +146,7 @@ class damagePresure extends React.Component{
           </Card>
           <Card>
             <Row gutter={24}>
-              <Col offset={8}>
+              <Col offset={10}>
                 <div>
                   <Button href={"/yygj/business/syFramePreserve/addFrame"} type="primary" name="确定" className={styles.button}>确定</Button>
                 </div>

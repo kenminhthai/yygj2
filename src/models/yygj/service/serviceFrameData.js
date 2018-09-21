@@ -2,6 +2,9 @@
 function send() {
   alert("已发送")
 }
+function save() {
+  alert("已保存")
+}
 function del(){
   alert("已删除")
 }
@@ -103,7 +106,7 @@ export default {
       {
         name:'保存',
         url:'/yygj/service/fwFramePreserve',
-        fun:send,
+        fun:save,
       },
       {
         name:'保存并发送',
