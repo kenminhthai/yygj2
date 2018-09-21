@@ -53,10 +53,6 @@ const Login = ({
           <Button type="primary" onClick={handleOk} loading={loading.effects.login}>
             Sign in
           </Button>
-          <p>
-            <span>Username：guest</span>
-            <span>Password：guest</span>
-          </p>
         </Row>
 
       </form>
