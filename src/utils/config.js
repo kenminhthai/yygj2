@@ -4,7 +4,8 @@ const APIV2 = '/api/v2'
 module.exports = {
   name: '医药供金',
   prefix: 'antdAdmin',
-  footerText: 'Ant Design Admin  © 2018 zuiidea',
+  // footerText: 'Ant Design Admin  © 2018 zuiidea',
+  footerText: 'Supply Chain Finance  © 2018 Chaintor',
   logo: '/public/chaintor.png',
   iconFontCSS: '/public/iconfont.css',
   iconFontJS: '/public/iconfont.js',
