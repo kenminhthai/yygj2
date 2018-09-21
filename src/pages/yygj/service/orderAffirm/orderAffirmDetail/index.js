@@ -61,10 +61,7 @@ class ServiceOrderAffirmDetail extends React.Component{
     return(
       <div>
         <Form>
-          <Card title={<div><Button onClick={ok} type={"primary"} style={{width:'10%',marginRight:'10px'}}>确认</Button>
-            <Link to={"/yygj/service/orderAffirm"}>
-              <Button type={"primary"} style={{width:'10%'}}>关闭</Button></Link>
-            <br />订单信息</div>}>
+          <Card title={"订单信息"}>
             <Row gutter={24}>
               <Col span={12}>
                 <FormItem  {...formItemTwoLayout} label={"买方机构"} >
@@ -176,6 +173,9 @@ class ServiceOrderAffirmDetail extends React.Component{
                 </ButtonGroup>
               </Col>
             </Row>*/}
+            <Button onClick={ok} type={"primary"} style={{width:'10%',marginRight:'10px',marginLeft:'400px'}}>确认</Button>
+            <Link to={"/yygj/service/orderAffirm"}>
+              <Button type={"primary"} style={{width:'10%'}}>关闭</Button></Link>
           </Card>
         </Form>
       </div>

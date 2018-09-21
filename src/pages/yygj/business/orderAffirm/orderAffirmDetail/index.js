@@ -63,11 +63,7 @@ class BusinessOrderAffirmDetail extends React.Component{
     return(
       <div>
         <Form>
-          <Card title={<div><Button onClick={ok} type={"primary"} style={{width:'10%',marginRight:'10px'}}>确认</Button>
-            <Link to={"/yygj/business/orderAffirm"}>
-              <Button type={"primary"} style={{width:'10%'}}>关闭</Button>
-            </Link>
-            <br />订单信息</div>}>
+          <Card title={"订单信息"}>
             <Row gutter={24}>
               <Col span={12}>
                 <FormItem  {...formItemTwoLayout} label={"买方机构"} >
@@ -170,6 +166,10 @@ class BusinessOrderAffirmDetail extends React.Component{
             <div style={{width:'50%'}}>
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
             </div>
+            <Button onClick={ok} type={"primary"} style={{width:'10%',marginRight:'10px',marginLeft:'400px'}}>确认</Button>
+            <Link to={"/yygj/business/orderAffirm"}>
+              <Button type={"primary"} style={{width:'10%'}}>关闭</Button>
+            </Link>
            {/* <Row gutter={24}>
               <Col offset={8}>
                 <ButtonGroup>

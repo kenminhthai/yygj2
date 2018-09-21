@@ -59,7 +59,7 @@ let database = [
   {
     id: '10',
     icon: 'user',
-    name: 'gy订单维护',
+    name: '订单维护',
     route: '/yygj/industrial/orderPreserve',
   },
   {
