@@ -25,7 +25,7 @@ export default {
       {
         title: '融资协议',
         dataIndex: 'frameID',
-        render:text => <a href="/yygj/service/financingDetail">{text}</a>,
+        render:text => <a href="javascript:;">{text}</a>,
       },
       {
         title: '所属申请',
@@ -89,7 +89,7 @@ export default {
     buttons:[
       {
         name:'还款',
-        url:'/yygj/industrial/financingRefund',
+        url:'/yygj/service/financingRefund',
         fun:insure,
       },
     ],
