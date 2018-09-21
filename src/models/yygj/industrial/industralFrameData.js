@@ -79,24 +79,24 @@ export default {
     buttons:[
       {
         name:'添加协议',
-        url:'/yygj/industral/gyFramePreserve/addFrame',
+        url:'/yygj/industrial/gyFramePreserve/addFrame',
         fun:'',
       },
       {
         name:'发送协议',
-        url:'/yygj/industral/gyFramePreserve/',
+        url:'/yygj/industrial/gyFramePreserve/',
         fun:send,
       },
       {
         name:'删除协议',
-        url:'/yygj/industral/gyFramePreserve/',
+        url:'/yygj/industrial/gyFramePreserve/',
         fun:del,
       },
     ],
     buttons_Insure:[
       {
         name:'确认协议',
-        url:'/yygj/industral/gyFrameInsure',
+        url:'/yygj/industrial/gyFrameInsure',
         fun:insure,
       },
     ],
