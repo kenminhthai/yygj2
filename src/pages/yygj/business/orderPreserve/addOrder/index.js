@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,DatePicker,  Button, Table, Card, message } from 'antd';
+import { Form, Input, Col,Row,Select,DatePicker,  Button, Table, Card, message,Upload } from 'antd';
 import Link from 'umi/link'
 import { connect } from 'dva';
-
+const Dragger = Upload.Dragger;
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const formItemOneLayout = {
@@ -75,7 +75,6 @@ class BusinessAddOrder extends React.Component{
                     <Option value="industrial">医药工业</Option>
                     <Option value="bussiness">医药商业</Option>
                     <Option value="service">医药服务</Option>
-                    <Option value="platform">医药平台</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -116,7 +115,7 @@ class BusinessAddOrder extends React.Component{
             </Row>
           </Card>
           <Card title={"明细信息"}>
-            <div style={{width:'50%'}}>
+            <div>
               <Table columns={this.props.colums2} dataSource={this.props.filelist2} size="small" />
             </div>
           </Card>
@@ -138,15 +137,24 @@ class BusinessAddOrder extends React.Component{
                 </FormItem>
               </Col>
               <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"买方机构"} >
-                  <Input disabled placeholder="买方机构" id="" />
+                <FormItem {...formItemFourLayout} label={"发票抬头"} >
+                  <Input disabled placeholder="发票抬头" id="" />
                 </FormItem>
               </Col>
             </Row>
           </Card>
           <Card title={"上传文件"}>
-            <div style={{width:'50%'}}>
-              <Table columns={this.props.colums} dataSource={this.props.filelist} size="small" />
+            <div >
+              <FormItem {...formItemOneLayout}  label={"订单"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传订单</p>
+                </Dragger>
+              </FormItem>
+              <FormItem {...formItemOneLayout}  label={"发票"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传发票</p>
+                </Dragger>
+              </FormItem>
             </div>
             <Row gutter={24}>
               <Col offset={8}>

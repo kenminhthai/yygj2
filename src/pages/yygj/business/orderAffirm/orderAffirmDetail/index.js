@@ -62,15 +62,6 @@ class BusinessOrderAffirmDetail extends React.Component{
   render(){
     return(
       <div>
-        <ButtonGroup>
-          {this.props.buttons.map((item, index) => {
-            return(
-              <Link to={item.url}>
-                <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              </Link>
-            )
-          })}
-        </ButtonGroup>
         <Form>
           <Card title={<div><Button onClick={ok} type={"primary"} style={{width:'10%',marginRight:'10px'}}>确认</Button>
             <Link to={"/yygj/business/orderAffirm"}>
@@ -97,11 +88,11 @@ class BusinessOrderAffirmDetail extends React.Component{
             <Row gutter={24}>
               <Col span={6}>
                 <FormItem {...formItemFourLayout} label={"所属合同"} >
-                  <Select disabled defaultValue="医药工业" >
-                    <Option value="industrial">医药工业</Option>
-                    <Option value="bussiness">医药商业</Option>
-                    <Option value="service">医药服务</Option>
-                    <Option value="platform">医药平台</Option>
+                  <Select disabled defaultValue="合同1" >
+                    <Option value="industrial">合同1</Option>
+                    <Option value="bussiness">合同1</Option>
+                    <Option value="service">合同1</Option>
+                    <Option value="platform">合同1</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -147,7 +138,7 @@ class BusinessOrderAffirmDetail extends React.Component{
             </Row>
           </Card>
           <Card title={"明细信息"}>
-            <div style={{width:'50%'}}>
+            <div >
               <Table columns={this.props.colums2} dataSource={this.props.filelist2} size={"small"}/>
             </div>
           </Card>
@@ -169,8 +160,8 @@ class BusinessOrderAffirmDetail extends React.Component{
                 </FormItem>
               </Col>
               <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"买方机构"} >
-                  <Input disabled placeholder="买方机构" id="" />
+                <FormItem {...formItemFourLayout} label={"发票抬头"} >
+                  <Input disabled placeholder="发票抬头" id="" />
                 </FormItem>
               </Col>
             </Row>

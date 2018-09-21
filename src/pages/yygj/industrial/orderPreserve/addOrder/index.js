@@ -3,7 +3,8 @@ import styles from './index.less';
 import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card, message } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
-
+import {Upload} from "antd/lib/index";
+const Dragger = Upload.Dragger;
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const formItemOneLayout = {
@@ -66,11 +67,9 @@ class IndustrialAddOrder extends React.Component{
             <Row gutter={21}>
               <Col span={7}>
                 <FormItem {...formItemThreeLayout} label={"合同性质"} >
-                  <Select defaultValue="rong" >
-                    <Option value="zeng">赠与合同</Option>
-                    <Option value="cheng">承揽合同</Option>
-                    <Option value="mai">买卖合同</Option>
-                    <Option value="rong">融资租赁合同</Option>
+                  <Select defaultValue="zeng" >
+                    <Option value="zeng">医药贸易</Option>
+                    <Option value="cheng">医药服务</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -80,7 +79,6 @@ class IndustrialAddOrder extends React.Component{
                     <Option value="industrial">医药工业</Option>
                     <Option value="bussiness">医药商业</Option>
                     <Option value="service">医药服务</Option>
-                    <Option value="platform">医药平台</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -131,7 +129,7 @@ class IndustrialAddOrder extends React.Component{
             </Row>
           </Card>
           <Card title={"订单明细/关联订单明细"}>
-            <div style={{width:'50%'}}>
+            <div >
               <Table columns={this.props.colums2} dataSource={this.props.filelist2} size="small" />
             </div>
           </Card>
@@ -153,15 +151,24 @@ class IndustrialAddOrder extends React.Component{
                 </FormItem>
               </Col>
               <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"买方机构"} >
-                  <Input disabled placeholder="买方机构" id="" />
+                <FormItem {...formItemFourLayout} label={"发票抬头"} >
+                  <Input disabled placeholder="发票抬头" id="" />
                 </FormItem>
               </Col>
             </Row>
           </Card>
           <Card title={"上传文件"}>
-            <div style={{width:'50%'}}>
-              <Table columns={this.props.colums} dataSource={this.props.filelist} size="small" />
+            <div >
+              <FormItem {...formItemOneLayout}  label={"订单"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传订单</p>
+                </Dragger>
+              </FormItem>
+              <FormItem {...formItemOneLayout}  label={"发票"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传发票</p>
+                </Dragger>
+              </FormItem>
             </div>
             <Row gutter={24}>
               <Col offset={8}>

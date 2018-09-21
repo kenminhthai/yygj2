@@ -17,7 +17,7 @@ export default {
       },
       {
         title: '卖方机构',
-        dataIndex: 'seller_organization',
+        dataIndex: 'seller_organizatio',
       },
       {
         title: '订单金额',

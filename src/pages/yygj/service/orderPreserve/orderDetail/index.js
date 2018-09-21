@@ -122,7 +122,7 @@ class ServiceOrderDetail extends React.Component{
             </Row>
           </Card>
           <Card title={"关联订单明细"}>
-            <div style={{width:'50%'}}>
+            <div >
               <Table columns={this.props.colums2} dataSource={this.props.filelist2} size={"small"}/>
             </div>
           </Card>
@@ -144,8 +144,8 @@ class ServiceOrderDetail extends React.Component{
                 </FormItem>
               </Col>
               <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"买方机构"} >
-                  <Input disabled placeholder="买方机构" id="" />
+                <FormItem {...formItemFourLayout} label={"发票抬头"} >
+                  <Input disabled placeholder="发票抬头" id="" />
                 </FormItem>
               </Col>
             </Row>

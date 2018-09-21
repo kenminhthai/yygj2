@@ -151,35 +151,111 @@ export default {
       colums:[
         {
           title: '序号',
-          dataIndex: 'id',
-        },
-        {
-          title: '商品名',
-          dataIndex: 'name',
-          render:text => <a href="javascript:;">{text}</a>
-        },
+          dataIndex: 'index',
+          key: 'index',
+        }, {
+          title: '药品名',
+          dataIndex: 'medname',
+          key: 'medname',
+          render: text => <div>{text}</div>,
+        }, {
+          title: '剂型',
+          dataIndex: 'medtype',
+          key: 'medtype',
+        }, {
+          title: '规格',
+          dataIndex: 'rule',
+          key: 'rule',
+        }, {
+          title: '包装',
+          dataIndex: 'pack',
+          key: 'pack',
+        }, {
+          title: '单位',
+          dataIndex: 'unit',
+          key: 'unit',
+        }, {
+          title: '数量',
+          dataIndex: 'sum',
+          key: 'sum',
+        }, {
+          title: '批次',
+          dataIndex: 'order',
+          key: 'order',
+        }, {
+          title: '单价',
+          dataIndex: 'price',
+          key: 'price',
+        }
       ],
       filelist:[
         {
-          key:'1',
-          id:'00001',
-          name:'商品',
-        },
-        {
-          key:'2',
-          id:'00002',
-          name:'商品2',
-        },
-        {
-          key:'3',
-          id:'00003',
-          name:'商品3',
-        },
-        {
-          key:'4',
-          id:'00004',
-          name:'商品4',
-        },
+          key: '1',
+          index: '1',
+          medname: '葡萄糖注射液',
+          medtype: '注射液',
+          rule:'50ml:0.45g',
+          pack:'1',
+          unit:'瓶',
+          sum:50000,
+          order:'',
+          price:'2.35',
+        },{
+          key: '2',
+          index: '2',
+          medname: '葡萄糖氯化钠注射液',
+          medtype: '注射液',
+          rule:'500ml:25g:4.5g',
+          pack:'1',
+          unit:'袋',
+          sum:10000,
+          order:'',
+          price:'5.32',
+        },{
+          key: '3',
+          index: '3',
+          medname: '阿奇霉素胶囊',
+          medtype: '胶囊剂',
+          rule:'0.5g(50万单位)',
+          pack:'6',
+          unit:'盒',
+          sum:8000,
+          order:'',
+          price:'14.35',
+        },{
+          key: '4',
+          index: '4',
+          medname: '玉屏风颗粒',
+          medtype: '颗粒剂',
+          rule:'5g',
+          pack:'15',
+          unit:'盒',
+          sum:100000,
+          order:'',
+          price:'24.35',
+        },{
+          key: '5',
+          index: '5',
+          medname: '叶酸片',
+          medtype: '素片',
+          rule:'5mg',
+          pack:'100',
+          unit:'瓶',
+          sum:20000,
+          order:'',
+          price:'2.7',
+        },{
+          key: '6',
+          index: '6',
+          medname: '盐酸可乐定片',
+          medtype: '素片',
+          rule:'75ug',
+          pack:'100',
+          unit:'瓶',
+          sum:20000,
+          order:'',
+          price:'11.5',
+        }
       ],
     }
   }
