@@ -3,6 +3,7 @@ import styles from './index.less';
 import { Form, Input, Col,Row,Select,Cascader, Table,Button, Card } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
+import {message} from "antd/lib/index";
 
 const namespace = 'commonData';
 const ButtonGroup = Button.Group;
@@ -55,6 +56,10 @@ const options = [{
     }],
   }],
 }];
+const agree = () => {
+  message.info('审核通过！');
+};
+
 const mapStateToProps = (state) =>{
   const commonData = state["commonData"];
   const colums = commonData.file.colums;
@@ -97,11 +102,11 @@ class ApplyCheck extends React.Component{
               </Col>
               <Col span={12} >
                 <FormItem {...formItemTwoLayout} label={"企业会员类型"} >
-                  <Select disabled defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+                  <Select defaultValue="shagnye" >
+                    <Option value="shagnye">医药商业</Option>
+                    <Option value="gongye">医药工业</Option>
+                    <Option value="fuwu">医药服务</Option>
+                    <Option value="pingtai">医药平台</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -109,31 +114,31 @@ class ApplyCheck extends React.Component{
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"所属行业"} >
-                  <Select disabled defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+                  <Select defaultValue="xin" >
+                    <Option value="nong">农、林、牧、渔业</Option>
+                    <Option value="cai">采矿业</Option>
+                    <Option value="zhi">制造业</Option>
+                    <Option value="xin">信息传输、计算机服务和软件业</Option>
                   </Select>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"企业性质"} >
-                  <Select disabled defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+                  <Select defaultValue="guoyou" >
+                    <Option value="guoyou">国有企业</Option>
+                    <Option value="jiti">集体企业</Option>
+                    <Option value="lianyin">联营企业</Option>
+                    <Option value="siyin">私营企业</Option>
                   </Select>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"企业规模"} >
-                  <Select disabled defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+                  <Select defaultValue="td" >
+                    <Option value="td">特大型</Option>
+                    <Option value="d">大型</Option>
+                    <Option value="z">中型</Option>
+                    <Option value="x">小型</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -145,7 +150,7 @@ class ApplyCheck extends React.Component{
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"工商登记注册号"} >
+                <FormItem {...formItemThreeLayout} label={"登记注册号"} >
                   <Input disabled placeholder="工商登记注册号" id="" />
                 </FormItem>
               </Col>
@@ -227,7 +232,7 @@ class ApplyCheck extends React.Component{
             <Row gutter={24}>
               <Col offset={8}>
                 <ButtonGroup>
-                  <Button type="dashed" size={"large"}className={styles.firstButton}>同意</Button>
+                  <Button type="dashed" size={"large"}className={styles.firstButton} onClick={agree}>同意</Button>
                   <Button type="danger" size={"large"}>拒绝</Button>
                 </ButtonGroup>
               </Col>

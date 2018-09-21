@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,Cascader,Upload, Button,  Card } from 'antd';
+import { Form, Input, Col,Row,Select,Cascader,Upload, Button,  Card, message } from 'antd';
 
 const namespace = "platformData"
 const ButtonGroup = Button.Group;
@@ -56,6 +56,10 @@ const options = [{
   }],
 }];
 
+const save = () => {
+  message.info('保存成功！');
+};
+
 class ApplyMember extends React.Component{
   render(){
     return(
@@ -79,11 +83,11 @@ class ApplyMember extends React.Component{
               </Col>
               <Col span={12} >
                 <FormItem {...formItemTwoLayout} label={"企业会员类型"} >
-                  <Select defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+                  <Select defaultValue="shagnye" >
+                    <Option value="shagnye">医药商业</Option>
+                    <Option value="gongye">医药工业</Option>
+                    <Option value="fuwu">医药服务</Option>
+                    <Option value="pingtai">医药平台</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -91,31 +95,31 @@ class ApplyMember extends React.Component{
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"所属行业"} >
-                  <Select defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+                  <Select defaultValue="xin" >
+                    <Option value="nong">农、林、牧、渔业</Option>
+                    <Option value="cai">采矿业</Option>
+                    <Option value="zhi">制造业</Option>
+                    <Option value="xin">信息传输、计算机服务和软件业</Option>
                   </Select>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"企业性质"} >
-                  <Select defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+                  <Select defaultValue="guoyou" >
+                    <Option value="guoyou">国有企业</Option>
+                    <Option value="jiti">集体企业</Option>
+                    <Option value="lianyin">联营企业</Option>
+                    <Option value="siyin">私营企业</Option>
                   </Select>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"企业规模"} >
-                  <Select defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+                  <Select defaultValue="td" >
+                    <Option value="td">特大型</Option>
+                    <Option value="d">大型</Option>
+                    <Option value="z">中型</Option>
+                    <Option value="x">小型</Option>
                   </Select>
                 </FormItem>
               </Col>
@@ -127,7 +131,7 @@ class ApplyMember extends React.Component{
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"工商登记注册号"} >
+                <FormItem {...formItemThreeLayout} label={"登记注册号"} >
                   <Input placeholder="工商登记注册号" id="" />
                 </FormItem>
               </Col>
@@ -208,25 +212,25 @@ class ApplyMember extends React.Component{
                 <p className="ant-upload-text">点击上传营业执照</p>
               </Dragger>
             </FormItem>
-            <FormItem {...formItemOneLayout}  label={"营业执照"} >
+            <FormItem {...formItemOneLayout}  label={"法人身份证件（正面"} >
               <Dragger  >
-                <p className="ant-upload-text">点击上传营业执照</p>
+                <p className="ant-upload-text">点击上传法人身份证件（正面）</p>
               </Dragger>
             </FormItem>
-            <FormItem {...formItemOneLayout}  label={"营业执照"} >
+            <FormItem {...formItemOneLayout}  label={"法人身份证件（反面）"} >
               <Dragger  >
-                <p className="ant-upload-text">点击上传营业执照</p>
+                <p className="ant-upload-text">点击上传法人身份证件（反面）</p>
               </Dragger>
             </FormItem>
-            <FormItem {...formItemOneLayout}  label={"营业执照"} >
+            <FormItem {...formItemOneLayout}  label={"平台会员协议书"} >
               <Dragger >
-                <p>点击上传营业执照</p>
+                <p className="ant-upload-text">点击上传平台会员协议书</p>
               </Dragger>
             </FormItem>
             <Row gutter={24}>
               <Col offset={9}>
                 <ButtonGroup>
-                  <Button type="primary" size={"large"}className={styles.firstButton}>保存</Button>
+                  <Button type="primary" size={"large"}className={styles.firstButton} onClick={save}>保存</Button>
                   <Button type="primary" size={"large"}>取消</Button>
                 </ButtonGroup>
               </Col>

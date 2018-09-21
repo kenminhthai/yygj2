@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card } from 'antd';
+import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card,message } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
 
@@ -50,7 +50,9 @@ const mapStateToProps = (state) =>{
     colums, filelist, buttons
   }
 }
-
+const ok =()=>{
+  message.info("操作完成")
+}
 @connect(mapStateToProps)
 class ServiceOrderAffirmDetail extends React.Component{
   render(){
@@ -66,7 +68,10 @@ class ServiceOrderAffirmDetail extends React.Component{
           })}
         </ButtonGroup>
         <Form>
-          <Card title={<div><Button type={"primary"} style={{width:'10%',marginRight:'10px'}}>确认</Button><Button type={"primary"} style={{width:'10%'}}>关闭</Button><br />订单信息</div>}>
+          <Card title={<div><Button onClick={ok} type={"primary"} style={{width:'10%',marginRight:'10px'}}>确认</Button>
+            <Link to={"/yygj/service/orderAffirm"}>
+              <Button type={"primary"} style={{width:'10%'}}>关闭</Button></Link>
+            <br />订单信息</div>}>
             <Row gutter={24}>
               <Col span={12}>
                 <FormItem  {...formItemTwoLayout} label={"买方机构"} >
@@ -169,7 +174,7 @@ class ServiceOrderAffirmDetail extends React.Component{
             <div style={{width:'50%'}}>
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
             </div>
-            <Row gutter={24}>
+            {/*<Row gutter={24}>
               <Col offset={8}>
                 <ButtonGroup>
                   <Button disabled type="primary" size={"middle"} className={styles.buttons}>保存</Button>
@@ -177,7 +182,7 @@ class ServiceOrderAffirmDetail extends React.Component{
                   <Button disabled type="primary" size={"middle"} className={styles.buttons}>关闭</Button>
                 </ButtonGroup>
               </Col>
-            </Row>
+            </Row>*/}
           </Card>
         </Form>
       </div>

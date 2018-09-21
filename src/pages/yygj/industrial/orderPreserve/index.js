@@ -2,6 +2,7 @@ import React from 'react'
 import { Table, Button } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
+import {message} from "antd/lib/index";
 
 const ButtonGroup = Button.Group;
 const namespace = "industrialOrderData";
@@ -20,6 +21,10 @@ const mapStateToProps = (state) =>{
   }
 }
 
+const ok = () =>{
+  message.info('操作完成');
+}
+
 @connect(mapStateToProps)
 class IndustrialOrderPreserve extends React.Component{
   render(){
@@ -27,11 +32,18 @@ class IndustrialOrderPreserve extends React.Component{
       <div>
         <ButtonGroup>
           {this.props.buttons.map((item, index) => {
-            return(
-              <Link to={item.url}>
-                <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              </Link>
-            )
+            if(item.url != ''){
+              return(
+                <Link to={item.url}>
+                  <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                </Link>
+              )
+            }else{
+              return(
+                  <Button onClick={ok} type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+              )
+            }
+
           })}
         </ButtonGroup>
         <div>

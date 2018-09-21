@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table,Button } from 'antd';
+import { Table,Button,message } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
 
@@ -10,6 +10,10 @@ const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
   },
 };
+
+const ok = () =>{
+  message.info("操作完成")
+}
 
 const mapStateToProps = (state) =>{
   const serviceOrderData = state[namespace];
@@ -28,11 +32,17 @@ class ServiceOrderPreserve extends React.Component{
       <div>
         <ButtonGroup>
           {this.props.buttons.map((item, index) => {
-            return(
-              <Link to={item.url}>
-                <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              </Link>
-            )
+            if(item.url != ''){
+              return(
+                <Link to={item.url}>
+                  <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                </Link>
+              )
+            }else{
+              return(
+                <Button onClick={ok} type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+              )
+            }
           })}
         </ButtonGroup>
         <div>

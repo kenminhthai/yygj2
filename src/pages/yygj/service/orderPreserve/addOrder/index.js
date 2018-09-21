@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card } from 'antd';
+import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card,message } from 'antd';
 import Link from 'umi/link'
 import { connect } from 'dva';
 
@@ -50,6 +50,10 @@ const mapStateToProps = (state) =>{
   }
 }
 
+const ok = () =>{
+  message.info("操作完成")
+}
+
 @connect(mapStateToProps)
 class ServiceAddOrder extends React.Component{
   render(){
@@ -57,11 +61,17 @@ class ServiceAddOrder extends React.Component{
       <div>
         <ButtonGroup>
           {this.props.buttons.map((item, index) => {
-            return(
-              <Link to={item.url}>
-                <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              </Link>
-            )
+            if(item.url != ''){
+              return(
+                <Link to={item.url}>
+                  <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                </Link>
+              )
+            }else{
+              return(
+                <Button onClick={ok} type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+              )
+            }
           })}
         </ButtonGroup>
         <Form>
@@ -159,9 +169,11 @@ class ServiceAddOrder extends React.Component{
             <Row gutter={24}>
               <Col offset={8}>
                 <ButtonGroup>
-                  <Button type="primary" size={"middle"} className={styles.buttons}>保存</Button>
-                  <Button type="primary" size={"middle"} className={styles.buttons}>保存并发送</Button>
+                  <Button onClick={ok} type="primary" size={"middle"} className={styles.buttons}>保存</Button>
+                  <Button onClick={ok}  type="primary" size={"middle"} className={styles.buttons}>保存并发送</Button>
+                  <Link to={"/yygj/service/orderPreserve"}>
                   <Button type="primary" size={"middle"} className={styles.buttons}>关闭</Button>
+                  </Link>
                 </ButtonGroup>
               </Col>
             </Row>

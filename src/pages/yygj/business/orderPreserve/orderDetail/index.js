@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card } from 'antd';
+import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card,message } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
 
@@ -51,6 +51,10 @@ const mapStateToProps = (state) =>{
   }
 }
 
+const ok=()=>{
+  message.info("操作完成！")
+}
+
 @connect(mapStateToProps)
 class BusinessOrderDetail extends React.Component{
   render(){
@@ -58,15 +62,21 @@ class BusinessOrderDetail extends React.Component{
       <div>
         <ButtonGroup>
           {this.props.buttons.map((item, index) => {
-            return(
-              <Link to={item.url}>
-                <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              </Link>
-            )
+            if(item.url != ''){
+              return(
+                <Link to={item.url}>
+                  <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                </Link>
+              )
+            }else{
+              return(
+                <Button onClick={ok} type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+              )
+            }
           })}
         </ButtonGroup>
         <Form>
-          <Card title={<div><Button type={"primary"} style={{width:'10%'}}>关闭</Button><br />订单信息</div>}>
+          <Card title={<div><Link  to={"/yygj/business/orderPreserve"}><Button type={"primary"} style={{width:'10%'}}>关闭</Button></Link><br />订单信息</div>}>
             <Row gutter={24}>
               <Col span={12}>
                 <FormItem  {...formItemTwoLayout} label={"买方机构"} >
@@ -152,7 +162,7 @@ class BusinessOrderDetail extends React.Component{
             <div style={{width:'50%'}}>
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
             </div>
-            <Row gutter={24}>
+            {/*<Row gutter={24}>
               <Col offset={8}>
                 <ButtonGroup>
                   <Button disabled type="primary" size={"middle"} className={styles.buttons}>保存</Button>
@@ -160,7 +170,7 @@ class BusinessOrderDetail extends React.Component{
                   <Button disabled type="primary" size={"middle"} className={styles.buttons}>关闭</Button>
                 </ButtonGroup>
               </Col>
-            </Row>
+            </Row>*/}
           </Card>
         </Form>
       </div>

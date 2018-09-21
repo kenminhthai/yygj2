@@ -92,11 +92,11 @@ export default {
       },
       {
         name:'订单发送',
-        url:'/yygj/industrial/orderPreserve/sendOrder'
+        url:''
       },
       {
         name:'订单删除',
-        url:'/yygj/industrial/orderPreserve/deleteOrder'
+        url:''
       },
     ],
   }

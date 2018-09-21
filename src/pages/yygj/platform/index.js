@@ -87,7 +87,6 @@ class Platform extends React.Component{
   render(){
     return(
       <ApolloProvider client={client}>
-        <Dogs />
       <div>
         <ButtonGroup>
           {this.props.buttons.map((item, index) => {
