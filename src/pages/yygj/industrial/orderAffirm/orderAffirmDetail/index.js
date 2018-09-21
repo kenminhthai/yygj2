@@ -97,11 +97,11 @@ class IndustrialOrderAffirmDetail extends React.Component{
             <Row gutter={24}>
               <Col span={6}>
                 <FormItem {...formItemFourLayout} label={"所属合同"} >
-                  <Select disabled defaultValue="医药工业" >
-                    <Option value="industrial">医药工业</Option>
-                    <Option value="bussiness">医药商业</Option>
-                    <Option value="service">医药服务</Option>
-                    <Option value="platform">医药平台</Option>
+                  <Select defaultValue="hetong1" disabled>
+                    <Option value="hetong1">合同1</Option>
+                    <Option value="hetong2">合同2</Option>
+                    <Option value="hetong3">合同3</Option>
+                    <Option value="hetong4">合同4</Option>
                   </Select>
                 </FormItem>
               </Col>
