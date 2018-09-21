@@ -59,23 +59,8 @@ class IndustrialOrderDetail extends React.Component{
   render(){
     return(
       <div>
-        <ButtonGroup>
-          {this.props.buttons.map((item, index) => {
-            if(item.url != ''){
-              return(
-                <Link to={item.url}>
-                  <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                </Link>
-              )
-            }else{
-              return(
-                <Button onClick={ok} type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              )
-            }
-          })}
-        </ButtonGroup>
         <Form>
-          <Card title={<div><Link to={"/yygj/industrial/orderPreserve"}><Button type={"primary"} style={{width:'10%'}}>关闭</Button></Link><br />订单信息</div>}>
+          <Card>
             <Row gutter={24}>
               <Col span={12}>
                 <FormItem  {...formItemTwoLayout} label={"买方机构"} >
@@ -166,15 +151,15 @@ class IndustrialOrderDetail extends React.Component{
             <div style={{width:'50%'}}>
               <Table columns={this.props.colums} dataSource={this.props.filelist} size="small" />
             </div>
-            {/*<Row gutter={24}>
-              <Col offset={8}>
-                <ButtonGroup>
-                  <Button disabled type="primary" size={"middle"} className={styles.buttons}>保存</Button>
-                  <Button disabled type="primary" size={"middle"} className={styles.buttons}>保存并发送</Button>
-                  <Button disabled type="primary" size={"middle"} className={styles.buttons}>关闭</Button>
-                </ButtonGroup>
+          </Card>
+          <Card >
+            <Row gutter={24}>
+              <Col offset={10}>
+                <div>
+                <Link  to={"/yygj/industrial/orderPreserve"}><Button type={"primary"}>关闭</Button></Link>
+                </div>
               </Col>
-            </Row>*/}
+            </Row>
           </Card>
         </Form>
       </div>

@@ -1,3 +1,4 @@
+import Link from 'umi/link'
 function save() {
   alert("已保存")
 }
@@ -26,7 +27,7 @@ export default {
       {
         title: '合同编号',
         dataIndex: 'frameID',
-        render:text => <a href="./frameDetail">{text}</a>,
+        render:text => <Link to={"/yygj/business/frameDetail"}><a>{text}</a></Link>,
       },
       {
         title: '合同日期',

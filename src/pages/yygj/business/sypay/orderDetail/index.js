@@ -151,9 +151,13 @@ class ServiceOrderDetail extends React.Component{
             </div>
           </Card>
           <Card>
-
-                <div><Button type={"primary"} style={{width:'10%' ,textAlign:'center'}}>关闭</Button><br /></div>
-
+            <Row gutter={24}>
+              <Col offset={10}>
+                <div>
+                  <Link  to={"/yygj/business/sypay"}><Button type={"primary"}>关闭</Button></Link>
+                </div>
+              </Col>
+            </Row>
           </Card>
         </Form>
       </div>

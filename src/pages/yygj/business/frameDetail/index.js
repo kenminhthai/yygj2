@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './index.less';
 import { Form, Input, Col,Row,Select,Button, Card } from 'antd';
 import { connect } from 'dva'
+import Link from 'umi/link'
 const FormItem = Form.Item;
 const formItemTwoLayout = {
   labelCol: {
@@ -144,9 +145,9 @@ class damagePresure extends React.Component{
           <Card>
             <Row gutter={24}>
               <Col offset={10}>
-                <div>
-                  <Button href={"/yygj/business/syFramePreserve/addFrame"} type="primary" name="确定" className={styles.button}>确定</Button>
-                </div>
+                <Link to={"/yygj/business/financingApply"}>
+                  <Button type="primary" name="确定" className={styles.button}>确定</Button>
+                </Link>
               </Col>
             </Row>
           </Card>

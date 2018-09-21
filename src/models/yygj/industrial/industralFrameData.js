@@ -104,17 +104,17 @@ export default {
 
       {
         name:'保存',
-        url:'/yygj/industral/gyFramePreserve/',
+        url:'/yygj/industrial/gyFramePreserve/',
         fun:save,
       },
       {
         name:'保存并发送',
-        url:'/yygj/industral/gyFramePreserve/',
+        url:'/yygj/industrial/gyFramePreserve/',
         fun:send,
       },
       {
         name:'取消',
-        url:'/yygj/industral/gyFramePreserve/',
+        url:'/yygj/industrial/gyFramePreserve/',
         fun:'',
       },
     ],

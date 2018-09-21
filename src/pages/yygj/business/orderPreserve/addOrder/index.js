@@ -59,21 +59,6 @@ class BusinessAddOrder extends React.Component{
   render(){
     return(
       <div>
-        <ButtonGroup>
-          {this.props.buttons.map((item, index) => {
-            if(item.url != ''){
-              return(
-                <Link to={item.url}>
-                  <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                </Link>
-              )
-            }else{
-              return(
-                <Button onClick={ok} type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              )
-            }
-          })}
-        </ButtonGroup>
         <Form>
           <Card title={"订单信息"}>
             <Row gutter={24}>

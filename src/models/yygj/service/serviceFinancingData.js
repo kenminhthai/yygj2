@@ -1,3 +1,4 @@
+import  Link  from 'umi/link';
 
 function insure() {
   alert("已还款")
@@ -102,7 +103,7 @@ export default {
       {
         title: '申请编号',
         dataIndex: 'ID',
-        render:text => <a href="/yygj/service/financingDetail">{text}</a>,
+        render:text =><Link to={"/yygj/service/financingDetail"}> <a>{text}</a></Link>,
         width:80,
 
       },
@@ -133,14 +134,14 @@ export default {
       {
         title: '所属订单',
         dataIndex: 'order_superior',
-        render:text => <a href="/yygj/industrial/financingApply/orderDetail">{text}</a>,
+        render:text =><Link to={"/yygj/service/financingApply/orderDetail"}> <a>{text}</a></Link>,
         width:80,
 
       },
       {
         title: '关联订单',
         dataIndex: 'order_relevance',
-        render:text => <a href="/yygj/industrial/financingApply/orderDetail">{text}</a>,
+        render:text =><Link to={"/yygj/service/financingApply/orderDetail"}> <a>{text}</a></Link>,
         width:80,
 
       },

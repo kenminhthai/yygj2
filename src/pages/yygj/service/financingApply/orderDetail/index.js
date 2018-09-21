@@ -153,7 +153,9 @@ class ServiceOrderDetail extends React.Component{
           <Card>
             <Row gutter={24}>
               <Col offset={10}>
+                <Link to={"/yygj/service/financingApply"}>
                 <Button type={"primary"}>关闭</Button>
+                </Link>
               </Col>
             </Row>
           </Card>
