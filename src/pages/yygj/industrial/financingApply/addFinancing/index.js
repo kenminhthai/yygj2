@@ -163,13 +163,13 @@ class damagePresure extends React.Component{
             <Row gutter={24}>
               <Col offset={8}>
                 <div>
-                  <Link to={"/yygj/industrail/financingApply"}>
+                  <Link to={"/yygj/industrial/financingApply"}>
                     <Button  type="primary" name="确定" className={styles.button}>保存</Button>
                   </Link>
-                  <Link to={"/yygj/industrail/financingApply"}>
+                  <Link to={"/yygj/industrial/financingApply"}>
                   <Button type="primary" name="确定" className={styles.button}>保存并发送</Button>
                   </Link>
-                  <Link to={"/yygj/industrail/financingApply"}>
+                  <Link to={"/yygj/industrial/financingApply"}>
                   <Button  type="primary" name="确定" className={styles.button}>取消</Button>
                   </Link>
                 </div>
