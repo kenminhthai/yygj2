@@ -43,10 +43,12 @@ const mapStateToProps = (state) =>{
   const commonData = state["commonData"];
   const colums = commonData.file.colums;
   const filelist = commonData.file.filelist;
+  const colums2 = commonData.file2.colums;
+  const filelist2 = commonData.file2.filelist;
   const businessOrderData = state["businessOrderData"];
   const buttons = businessOrderData.buttons;
   return{
-    colums, buttons, filelist, buttons
+    colums, buttons, filelist, buttons,colums2,filelist2
   }
 }
 
@@ -130,7 +132,7 @@ class BusinessAddOrder extends React.Component{
           </Card>
           <Card title={"明细信息"}>
             <div style={{width:'50%'}}>
-              <Table columns={this.props.colums} dataSource={this.props.filelist} size="small" />
+              <Table columns={this.props.colums2} dataSource={this.props.filelist2} size="small" />
             </div>
           </Card>
           <Card title={"发票信息"}>

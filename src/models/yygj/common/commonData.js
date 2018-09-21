@@ -114,27 +114,71 @@ export default {
           dataIndex: 'file',
           render:text => <a href="javascript:;">{text}</a>
         },
+        {
+          title: '',
+          dataIndex: 'view',
+          render:text => <a href="javascript:;">查看</a>
+        },
       ],
       filelist:[
         {
           key:'1',
           file_type:'企业营业执照',
           file:'0000.pdf',
+          view:''
         },
         {
           key:'2',
           file_type:'法人身份证正面',
           file:'0000.pdf',
+          view:''
         },
         {
           key:'3',
           file_type:'法人身份证反面',
           file:'0000.pdf',
+          view:''
         },
         {
           key:'4',
           file_type:'平台会员协议书',
           file:'0000.pdf',
+          view:''
+        },
+      ],
+    },
+    file2:{
+      colums:[
+        {
+          title: '序号',
+          dataIndex: 'id',
+        },
+        {
+          title: '商品名',
+          dataIndex: 'name',
+          render:text => <a href="javascript:;">{text}</a>
+        },
+      ],
+      filelist:[
+        {
+          key:'1',
+          id:'00001',
+          name:'商品',
+        },
+        {
+          key:'2',
+          id:'00002',
+          name:'商品2',
+        },
+        {
+          key:'3',
+          id:'00003',
+          name:'商品3',
+        },
+        {
+          key:'4',
+          id:'00004',
+          name:'商品4',
         },
       ],
     }
