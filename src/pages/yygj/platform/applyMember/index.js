@@ -14,22 +14,31 @@ const formItemOneLayout = {
     sm: { span: 20 },
   },
 };
-const formItemTwoLayout = {
+const formItemTwoLayout_1 = {
   labelCol: {
-    sm: { span: 6 },
+    sm: { span: 3 },
   },
   wrapperCol: {
-    sm: { span: 16 },
+    sm: { span: 18 },
+  },
+};
+const formItemTwoLayout_2 = {
+  labelCol: {
+    sm: { span: 10 },
+  },
+  wrapperCol: {
+    sm: { span: 14 },
   },
 };
 const formItemThreeLayout = {
   labelCol: {
-    sm: { span: 7 },
+    sm: { span: 9 },
   },
   wrapperCol: {
-    sm: { span: 17 },
+    sm: { span: 12 },
   },
 };
+
 
 
 const options = [{
@@ -63,9 +72,9 @@ const save = () => {
 class ApplyMember extends React.Component{
   render(){
     return(
-      <div>
+      <div >
         <Form>
-          <Card title={"企业基本信息"}>
+          <Card title={"企业基本信息"} >
             <FormItem {...formItemOneLayout} label={"企业名称"} >
               <Input placeholder="企业名称" id="" />
             </FormItem>
@@ -75,25 +84,29 @@ class ApplyMember extends React.Component{
             <FormItem {...formItemOneLayout} label={"企业简称"} >
               <Input placeholder="企业简称" id="" />
             </FormItem>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"所在地区"} >
+            <Row>
+              <Col span={16} offset={1}>
+                <FormItem {...formItemTwoLayout_1} label={"所在地区"} >
                   <Cascader options={options} placeholder="所在地区" />
                 </FormItem>
               </Col>
-              <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"企业会员类型"} >
-                  <Select defaultValue="shagnye" >
-                    <Option value="shagnye">医药商业</Option>
-                    <Option value="gongye">医药工业</Option>
-                    <Option value="fuwu">医药服务</Option>
-                    <Option value="pingtai">医药平台</Option>
-                  </Select>
-                </FormItem>
-              </Col>
+              <Row >
+                <Col span={7} pull={1}>
+                  <FormItem {...formItemTwoLayout_2} label={"企业会员类型"} >
+                    <Select defaultValue="shagnye" >
+                      <Option value="shagnye">医药商业</Option>
+                      <Option value="gongye">医药工业</Option>
+                      <Option value="fuwu">医药服务</Option>
+                      <Option value="pingtai">医药平台</Option>
+                    </Select>
+                  </FormItem>
+                </Col>
+              </Row>
+
+
             </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+            <Row >
+              <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"所属行业"} >
                   <Select defaultValue="xin" >
                     <Option value="nong">农、林、牧、渔业</Option>
@@ -103,7 +116,7 @@ class ApplyMember extends React.Component{
                   </Select>
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"企业性质"} >
                   <Select defaultValue="guoyou" >
                     <Option value="guoyou">国有企业</Option>
@@ -113,7 +126,7 @@ class ApplyMember extends React.Component{
                   </Select>
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"企业规模"} >
                   <Select defaultValue="td" >
                     <Option value="td">特大型</Option>
@@ -123,36 +136,38 @@ class ApplyMember extends React.Component{
                   </Select>
                 </FormItem>
               </Col>
+
             </Row>
-            <Row gutter={21} >
-              <Col span={7} offset={1}>
+            <Row >
+              <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"组织机构代码"} >
                   <Input placeholder="组织机构代码" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"登记注册号"} >
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"工商登记注册号"} >
                   <Input placeholder="工商登记注册号" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"机构信用代码"} >
                   <Input placeholder="机构信用代码 " id="" />
                 </FormItem>
               </Col>
+
             </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+            <Row >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"企业注册日期"} >
                   <Input placeholder="企业注册日期" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"企业联系电话"} >
                   <Input placeholder="企业联系电话" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"企业传真"} >
                   <Input placeholder="企业传真 " id="" />
                 </FormItem>
@@ -160,47 +175,45 @@ class ApplyMember extends React.Component{
             </Row>
           </Card>
           <Card title={"企业法人信息"}>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"企业法人"} >
+            <Row >
+              <Col span={8}>
+                <FormItem  {...formItemThreeLayout} label={"企业法人"} >
                   <Input placeholder="企业法人" id="" />
                 </FormItem>
               </Col>
-              <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"法人证件类型"} >
-                  <Select defaultValue="lucy" >
-                    <Option value="jack">Jack</Option>
-                    <Option value="lucy">Lucy</Option>
-                    <Option value="disabled" disabled>Disabled</Option>
-                    <Option value="Yiminghe">yiminghe</Option>
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout}  label={"法人证件类型"} >
+                  <Select defaultValue="jack" >
+                    <Option value="jack">身份证</Option>
+                    <Option value="lucy">居住证</Option>
+                    <Option value="disabled" >签证</Option>
+                    <Option value="Yiminghe">护照</Option>
+                    <Option value="Yiminghe">军人证</Option>
+                    <Option value="Yiminghe">驾驶证</Option>
                   </Select>
                 </FormItem>
               </Col>
-            </Row>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"法人证件号码"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout}  label={"法人证件号码"} >
                   <Input placeholder="法人证件号码" id="" />
                 </FormItem>
               </Col>
             </Row>
           </Card>
           <Card title={"企业法人信息"}>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"企业联系人"} >
+            <Row >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"企业联系人"} >
                   <Input placeholder="企业联系人" id="" />
                 </FormItem>
               </Col>
-              <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"企业联系人职务"} >
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"企业联系人职务"} >
                   <Input placeholder="企业联系人职务" id="" />
                 </FormItem>
               </Col>
-            </Row>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"联系人手机"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"联系人手机"} >
                   <Input placeholder="联系人手机" id="" />
                 </FormItem>
               </Col>
