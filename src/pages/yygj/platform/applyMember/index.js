@@ -6,6 +6,9 @@ const namespace = "platformData"
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const Dragger = Upload.Dragger;
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 const formItemOneLayout = {
   labelCol: {
     sm: { span: 3 },
@@ -74,7 +77,7 @@ class ApplyMember extends React.Component{
     return(
       <div >
         <Form>
-          <Card title={"企业基本信息"} >
+          <Card title={<b>企业基本信息</b>} headStyle={headStyle} bordered={true}>
             <FormItem {...formItemOneLayout} label={"企业名称"} >
               <Input placeholder="企业名称" id="" />
             </FormItem>
@@ -174,7 +177,7 @@ class ApplyMember extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"企业法人信息"}>
+          <Card title={<b>企业法人信息</b>} headStyle={headStyle}>
             <Row >
               <Col span={8}>
                 <FormItem  {...formItemThreeLayout} label={"企业法人"} >
@@ -200,7 +203,7 @@ class ApplyMember extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"企业法人信息"}>
+          <Card title={<b>企业法人信息</b>} headStyle={headStyle}>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"企业联系人"} >
@@ -219,7 +222,7 @@ class ApplyMember extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"上传文件"}>
+          <Card title={<b>上传文件</b>} headStyle={headStyle}>
             <FormItem {...formItemOneLayout}  label={"营业执照"} >
               <Dragger  >
                 <p className="ant-upload-text">点击上传营业执照</p>
@@ -240,14 +243,12 @@ class ApplyMember extends React.Component{
                 <p className="ant-upload-text">点击上传平台会员协议书</p>
               </Dragger>
             </FormItem>
-            <Row gutter={24}>
-              <Col offset={9}>
-                <ButtonGroup>
-                  <Button type="primary" size={"large"}className={styles.firstButton} onClick={save}>保存</Button>
-                  <Button type="primary" size={"large"}>取消</Button>
+            <div style={{textAlign:'center'}}>
+                <ButtonGroup >
+                  <Button type="primary" size={"middle"}className={styles.firstButton} onClick={save}>保存</Button>
+                  <Button type="primary" size={"middle"}>取消</Button>
                 </ButtonGroup>
-              </Col>
-            </Row>
+            </div>
           </Card>
         </Form>
       </div>
