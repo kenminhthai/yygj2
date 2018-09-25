@@ -12,20 +12,36 @@ const Dragger = Upload.Dragger;
 const { MonthPicker, RangePicker } = DatePicker;
 const date = new Date()
 const dateFormat = 'YYYY-MM-DD';
-const formItemTwoLayout = {
+const formItemOneLayout = {
   labelCol: {
-    sm: { span: 6 },
+    sm: { span: 3 },
   },
   wrapperCol: {
-    sm: { span: 16 },
+    sm: { span: 20 },
+  },
+};
+const formItemTwoLayout_1 = {
+  labelCol: {
+    sm: { span: 3 },
+  },
+  wrapperCol: {
+    sm: { span: 18 },
+  },
+};
+const formItemTwoLayout_2 = {
+  labelCol: {
+    sm: { span: 10 },
+  },
+  wrapperCol: {
+    sm: { span: 14 },
   },
 };
 const formItemThreeLayout = {
   labelCol: {
-    sm: { span: 7 },
+    sm: { span: 9 },
   },
   wrapperCol: {
-    sm: { span: 17 },
+    sm: { span: 12 },
   },
 };
 

@@ -6,13 +6,36 @@ import { Form, Input, Col,Row,Select, Table,Button, Card ,} from 'antd';
 const FormItem = Form.Item;
 
 import cargoList from "../../../../../../mock/cargoList";
-
-const formItemThreeLayout = {
+const formItemOneLayout = {
   labelCol: {
-    sm: { span: 7 },
+    sm: { span: 3 },
   },
   wrapperCol: {
-    sm: { span: 17 },
+    sm: { span: 20 },
+  },
+};
+const formItemTwoLayout_1 = {
+  labelCol: {
+    sm: { span: 3 },
+  },
+  wrapperCol: {
+    sm: { span: 18 },
+  },
+};
+const formItemTwoLayout_2 = {
+  labelCol: {
+    sm: { span: 10 },
+  },
+  wrapperCol: {
+    sm: { span: 14 },
+  },
+};
+const formItemThreeLayout = {
+  labelCol: {
+    sm: { span: 9 },
+  },
+  wrapperCol: {
+    sm: { span: 12 },
   },
 };
 

@@ -4,20 +4,36 @@ import { Form, Input, Col,Row,Select,Button, Card } from 'antd';
 import { connect } from 'dva'
 import Link from 'umi/link'
 const FormItem = Form.Item;
-const formItemTwoLayout = {
+const formItemOneLayout = {
   labelCol: {
-    sm: { span: 6 },
+    sm: { span: 3 },
   },
   wrapperCol: {
-    sm: { span: 16 },
+    sm: { span: 20 },
+  },
+};
+const formItemTwoLayout_1 = {
+  labelCol: {
+    sm: { span: 3 },
+  },
+  wrapperCol: {
+    sm: { span: 18 },
+  },
+};
+const formItemTwoLayout_2 = {
+  labelCol: {
+    sm: { span: 10 },
+  },
+  wrapperCol: {
+    sm: { span: 14 },
   },
 };
 const formItemThreeLayout = {
   labelCol: {
-    sm: { span: 7 },
+    sm: { span: 9 },
   },
   wrapperCol: {
-    sm: { span: 17 },
+    sm: { span: 12 },
   },
 };
 const namespace = 'businessFrameData'
@@ -46,13 +62,13 @@ class damagePresure extends React.Component{
       <div>
         <Form >
           <Card>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+            <Row >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"签订日期："} >
                   <Input disabled id={""}/>
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同类型："} >
                   <Select disabled defaultValue="框架协议" >
                     {
@@ -65,7 +81,7 @@ class damagePresure extends React.Component{
                   </Select>
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同性质："} >
                   <Select disabled defaultValue="医药服务" >
                     {
@@ -79,37 +95,35 @@ class damagePresure extends React.Component{
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={21} >
-              <Col span={7} offset={1}>
+            <Row  >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同维护方："} >
                   <Input disabled placeholder="登录会员" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同确认方："} >
                   <Input disabled placeholder="医药工业" id="" />
                 </FormItem>
               </Col>
-            </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同编号："} >
                   <Input  disabled id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+            </Row>
+            <Row >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同文本："} >
                   <Input  disabled id="" />
                 </FormItem>
               </Col>
-            </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
                   <Input  disabled id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"结束日期："} >
                   <Input disabled id="" />
                 </FormItem>
@@ -117,26 +131,26 @@ class damagePresure extends React.Component{
             </Row>
           </Card>
           <Card >
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"录入日期："} >
+            <Row >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"录入日期："} >
                   <Input disabled placeholder="2018/9/16" id="" />
                 </FormItem>
               </Col>
-              <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"录入用户："} >
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"录入用户："} >
                   <Input disabled placeholder="登录会员" id="" />
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"确认日期："} >
+            <Row >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"确认日期："} >
                   <Input disabled placeholder="2018/9/16" id="" />
                 </FormItem>
               </Col>
-              <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"确认用户："} >
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"确认用户："} >
                   <Input disabled placeholder="" id="" />
                 </FormItem>
               </Col>

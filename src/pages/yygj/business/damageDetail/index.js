@@ -4,12 +4,36 @@ import { Form, Input, Col,Row,Select, Table,Button, Card } from 'antd';
 import { connect } from 'dva'
 
 const FormItem = Form.Item;
-const formItemThreeLayout = {
+const formItemOneLayout = {
   labelCol: {
-    sm: { span: 7 },
+    sm: { span: 3 },
   },
   wrapperCol: {
-    sm: { span: 17 },
+    sm: { span: 20 },
+  },
+};
+const formItemTwoLayout_1 = {
+  labelCol: {
+    sm: { span: 3 },
+  },
+  wrapperCol: {
+    sm: { span: 18 },
+  },
+};
+const formItemTwoLayout_2 = {
+  labelCol: {
+    sm: { span: 10 },
+  },
+  wrapperCol: {
+    sm: { span: 14 },
+  },
+};
+const formItemThreeLayout = {
+  labelCol: {
+    sm: { span: 9 },
+  },
+  wrapperCol: {
+    sm: { span: 12 },
   },
 };
 const rowSelection = {
@@ -47,18 +71,18 @@ class damagePresure extends React.Component{
       <div>
         <Form >
           <Card>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+            <Row >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"货损编号："} >
                   <Input disabled id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"录入日期："} >
                   <Input disabled placeholder="20180916" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"所属订单："} >
                   <Select disabled defaultValue="会员已有订单" >
                     <Option value="会员已有订单">会员已有订单</Option>
@@ -66,42 +90,42 @@ class damagePresure extends React.Component{
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={21} >
-              <Col span={7} offset={1}>
+            <Row  >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"发起机构："} >
                   <Input disabled placeholder="" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"确认机构："} >
                   <Input disabled placeholder="" id="" />
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+            <Row >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"货损价值："} >
                   <Input disabled  id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"确认日期："} >
                   <Input disabled placeholder="20180916" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} offset={1}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"发票确认日期："} >
                   <Input disabled placeholder="20180916" id="" />
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+            <Row >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"冲正发票号："} >
                   <Input disabled placeholder="101010101010101010" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"货损状态："} >
                   <Input  disabled placeholder="" id="" />
                 </FormItem>
@@ -116,7 +140,7 @@ class damagePresure extends React.Component{
           </Card>
           <Card>
             <Row gutter={24}>
-              <Col offset={8}>
+              <Col offset={10}>
                 <div>
                   <Button href={"/yygj/business/syCargoDamage"} type="primary" name="确定" className={styles.button}>确定</Button>
                 </div>
