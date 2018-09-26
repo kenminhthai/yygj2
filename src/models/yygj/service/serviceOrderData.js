@@ -1,3 +1,4 @@
+import Link from 'umi/link'
 export default {
   namespace: 'serviceOrderData',
   state: {
@@ -9,7 +10,7 @@ export default {
       {
         title: '订单编号',
         dataIndex: 'order_number',
-        render:text => <a href="/yygj/service/orderPreserve/orderDetail">{text}</a>
+        render:text => <Link to={"/yygj/service/orderPreserve/orderDetail"}>{text}</Link>
       },
       {
         title: '买方机构',

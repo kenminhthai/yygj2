@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table ,Button} from 'antd'
+import { Table ,Button,Card} from 'antd'
 import { connect } from 'dva'
 import  Link  from 'umi/link'
 const ButtonGroup = Button.Group
@@ -24,7 +24,7 @@ const mapStateToProps = (state) =>{
 class CargoDamage extends React.Component{
   render(){
     return(
-      <div>
+      <Card title={
         <ButtonGroup>
           {
             this.props.buttons.map((item, index) => {
@@ -36,8 +36,9 @@ class CargoDamage extends React.Component{
             })
           }
         </ButtonGroup>
+      }>
         <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" />
-      </div>
+      </Card>
     )
   }
 

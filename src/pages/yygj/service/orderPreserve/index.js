@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table,Button,message } from 'antd';
+import { Table,Button,message,Card } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
 
@@ -29,7 +29,7 @@ const mapStateToProps = (state) =>{
 class ServiceOrderPreserve extends React.Component{
   render(){
     return(
-      <div>
+      <Card title={
         <ButtonGroup>
           {this.props.buttons.map((item, index) => {
             if(item.url != ''){
@@ -45,10 +45,11 @@ class ServiceOrderPreserve extends React.Component{
             }
           })}
         </ButtonGroup>
+      }>
         <div>
-          <Table columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
+          <Table bordered={true} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
         </div>
-      </div>
+      </Card>
     )
   }
 

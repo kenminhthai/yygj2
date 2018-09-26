@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'antd';
+import { Table,Card } from 'antd';
 import { connect } from 'dva';
 import {Button} from "antd";
 import  Link  from 'umi/link';
@@ -38,7 +38,7 @@ class ServiceOrderAffirmList extends React.Component{
   }
   render(){
     return(
-      <div>
+      <Card title={
         <ButtonGroup>
           {this.props.buttons.map((item, index) => {
             return(
@@ -48,10 +48,9 @@ class ServiceOrderAffirmList extends React.Component{
             )
           })}
         </ButtonGroup>
-        <div id={"content"}>
-          <Table columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
-        </div>
-      </div>
+      }>
+        <Table bordered columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
+      </Card>
     )
   }
 

@@ -47,7 +47,7 @@ const mapStateToProps = (state) =>{
   const commonData = state["commonData"];
   const colums = commonData.file.colums;
   const filelist = commonData.file.filelist;3
-  const businessOrderData = state["serviceOrderData"];
+  const businessOrderData = state["industrialOrderData"];
   const buttons = businessOrderData.buttons;
   return{
     colums, filelist, buttons
