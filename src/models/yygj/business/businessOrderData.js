@@ -10,12 +10,12 @@ export default {
         width:'100px',
         render: text => <div>
                           <Popconfirm title="确定要发送订单吗？"  okText="发送" cancelText="取消">
-                          <Tooltip title="发送订单">
+                          <Tooltip title="发送订单" placement="left">
                             <Icon style={{fontSize:'22px',marginRight:'10px'}} type="mail" theme="twoTone" />
                           </Tooltip>
                           </Popconfirm>
                           <Popconfirm title="确定要删除订单吗？"  okText="删除" cancelText="取消">
-                          <Tooltip title="删除订单">
+                          <Tooltip title="删除订单" placement="right">
                             <Icon style={{fontSize:'22px'}} type="delete" theme="twoTone" />
                           </Tooltip>
                           </Popconfirm>
