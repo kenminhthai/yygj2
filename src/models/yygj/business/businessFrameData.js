@@ -15,11 +15,7 @@ export default {
   namespace: 'businessFrameData',
   state: {
     columns:  [
-      {
-        title: '',
-        dataIndex: 'choose',
-        render:text => <a href="javascript:;">{text}</a>,
-      },
+
       {
         title: '录入日期',
         dataIndex: 'date_typeIn',
@@ -27,7 +23,7 @@ export default {
       {
         title: '合同编号',
         dataIndex: 'frameID',
-        render:text => <Link to={"/yygj/business/frameDetail"}><a>{text}</a></Link>,
+        render:text => <Link to={"/yygj/business/syFramePreserve/frameDetail"}><a>{text}</a></Link>,
       },
       {
         title: '合同日期',
@@ -64,7 +60,7 @@ export default {
     ],
     data: [
       {
-        choose:'',
+
         date_typeIn:'20180916',
         frameID:'0001',
         frame_date:'2020-10-20',
@@ -72,7 +68,7 @@ export default {
         frame_character:'医药服务',
         frame_preserve_person:'李四',
         frame_insure_person:'张三',
-        status:'待发送/待确认/已确认',
+        status:'待发送',
         date_frame_begin:'20180916',
         date_frame_end:'20181016',
       },
@@ -94,10 +90,68 @@ export default {
         fun:del,
       },
     ],
+    columns_insure:  [
+
+      {
+        title: '录入日期',
+        dataIndex: 'date_typeIn',
+      },
+      {
+        title: '合同编号',
+        dataIndex: 'frameID',
+        render:text => <Link to={"/yygj/business/syFrameInsure/frameDetail"}><a>{text}</a></Link>,
+      },
+      {
+        title: '合同日期',
+        dataIndex: 'frame_date',
+      },
+      {
+        title: '合同类型',
+        dataIndex: 'frame_type',
+      },
+      {
+        title: '合同性质',
+        dataIndex: 'frame_character',
+      },
+      {
+        title: '合同维护方',
+        dataIndex: 'frame_preserve_person',
+      },
+      {
+        title: '合同确认方',
+        dataIndex: 'frame_insure_person',
+      },
+      {
+        title: '记录状态',
+        dataIndex: 'status',
+      },
+      {
+        title: '合同开始日期',
+        dataIndex: 'date_frame_begin',
+      },
+      {
+        title: '合同结束日期',
+        dataIndex: 'date_frame_end',
+      },
+    ],
+    data_insure: [
+      {
+        date_typeIn:'20180916',
+        frameID:'0001',
+        frame_date:'2020-10-20',
+        frame_type:'医药合同',
+        frame_character:'医药服务',
+        frame_preserve_person:'李四',
+        frame_insure_person:'张三',
+        status:'待发送',
+        date_frame_begin:'20180916',
+        date_frame_end:'20181016',
+      },
+    ],
     buttons_Insure:[
       {
         name:'确认协议',
-        url:'./syFrameInsure',
+        url:'/yygj/business/syFrameInsure',
         fun:insure,
       },
     ],

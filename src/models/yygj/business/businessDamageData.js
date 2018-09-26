@@ -1,4 +1,4 @@
-
+import Link from 'umi/link'
 function send() {
   alert("已发送")
 }
@@ -10,18 +10,13 @@ export default {
   state: {
     columns               :[
       {
-        title: '',
-        dataIndex: 'choose',
-        render:text => <a href="javascript:;">{text}</a>,
-      },
-      {
         title: '录入日期',
         dataIndex: 'date_typeIn',
       },
       {
         title: '货损编号',
         dataIndex: 'cargo_ID',
-        render:text => <a href="./damageDetail">{text}</a>,
+        render:text =><Link to={'/yygj/business/syCargoDamage/damageDetail'} ><a>{text}</a></Link>,
       },
       {
         title: '发起机构',
@@ -54,7 +49,7 @@ export default {
     ],
     data                  :[
       {
-        choose:"",
+
         date_typeIn:'20180916',
         cargo_ID:'0001',
         org_begin:'XXX',
@@ -63,10 +58,10 @@ export default {
         cargo_order:'0001',
         date_insure:'20180916',
         date_bill_insure:'20180918',
-        status:'待发送/待确认/发票待确认/完成',
+        status:'待发送',
       },
       {
-        choose:"",
+
         date_typeIn:'20180915',
         cargo_ID:'0002',
         org_begin:'ZZZ',
@@ -75,7 +70,7 @@ export default {
         cargo_order:'0002',
         date_insure:'20180917',
         date_bill_insure:'20180918',
-        status:'待发送/待确认/发票待确认/完成',
+        status:'待发送',
       },
     ],
     buttons               :[

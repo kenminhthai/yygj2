@@ -4,7 +4,9 @@ import { Form, Input, Col,Row,Select, Table,Button, Card ,} from 'antd';
 
 
 const FormItem = Form.Item;
-
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 import cargoList from "../../../../../../mock/cargoList";
 const formItemOneLayout = {
   labelCol: {
@@ -54,7 +56,7 @@ class damagePresure extends React.Component{
     return(
       <div>
         <Form >
-          <Card>
+          <Card title={"基本信息"} headStyle={headStyle}>
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"货损维护："} >
@@ -116,10 +118,10 @@ class damagePresure extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"货损明细"}>
+          <Card title={"货损明细"}  headStyle={headStyle}>
             <Table columns={cargoList.columns_detail} dataSource={cargoList.data_detail} size="small" />
           </Card>
-          <Card title={"上传文件"}>
+          <Card title={"上传文件"}  headStyle={headStyle}>
             <Table columns={cargoList.columns_insure_bill} dataSource={cargoList.data_insure_bill} size="small" />
           </Card>
           <Card>

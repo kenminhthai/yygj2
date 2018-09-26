@@ -30,6 +30,9 @@ const formItemTwoLayout_2 = {
     sm: { span: 14 },
   },
 };
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 const formItemThreeLayout = {
   labelCol: {
     sm: { span: 9 },
@@ -72,7 +75,7 @@ class damagePresure extends React.Component{
     return(
       <div>
         <Form >
-          <Card>
+          <Card title={"基本信息"} headStyle={headStyle}>
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"货损维护："} >
@@ -134,10 +137,10 @@ class damagePresure extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"货损明细"}>
+          <Card title={"货损明细"}  headStyle={headStyle}>
             <Table rowSelection={rowSelection} columns={this.props.columns_detail} dataSource={this.props.data_detail} size="small" />
           </Card>
-          <Card title={"上传文件"}>
+          <Card title={"上传文件"}  headStyle={headStyle}>
             <Table rowSelection={rowSelection} columns={this.props.columns_file} dataSource={this.props.data_file} size="small" />
           </Card>
           <Card>

@@ -1,5 +1,5 @@
 
-
+import Link from 'umi/link'
 function insure() {
   alert("已付款")
 }
@@ -8,18 +8,13 @@ export default {
   state: {
     columns: [
       {
-        title: '',
-        dataIndex: 'choose',
-        render:text => <a href="javascript:;">{text}</a>,
-      },
-      {
         title: '应付日期',
         dataIndex: 'date_typeIn',
       },
       {
         title: '所属订单',
         dataIndex: 'orderID',
-        render:text => <a href="/yygj/business/sypay/orderDetail">{text}</a>,
+        render:text =><Link to={"/yygj/business/sypay/orderDetail"}> <a>{text}</a></Link>,
       },
       {
         title: '收款方机构',
@@ -53,7 +48,6 @@ export default {
     ],
     data: [
       {
-        choose:'',
         date_typeIn:'20180916',
         orderID:'0001',
         gathering_org:'XXX',

@@ -13,8 +13,8 @@ const rowSelection = {
 const namespace = 'businessFrameData'
 const mapStateToProps = (state) =>{
   const DataList = state[namespace]
-  const columns  = DataList.columns
-  const data     = DataList.data
+  const columns  = DataList.columns_insure
+  const data     = DataList.data_insure
   const buttons  = DataList.buttons_Insure
   return{
     columns, data,buttons,

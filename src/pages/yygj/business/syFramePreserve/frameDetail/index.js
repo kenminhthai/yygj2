@@ -1,17 +1,9 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,Button, Card ,DatePicker} from 'antd';
-import {Upload} from "antd/lib/index";
+import { Form, Input, Col,Row,Select,Button, Card } from 'antd';
 import { connect } from 'dva'
-import moment from 'moment';
-import  Link  from 'umi/link'
-
-const ButtonGroup = Button.Group
+import Link from 'umi/link'
 const FormItem = Form.Item;
-const Dragger = Upload.Dragger;
-const { MonthPicker, RangePicker } = DatePicker;
-const date = new Date()
-const dateFormat = 'YYYY-MM-DD';
 const headStyle={
   backgroundColor:"#E8E8E8",
 }
@@ -47,7 +39,6 @@ const formItemThreeLayout = {
     sm: { span: 12 },
   },
 };
-
 const namespace = 'businessFrameData'
 const mapStateToProps = (state) =>{
   const DataList               = state[namespace]
@@ -56,18 +47,19 @@ const mapStateToProps = (state) =>{
   const buttons                = DataList.buttons
   const options_frameType      = DataList.options_frameType
   const options_frameCharacter = DataList.options_frameCharacter
-  const buttons_addFrame       = DataList.buttons_page_addFrame
   return{
-    columns,
-    data,
-    buttons,
-    options_frameType,
-    options_frameCharacter,
-    buttons_addFrame,
+    columns, data,buttons,options_frameType,options_frameCharacter,
   }
 }
 @connect(mapStateToProps)
+
 class damagePresure extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+
+    };
+  }
   render(){
     return(
       <div>
@@ -76,16 +68,16 @@ class damagePresure extends React.Component{
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"签订日期："} >
-                  <DatePicker defaultValue={moment(date, dateFormat)}/>
+                  <Input disabled id={""}/>
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同类型："} >
-                  <Select  defaultValue="框架协议" >
+                  <Select disabled defaultValue="框架协议" >
                     {
                       this.props.options_frameType.map((item, index) => {
                         return(
-                          <Option value={item.value} key={index} >{item.name}</Option>
+                            <Option value={item.value} key={index} >{item.name}</Option>
                         )
                       })
                     }
@@ -94,7 +86,7 @@ class damagePresure extends React.Component{
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同性质："} >
-                  <Select  defaultValue="医药服务" >
+                  <Select disabled defaultValue="医药服务" >
                     {
                       this.props.options_frameCharacter.map((item, index) => {
                         return(
@@ -119,26 +111,24 @@ class damagePresure extends React.Component{
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同编号："} >
-                  <Input   id="" />
+                  <Input  disabled id="" />
                 </FormItem>
               </Col>
             </Row>
             <Row >
               <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"合同文本："} >
+                  <Input  disabled id="" />
+                </FormItem>
+              </Col>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
-                  <Input   id="" />
+                  <Input  disabled id="" />
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"结束日期："} >
-                  <Input  id="" />
-                </FormItem>
-              </Col>
-              <Col span={8} >
-                <FormItem {...formItemThreeLayout} label={"合同文本："} >
-                  <Dragger className={styles.D}>
-                    点击上传合同电子文档
-                  </Dragger>
+                  <Input disabled id="" />
                 </FormItem>
               </Col>
             </Row>
@@ -170,19 +160,11 @@ class damagePresure extends React.Component{
             </Row>
           </Card>
           <Card>
-            <Row >
-              <Col offset={9}>
-                <ButtonGroup>
-                  {
-                    this.props.buttons_addFrame.map((item, index) => {
-                      return(
-                        <Link to={item.url}>
-                          <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                        </Link>
-                      )
-                    })
-                  }
-                </ButtonGroup>
+            <Row gutter={24}>
+              <Col offset={10}>
+                <Link to={"/yygj/business/syFrameInsure"}>
+                  <Button type="primary" name="确定" className={styles.button}>关闭</Button>
+                </Link>
               </Col>
             </Row>
           </Card>

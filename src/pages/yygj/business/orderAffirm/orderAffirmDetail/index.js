@@ -7,36 +7,39 @@ import  Link  from 'umi/link';
 
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 const formItemOneLayout = {
   labelCol: {
-    sm: { span: 2 },
-  },
-  wrapperCol: {
-    sm: { span: 22 },
-  },
-};
-const formItemTwoLayout = {
-  labelCol: {
-    sm: { span: 4 },
+    sm: { span: 3 },
   },
   wrapperCol: {
     sm: { span: 20 },
   },
 };
-const formItemThreeLayout = {
+const formItemTwoLayout_1 = {
   labelCol: {
-    sm: { span: 7 },
+    sm: { span: 3 },
   },
   wrapperCol: {
-    sm: { span: 17 },
+    sm: { span: 18 },
   },
 };
-const formItemFourLayout = {
+const formItemTwoLayout_2 = {
   labelCol: {
-    sm: { span: 8 },
+    sm: { span: 10 },
   },
   wrapperCol: {
-    sm: { span: 16 },
+    sm: { span: 14 },
+  },
+};
+const formItemThreeLayout = {
+  labelCol: {
+    sm: { span: 9 },
+  },
+  wrapperCol: {
+    sm: { span: 12 },
   },
 };
 
@@ -63,15 +66,15 @@ class BusinessOrderAffirmDetail extends React.Component{
     return(
       <div>
         <Form>
-          <Card title={"订单信息"}>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem  {...formItemTwoLayout} label={"买方机构"} >
+          <Card title={"订单信息"} headStyle={headStyle}>
+            <Row >
+              <Col span={8}>
+                <FormItem  {...formItemThreeLayout} label={"买方机构"} >
                   <Input disabled placeholder={"买方机构"} id=""/>
                 </FormItem>
               </Col>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"卖方机构"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"卖方机构"} >
                   <Select disabled defaultValue="医药工业" >
                     <Option value="industrial">医药工业</Option>
                     <Option value="bussiness">医药商业</Option>
@@ -80,10 +83,8 @@ class BusinessOrderAffirmDetail extends React.Component{
                   </Select>
                 </FormItem>
               </Col>
-            </Row>
-            <Row gutter={24}>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"所属合同"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"所属合同"} >
                   <Select disabled defaultValue="合同1" >
                     <Option value="industrial">合同1</Option>
                     <Option value="bussiness">合同1</Option>
@@ -92,77 +93,81 @@ class BusinessOrderAffirmDetail extends React.Component{
                   </Select>
                 </FormItem>
               </Col>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"订单日期"} >
+            </Row>
+            <Row >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"订单日期"} >
                   <DatePicker disabled />
                 </FormItem>
               </Col>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"订单金额"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"订单金额"} >
                   <Input disabled placeholder="订单金额" id="" />
                 </FormItem>
               </Col>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"约定交货日"} >
-                  <DatePicker disabled />
-                </FormItem>
-              </Col>
+
             </Row>
-            <Row gutter={24}>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"约定付款日"} >
+            <Row >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"约定交货日"} >
                   <DatePicker disabled />
                 </FormItem>
               </Col>
-            </Row>
-            <Row gutter={24}>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"录入日期"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"约定付款日"} >
                   <DatePicker disabled />
                 </FormItem>
               </Col>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"确认日期"} >
-                  <DatePicker disabled />
-                </FormItem>
-              </Col>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"订单状态"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"订单状态"} >
                   <Input disabled placeholder={"订单状态"} id=""/>
                 </FormItem>
               </Col>
             </Row>
+            <Row >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"录入日期"} >
+                  <DatePicker disabled />
+                </FormItem>
+              </Col>
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"确认日期"} >
+                  <DatePicker disabled />
+                </FormItem>
+              </Col>
+
+            </Row>
           </Card>
-          <Card title={"明细信息"}>
+          <Card title={"明细信息"} headStyle={headStyle}>
             <div >
               <Table columns={this.props.colums2} dataSource={this.props.filelist2} size={"small"}/>
             </div>
           </Card>
-          <Card title={"发票信息"}>
-            <Row gutter={24}>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"出票日期"} >
+          <Card title={"发票信息"} headStyle={headStyle}>
+            <Row >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"出票日期"} >
                   <DatePicker disabled />
                 </FormItem>
               </Col>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"发票编号"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"发票编号"} >
                   <Input disabled placeholder="发票编号" id="" />
                 </FormItem>
               </Col>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"出票人"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"出票人"} >
                   <Input disabled placeholder="出票人" id="" />
                 </FormItem>
               </Col>
-              <Col span={6}>
-                <FormItem {...formItemFourLayout} label={"发票抬头"} >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"发票抬头"} >
                   <Input disabled placeholder="发票抬头" id="" />
                 </FormItem>
               </Col>
             </Row>
           </Card>
-          <Card title={"上传文件"}>
+          <Card title={"上传文件"} headStyle={headStyle}>
             <div style={{width:'50%'}}>
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
             </div>
@@ -170,7 +175,7 @@ class BusinessOrderAffirmDetail extends React.Component{
             <Link to={"/yygj/business/orderAffirm"}>
               <Button type={"primary"} style={{width:'10%'}}>关闭</Button>
             </Link>
-           {/* <Row gutter={24}>
+           {/* <Row >
               <Col offset={8}>
                 <ButtonGroup>
                   <Button disabled type="primary" size={"middle"} className={styles.buttons}>保存</Button>
