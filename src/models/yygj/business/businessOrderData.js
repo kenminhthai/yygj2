@@ -1,8 +1,26 @@
 import Link from 'umi/link'
+import {Icon,Tooltip,Popconfirm } from 'antd'
 export default {
   namespace: 'businessOrderData',
   state: {
     colums:[
+      {
+        title: '操作',
+        dataIndex: 'operation',
+        width:'100px',
+        render: text => <div>
+                          <Popconfirm title="确定要发送订单吗？"  okText="发送" cancelText="取消">
+                          <Tooltip title="发送订单">
+                            <Icon style={{fontSize:'22px',marginRight:'10px'}} type="mail" theme="twoTone" />
+                          </Tooltip>
+                          </Popconfirm>
+                          <Popconfirm title="确定要删除订单吗？"  okText="删除" cancelText="取消">
+                          <Tooltip title="删除订单">
+                            <Icon style={{fontSize:'22px'}} type="delete" theme="twoTone" />
+                          </Tooltip>
+                          </Popconfirm>
+                        </div>
+      },
       {
         title: '订单日期',
         dataIndex: 'order_date',

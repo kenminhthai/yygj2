@@ -108,7 +108,7 @@ class BusinessOrderPreserve extends React.Component{
               );
             }}
           </Query>*/}
-          <Table bordered={true} pagination={{position:'bottom'}} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
+          <Table bordered={true} pagination={{position:'bottom'}} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection}  />
         </Card>
       </div>
     )
