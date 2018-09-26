@@ -16,7 +16,7 @@ export default {
         title: '申请编号',
         dataIndex: 'ID',
         width:80,
-        render:text => <Link to={"/yygj/industrial/financingDetail"}>{text}</Link>,
+        render:text => <Link to={"/yygj/industrial/financingApply/financingDetail"}>{text}</Link>,
       },
       {
         title: '申请日期',

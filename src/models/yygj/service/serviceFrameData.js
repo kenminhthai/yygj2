@@ -1,4 +1,4 @@
-
+import Link from 'umi/link'
 function send() {
   alert("已发送")
 }
@@ -27,7 +27,7 @@ export default {
       {
         title: '合同编号',
         dataIndex: 'frameID',
-        render:text => <a href="/yygj/service/frameDetail">{text}</a>,
+        render:text =><Link to={"/yygj/service/fwFramePreserve/frameDetail"}> <a >{text}</a></Link>,
       },
       {
         title: '合同日期',
@@ -77,6 +77,55 @@ export default {
         date_frame_end:'20181016',
       },
     ],
+    columns_insure:  [
+      {
+        title: '',
+        dataIndex: 'choose',
+        render:text => <a href="javascript:;">{text}</a>,
+      },
+      {
+        title: '录入日期',
+        dataIndex: 'date_typeIn',
+      },
+      {
+        title: '合同编号',
+        dataIndex: 'frameID',
+        render:text =><Link to={"/yygj/service/fwFrameInsure/frameDetail"}> <a >{text}</a></Link>,
+      },
+      {
+        title: '合同日期',
+        dataIndex: 'frame_date',
+      },
+      {
+        title: '合同类型',
+        dataIndex: 'frame_type',
+      },
+      {
+        title: '合同性质',
+        dataIndex: 'frame_character',
+      },
+      {
+        title: '合同维护方',
+        dataIndex: 'frame_preserve_person',
+      },
+      {
+        title: '合同确认方',
+        dataIndex: 'frame_insure_person',
+      },
+      {
+        title: '记录状态',
+        dataIndex: 'status',
+      },
+      {
+        title: '合同开始日期',
+        dataIndex: 'date_frame_begin',
+      },
+      {
+        title: '合同结束日期',
+        dataIndex: 'date_frame_end',
+      },
+    ],
+
     buttons:[
       {
         name:'添加协议',

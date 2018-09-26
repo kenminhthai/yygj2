@@ -156,7 +156,7 @@ class ServiceOrderDetail extends React.Component{
             </div>
           </Card>
           <div style={{textAlign:'center'}}>
-            <Button type={"primary"}>关闭</Button>
+            <Link to={'/yygj/industrial/financingApply'}><Button type={"primary"}>关闭</Button></Link>
           </div>
         </Form>
       </div>

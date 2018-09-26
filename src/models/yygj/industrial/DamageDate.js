@@ -1,4 +1,4 @@
-
+import Link from 'umi/link'
 function insure() {
   alert("已确认")
 }
@@ -22,7 +22,7 @@ export default {
       {
         title: '货损编号',
         dataIndex: 'cargo_ID',
-        render:text => <a href="/yygj/industrial/damageDetail">{text}</a>,
+        render:text =><Link to={"/yygj/industrial/gyCargoDamage/damageDetail"}> <a>{text}</a></Link>,
       },
       {
         title: '发起机构',

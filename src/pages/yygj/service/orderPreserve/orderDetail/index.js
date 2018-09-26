@@ -66,7 +66,7 @@ class ServiceOrderDetail extends React.Component{
     return(
       <div>
         <Form>
-          <Card headStyle={headStyle} className={styles.cardbottom}>
+          <Card title={"订单信息"} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem  {...formItemThreeLayout} label={"买方机构"} >

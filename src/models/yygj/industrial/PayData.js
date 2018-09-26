@@ -1,4 +1,4 @@
-
+import Link from 'umi/link'
 
 function insure() {
   alert("已付款")
@@ -19,7 +19,7 @@ export default {
       {
         title: '所属订单',
         dataIndex: 'orderID',
-        render:text => <a href="/yygj/industrial/gypay/orderDetail">{text}</a>,
+        render:text => <Link to={"/yygj/industrial/gypay/orderDetail"}><a >{text}</a></Link>,
       },
       {
         title: '收款方机构',

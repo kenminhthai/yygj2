@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table ,Button} from 'antd'
+import { Table ,Button,Card} from 'antd'
 import { connect } from 'dva'
 import  Link  from 'umi/link'
 const ButtonGroup = Button.Group
@@ -24,20 +24,19 @@ const mapStateToProps = (state) =>{
 class CargoDamage extends React.Component{
   render(){
     return(
-      <div>
-        <ButtonGroup>
-          {
-            this.props.buttons.map((item, index) => {
-              return(
-                <Link to={item.url}>
-                  <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                </Link>
-              )
-            })
-          }
-        </ButtonGroup>
-        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" />
-      </div>
+      <Card title={<ButtonGroup>
+        {
+          this.props.buttons.map((item, index) => {
+            return(
+              <Link to={item.url}>
+                <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+              </Link>
+            )
+          })
+        }
+      </ButtonGroup>}>
+        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" bordered/>
+      </Card>
     )
   }
 

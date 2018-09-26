@@ -1,4 +1,4 @@
-
+import Link from 'umi/link'
 function insure() {
   alert("已还款")
 }
@@ -19,7 +19,7 @@ export default {
       {
         title: '融资协议',
         dataIndex: 'frameID',
-        render:text => <a href="javascript:;">{text}</a>,
+        render:text =><Link to={"/yygj/industrial/financingRefund/financingDetail"}><a >{text}</a></Link>,
       },
       {
         title: '所属申请',
@@ -95,7 +95,7 @@ export default {
       {
         title: '申请编号',
         dataIndex: 'ID',
-        render:text => <a href="/yygj/industrial/financingDetail">{text}</a>,
+        render:text => <Link to={"/yygj/industrial/financingRefund/financingDetail"}><a >{text}</a></Link>,
       },
       {
         title: '申请日期',
