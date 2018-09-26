@@ -70,9 +70,7 @@ const Bread = ({ menu, location }) => {
 
   return (
     <div className={styles.bread}>
-      <Breadcrumb>
-        {breads}
-      </Breadcrumb>
+
     </div>
   )
 }
