@@ -1,4 +1,4 @@
-import Link from 'umi/link'
+
 function insure() {
   alert("已还款")
 }
@@ -9,82 +9,151 @@ function del() {
   alert("del")
 }
 export default {
-  namespace: 'industrialFinancingData',
+  namespace: 'industrialRefundData',
   state: {
-    columns_apply:  [
+    columns:  [
       {
-        title: '申请编号',
+        title: '款项编号',
         dataIndex: 'ID',
-        width:80,
-        render:text => <Link to={"/yygj/industrial/financingDetail"}>{text}</Link>,
       },
       {
-        title: '申请日期',
-        dataIndex: 'date_apply',
-        width:90,
+        title: '融资协议',
+        dataIndex: 'frameID',
+        render:text => <a href="javascript:;">{text}</a>,
       },
       {
-        title: '融资类型',
-        dataIndex: 'financing_type',
-        width:100,
-      },
-      {
-        title: '申请机构',
-        dataIndex: 'apply_org',
-        width:100
+        title: '所属申请',
+        dataIndex: 'relevanceApply',
       },
       {
         title: '资金方',
         dataIndex: 'capital_loaner',
-        width:100
+      },
+      {
+        title: '放款日期',
+        dataIndex: 'date_begin',
+      },
+      {
+        title: '资金规模',
+        dataIndex: 'capital_scale',
+      },
+      {
+        title: '资金价格',
+        dataIndex: 'capital_price',
+      },
+      {
+        title: '本息合计',
+        dataIndex: 'sum',
+      },
+      {
+        title: '到期日期',
+        dataIndex: 'date_end',
+      },
+      {
+        title: '到期状态',
+        dataIndex: 'status_date_end',
+      },
+      {
+        title: '实际还款日期',
+        dataIndex: 'date_end_fact',
+      },
+      {
+        title: '还款状态',
+        dataIndex: 'status_refund',
+      },
+    ],
+    data: [
+      {
+        ID:'20180916023132',
+        frameID:'0001',
+        relevanceApply:'213213',
+        capital_loaner:'XX投资公司',
+        date_begin:'20180916',
+        capital_scale:'1000万',
+        capital_price:'80%',
+        sum:'1200万',
+        date_end:'20181016',
+        status_date_end:'未到期',
+        date_end_fact:'20180920',
+        status_refund:'已还款',
+
+      },
+    ],
+    buttons:[
+      {
+        name:'还款',
+        url:'/yygj/industrial/financingRefund',
+        fun:insure,
+      },
+    ],
+    columns_apply:  [
+      {
+        title: '',
+        dataIndex: 'choose',
+        render:text => <a href="javascript:;">{text}</a>,
+      },
+      {
+        title: '申请编号',
+        dataIndex: 'ID',
+        render:text => <a href="/yygj/industrial/financingDetail">{text}</a>,
+      },
+      {
+        title: '申请日期',
+        dataIndex: 'date_apply',
+      },
+      {
+        title: '融资类型',
+        dataIndex: 'financing_type',
+      },
+      {
+        title: '申请机构',
+        dataIndex: 'apply_org',
+      },
+      {
+        title: '资金方',
+        dataIndex: 'capital_loaner',
       },
       {
         title: '所属订单',
         dataIndex: 'order_superior',
-        width:80,
-        render:text => <Link to={"/yygj/industrial/financingApply/orderDetail"}>{text}</Link>,
+        render:text => <a href="/yygj/industrial/financingApply/orderDetail">{text}</a>,
       },
       {
         title: '关联订单',
         dataIndex: 'order_relevance',
-        width:80,
-        render:text => <Link to={"/yygj/industrial/financingApply/orderDetail"}>{text}</Link>,
+        render:text => <a href="/yygj/industrial/financingApply/orderDetail">{text}</a>,
       },
       {
         title: '订单金额',
-        width:80,
         dataIndex: 'money_order',
       },
       {
         title: '剩余金额',
         dataIndex: 'money_residue',
-        width:70,
       },
       {
         title: '申请金额',
         dataIndex: 'money_apply',
-        width:70,
+        width:80,
       },
       {
         title: '受理日期',
         dataIndex: 'date_handle',
-        width:90,
       },
       {
         title: '审批日期',
         dataIndex: 'date_examine',
-        width:90,
       },
       {
         title: '申请状态',
         dataIndex: 'status_apply',
-        width:70,
       },
     ],
     data_apply: [
       {
+        choose:'',
         ID:'201823132',
-        date_apply:'2018-09-16',
+        date_apply:'20180916',
         financing_type:'应收款融资',
         apply_org:'上海链石科技有限公司',
         capital_loaner:'赢时胜科技股份有限公司',

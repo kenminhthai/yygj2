@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './index.less';
 import { Form, Input, Col,Row,Select,Cascader,Upload, Button,  Card, message } from 'antd';
-
+import Link from 'umi/link'
 const namespace = "platformData"
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
@@ -77,7 +77,7 @@ class ApplyMember extends React.Component{
     return(
       <div >
         <Form>
-          <Card title={<b>企业基本信息</b>} headStyle={headStyle} bordered={true}>
+          <Card title={<b>企业基本信息</b>} headStyle={headStyle} bordered={true} className={styles.cardbottom}>
             <FormItem {...formItemOneLayout} label={"企业名称"} >
               <Input placeholder="企业名称" id="" />
             </FormItem>
@@ -93,20 +93,16 @@ class ApplyMember extends React.Component{
                   <Cascader options={options} placeholder="所在地区" />
                 </FormItem>
               </Col>
-              <Row >
-                <Col span={7} pull={1}>
-                  <FormItem {...formItemTwoLayout_2} label={"企业会员类型"} >
-                    <Select defaultValue="shagnye" >
-                      <Option value="shagnye">医药商业</Option>
-                      <Option value="gongye">医药工业</Option>
-                      <Option value="fuwu">医药服务</Option>
-                      <Option value="pingtai">医药平台</Option>
-                    </Select>
-                  </FormItem>
-                </Col>
-              </Row>
-
-
+              <Col span={7} pull={1}>
+                <FormItem {...formItemTwoLayout_2} label={"企业会员类型"} >
+                  <Select defaultValue="shagnye" >
+                    <Option value="shagnye">医药商业</Option>
+                    <Option value="gongye">医药工业</Option>
+                    <Option value="fuwu">医药服务</Option>
+                    <Option value="pingtai">医药平台</Option>
+                  </Select>
+                </FormItem>
+              </Col>
             </Row>
             <Row >
               <Col span={8}>
@@ -177,7 +173,7 @@ class ApplyMember extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={<b>企业法人信息</b>} headStyle={headStyle}>
+          <Card title={<b>企业法人信息</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem  {...formItemThreeLayout} label={"企业法人"} >
@@ -203,7 +199,7 @@ class ApplyMember extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={<b>企业法人信息</b>} headStyle={headStyle}>
+          <Card title={<b>企业法人信息</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"企业联系人"} >
@@ -222,7 +218,7 @@ class ApplyMember extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={<b>上传文件</b>} headStyle={headStyle}>
+          <Card title={<b>上传文件</b>} headStyle={headStyle} className={styles.cardbottom}>
             <FormItem {...formItemOneLayout}  label={"营业执照"} >
               <Dragger  >
                 <p className="ant-upload-text">点击上传营业执照</p>
@@ -243,13 +239,15 @@ class ApplyMember extends React.Component{
                 <p className="ant-upload-text">点击上传平台会员协议书</p>
               </Dragger>
             </FormItem>
-            <div style={{textAlign:'center'}}>
-                <ButtonGroup >
-                  <Button type="primary" size={"middle"}className={styles.firstButton} onClick={save}>保存</Button>
-                  <Button type="primary" size={"middle"}>取消</Button>
-                </ButtonGroup>
-            </div>
           </Card>
+          <div style={{textAlign:'center'}}>
+            <ButtonGroup >
+              <Button type="primary" size={"middle"}className={styles.firstButton} onClick={save}>保存</Button>
+              <Link to={"/yygj/platform"}>
+              <Button type="primary" size={"middle"}>取消</Button>
+              </Link>
+            </ButtonGroup>
+          </div>
         </Form>
       </div>
     )

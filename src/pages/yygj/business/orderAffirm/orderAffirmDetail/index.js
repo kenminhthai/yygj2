@@ -66,7 +66,7 @@ class BusinessOrderAffirmDetail extends React.Component{
     return(
       <div>
         <Form>
-          <Card title={"订单信息"} headStyle={headStyle}>
+          <Card title={"订单信息"} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem  {...formItemThreeLayout} label={"买方机构"} >
@@ -105,14 +105,13 @@ class BusinessOrderAffirmDetail extends React.Component{
                   <Input disabled placeholder="订单金额" id="" />
                 </FormItem>
               </Col>
-
-            </Row>
-            <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"约定交货日"} >
                   <DatePicker disabled />
                 </FormItem>
               </Col>
+            </Row>
+            <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"约定付款日"} >
                   <DatePicker disabled />
@@ -123,13 +122,13 @@ class BusinessOrderAffirmDetail extends React.Component{
                   <Input disabled placeholder={"订单状态"} id=""/>
                 </FormItem>
               </Col>
-            </Row>
-            <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"录入日期"} >
                   <DatePicker disabled />
                 </FormItem>
               </Col>
+            </Row>
+            <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"确认日期"} >
                   <DatePicker disabled />
@@ -138,12 +137,12 @@ class BusinessOrderAffirmDetail extends React.Component{
 
             </Row>
           </Card>
-          <Card title={"明细信息"} headStyle={headStyle}>
+          <Card title={"明细信息"} headStyle={headStyle} className={styles.cardbottom}>
             <div >
               <Table columns={this.props.colums2} dataSource={this.props.filelist2} size={"small"}/>
             </div>
           </Card>
-          <Card title={"发票信息"} headStyle={headStyle}>
+          <Card title={"发票信息"} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"出票日期"} >
@@ -167,14 +166,11 @@ class BusinessOrderAffirmDetail extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"上传文件"} headStyle={headStyle}>
-            <div style={{width:'50%'}}>
+          <Card title={"上传文件"} headStyle={headStyle} className={styles.cardbottom}>
+            <div>
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
             </div>
-            <Button onClick={ok} type={"primary"} style={{width:'10%',marginRight:'10px',marginLeft:'400px'}}>确认</Button>
-            <Link to={"/yygj/business/orderAffirm"}>
-              <Button type={"primary"} style={{width:'10%'}}>关闭</Button>
-            </Link>
+
            {/* <Row >
               <Col offset={8}>
                 <ButtonGroup>
@@ -185,6 +181,12 @@ class BusinessOrderAffirmDetail extends React.Component{
               </Col>
             </Row>*/}
           </Card>
+          <div style={{textAlign:'center'}}>
+            <Button onClick={ok}type={"primary"} style={{marginRight:'20px'}}>确认</Button>
+            <Link to={"/yygj/business/orderAffirm"}>
+              <Button type={"primary"}>关闭</Button>
+            </Link>
+          </div>
         </Form>
       </div>
     )

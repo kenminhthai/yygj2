@@ -89,7 +89,7 @@ export default {
     buttons:[
       {
         name:'订单确认',
-        url:'/yygj/business/orderAffirm/orderAffirmDetail'
+        url:''
       },
     ],
   }

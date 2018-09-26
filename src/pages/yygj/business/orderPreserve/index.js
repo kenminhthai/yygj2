@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table } from 'antd';
 import { connect } from 'dva';
-import {Button, message} from "antd";
+import {Button, message, Card} from "antd";
 import  Link  from 'umi/link';
 import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
@@ -82,7 +82,8 @@ class BusinessOrderPreserve extends React.Component{
   render(){
     return(
       <div>
-        <ButtonGroup>
+
+        <Card title={<ButtonGroup>
           {this.props.buttons.map((item, index) => {
             if(item.url != ''){
               return(
@@ -96,8 +97,7 @@ class BusinessOrderPreserve extends React.Component{
               )
             }
           })}
-        </ButtonGroup>
-        <div id={"content"}>
+        </ButtonGroup>} style={{height:'100%'}} >
           {/*<Query query={GET_ORDER}>
             {({ loading, error, data }) => {
               if (loading) return "Loading...";
@@ -108,8 +108,8 @@ class BusinessOrderPreserve extends React.Component{
               );
             }}
           </Query>*/}
-          <Table style={{Height:'600px;'}} bordered={true} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
-        </div>
+          <Table bordered={true} pagination={{position:'bottom'}} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
+        </Card>
       </div>
     )
   }

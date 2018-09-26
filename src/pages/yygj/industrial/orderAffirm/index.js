@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'antd';
+import { Table,Card } from 'antd';
 import { connect } from 'dva';
 import {Button} from "antd";
 import  Link  from 'umi/link';
@@ -39,18 +39,25 @@ class IndustrialOrderAffirmList extends React.Component{
   render(){
     return(
       <div>
-        <ButtonGroup>
-          {this.props.buttons.map((item, index) => {
-            return(
-              <Link to={item.url}>
-                <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              </Link>
-            )
-          })}
-        </ButtonGroup>
-        <div id={"content"}>
-          <Table columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
-        </div>
+        <Card title={
+          <ButtonGroup>
+            {this.props.buttons.map((item, index) => {
+              if(item.url != ''){
+                return(
+                  <Link to={item.url}>
+                    <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                  </Link>
+                )
+              }else{
+                return(
+                  <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                )
+              }
+            })}
+          </ButtonGroup>
+        }>
+          <Table bordered={true} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
+        </Card>
       </div>
     )
   }

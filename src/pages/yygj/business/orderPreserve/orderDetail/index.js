@@ -66,11 +66,11 @@ class BusinessOrderDetail extends React.Component{
     return(
       <div>
         <Form>
-          <Card title={<b>订单信息</b>} headStyle={headStyle}>
+          <Card title={<b>订单信息</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem  {...formItemThreeLayout} label={"买方机构"} >
-                  <Input disabled placeholder={"买方机构"} id=""/>
+                  <Input disabled placeholder={"默认当前会员"} id=""/>
                 </FormItem>
               </Col>
               <Col span={8}>
@@ -118,12 +118,12 @@ class BusinessOrderDetail extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={<b>明细信息</b>} headStyle={headStyle}>
+          <Card title={<b>明细信息</b>} headStyle={headStyle} className={styles.cardbottom}>
             <div>
               <Table columns={this.props.colums2} dataSource={this.props.filelist2} size={"small"}/>
             </div>
           </Card>
-          <Card title={<b>发票信息</b>} headStyle={headStyle}>
+          <Card title={<b>发票信息</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"出票日期"} >
@@ -149,18 +149,14 @@ class BusinessOrderDetail extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={<p>上传文件</p>} headStyle={headStyle}>
-            <div style={{width:'50%'}}>
+          <Card title={<p>上传文件</p>} headStyle={headStyle} className={styles.cardbottom}>
+            <div >
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
             </div>
           </Card>
-          <Card >
-            <Row >
-              <Col span={10}>
-                <div><Link  to={"/yygj/business/orderPreserve"}><Button>关闭</Button></Link></div>
-              </Col>
-            </Row>
-          </Card>
+          <div style={{textAlign:'center'}}>
+            <Link  to={"/yygj/business/orderPreserve"}><Button type={"primary"}>关闭</Button></Link>
+          </div>
         </Form>
       </div>
     )
