@@ -75,7 +75,7 @@ class damagePresure extends React.Component{
     return(
       <div>
         <Form >
-          <Card title={"基本信息"} headStyle={headStyle}>
+          <Card title={"基本信息"} headStyle={headStyle} className={styles.cardbottom}>
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"货损维护："} >
@@ -137,29 +137,25 @@ class damagePresure extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"货损明细"}  headStyle={headStyle}>
+          <Card title={"货损明细"}  headStyle={headStyle} className={styles.cardbottom}>
             <Table rowSelection={rowSelection} columns={this.props.columns_detail} dataSource={this.props.data_detail} size="small" />
           </Card>
-          <Card title={"上传文件"}  headStyle={headStyle}>
+          <Card title={"上传文件"}  headStyle={headStyle} className={styles.cardbottom}>
             <Table rowSelection={rowSelection} columns={this.props.columns_file} dataSource={this.props.data_file} size="small" />
           </Card>
-          <Card>
-            <Row gutter={24}>
-              <Col offset={8}>
-                <ButtonGroup>
+          <div align={"center"}>
+                <ButtonGroup >
                   {
                     this.props.buttons_demagePreserve.map((item, index) => {
                       return(
                         <Link to={item.url}>
-                          <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                          <Button  type="primary"  onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
                         </Link>
                       )
                     })
                   }
                 </ButtonGroup>
-              </Col>
-            </Row>
-          </Card>
+          </div>
         </Form>
       </div>
     )

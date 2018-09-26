@@ -1,6 +1,6 @@
 import Link from 'umi/link'
 function send() {
-  alert("已发送")
+  alert(rowSelection.selectedRowKeys)
 }
 function del(){
   alert("已删除")
@@ -29,6 +29,7 @@ export default {
       {
         title: '货损价值',
         dataIndex: 'cargo_num',
+        align:'right',
       },
       {
         title: '所属订单',

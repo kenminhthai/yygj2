@@ -1,15 +1,26 @@
 import React from 'react'
 import { Table ,Button} from 'antd'
 import { connect } from 'dva'
-const ButtonGroup = Button.Group
 import  Link  from 'umi/link'
 
+const ButtonGroup = Button.Group
+const tableChoose =[]
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
+  onSelect:(record, selected, selectedRows, nativeEvent) => {
+
+    console.log("choose:",record, selected, selectedRows, nativeEvent)
+  },
 }
 
+function insure(){
+  console.log('selectedRows: ', selectedRows);
+}
+  function sendone () {
+  console.log('selectedRowKeys: ',rowSelection.selectedRowKeys);
+}
 const namespace = 'businessDamageData'
 const mapStateToProps = (state) =>{
   const businessDamageData = state[namespace]
@@ -20,23 +31,27 @@ const mapStateToProps = (state) =>{
     columns, data,buttons,
   }
 }
+
 @connect(mapStateToProps)
 class CargoDamage extends React.Component{
   render(){
     return(
       <div>
         <ButtonGroup>
-          {
-            this.props.buttons.map((item, index) => {
-              return(
-                <Link to={item.url}>
-                  <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                </Link>
-              )
-            })
-          }
+          <Link to={'/yygj/business/syCargoDamage/damagePreserve'}>
+          <Button  type="primary"  style={{ marginRight:'5px',marginBottom:'10px'}} >货损维护</Button>
+          </Link>
+          <Link to={'/yygj/business/syCargoDamage'}>
+          <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} >货损发送</Button>
+          </Link>
+          <Link to={'/yygj/business/syCargoDamage'}>
+          <Button  type="primary"  style={{ marginRight:'5px',marginBottom:'10px'}} >货损删除</Button>
+          </Link>
+          <Link to={'/yygj/business/syCargoDamage/billInsure'}>
+          <Button  type="primary"  style={{ marginRight:'5px',marginBottom:'10px'}} >发票确认</Button>
+          </Link>
         </ButtonGroup>
-        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" />
+        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} key={this.props.data.date_typeIn} size="small" />
       </div>
     )
   }

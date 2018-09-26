@@ -1,3 +1,4 @@
+import Link from 'umi/link'
 function save() {
   alert("已保存")
 }
@@ -11,7 +12,7 @@ function insure() {
   alert("已确认")
 }
 export default {
-  namespace: 'industralFrameData',
+  namespace: 'industrialFrameData',
   state: {
     columns:  [
       {
@@ -26,7 +27,7 @@ export default {
       {
         title: '合同编号',
         dataIndex: 'frameID',
-        render:text => <a href="/yygj/industrial/frameDetail">{text}</a>,
+        render:text => <Link to={"/yygj/industrial/gyFramePreserve/frameDetail"}><a >{text}</a></Link>,
       },
       {
         title: '合同日期',
@@ -91,6 +92,54 @@ export default {
         name:'删除协议',
         url:'/yygj/industrial/gyFramePreserve/',
         fun:del,
+      },
+    ],
+    columns_insure:  [
+      {
+        title: '',
+        dataIndex: 'choose',
+        render:text => <a href="javascript:;">{text}</a>,
+      },
+      {
+        title: '录入日期',
+        dataIndex: 'date_typeIn',
+      },
+      {
+        title: '合同编号',
+        dataIndex: 'frameID',
+        render:text => <Link to={"/yygj/industrial/gyFrameInsure/frameDetail"}><a >{text}</a></Link>,
+      },
+      {
+        title: '合同日期',
+        dataIndex: 'frame_date',
+      },
+      {
+        title: '合同类型',
+        dataIndex: 'frame_type',
+      },
+      {
+        title: '合同性质',
+        dataIndex: 'frame_character',
+      },
+      {
+        title: '合同维护方',
+        dataIndex: 'frame_preserve_person',
+      },
+      {
+        title: '合同确认方',
+        dataIndex: 'frame_insure_person',
+      },
+      {
+        title: '记录状态',
+        dataIndex: 'status',
+      },
+      {
+        title: '合同开始日期',
+        dataIndex: 'date_frame_begin',
+      },
+      {
+        title: '合同结束日期',
+        dataIndex: 'date_frame_end',
       },
     ],
     buttons_Insure:[

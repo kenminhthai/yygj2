@@ -6,7 +6,9 @@ import { connect } from 'dva'
 import  Link  from 'umi/link'
 import moment from 'moment'
 
-
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 const ButtonGroup = Button.Group
 const FormItem = Form.Item
 const Dragger = Upload.Dragger
@@ -61,14 +63,14 @@ class damagePresure extends React.Component{
     return(
       <div>
         <Form >
-          <Card>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+          <Card title={"基本信息"} headStyle={headStyle} className={styles.cardbottom}>
+            <Row >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"签订日期："} >
                   <DatePicker defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同类型："} >
                   <Select  defaultValue="框架协议" >
                     {
@@ -81,7 +83,7 @@ class damagePresure extends React.Component{
                   </Select>
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同性质："} >
                   <Select  defaultValue="医药服务" >
                     {
@@ -95,25 +97,35 @@ class damagePresure extends React.Component{
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={21} >
-              <Col span={7} offset={1}>
+            <Row  >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同维护方："} >
                   <Input disabled placeholder="登录会员" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同确认方："} >
                   <Input disabled placeholder="医药工业" id="" />
                 </FormItem>
               </Col>
-            </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同编号："} >
                   <Input   id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+            </Row>
+            <Row >
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
+                  <Input   id="" />
+                </FormItem>
+              </Col>
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"结束日期："} >
+                  <Input  id="" />
+                </FormItem>
+              </Col>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同文本："} >
                   <Dragger className={styles.D}>
                     点击上传合同电子文档
@@ -121,64 +133,46 @@ class damagePresure extends React.Component{
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
-                  <DatePicker />
-
-                </FormItem>
-              </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
-                <FormItem {...formItemThreeLayout} label={"结束日期："} >
-                  <DatePicker />
-
-                </FormItem>
-              </Col>
-            </Row>
           </Card>
-          <Card >
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"录入日期："} >
+          <Card title={"日期和用户"} headStyle={headStyle} className={styles.cardbottom}>
+            <Row >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"录入日期："} >
                   <Input disabled placeholder="2018/9/16" id="" />
                 </FormItem>
               </Col>
-              <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"录入用户："} >
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"录入用户："} >
                   <Input disabled placeholder="登录会员" id="" />
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={24}>
-              <Col span={12}>
-                <FormItem {...formItemTwoLayout} label={"确认日期："} >
+            <Row >
+              <Col span={8}>
+                <FormItem {...formItemThreeLayout} label={"确认日期："} >
                   <Input disabled placeholder="2018/9/16" id="" />
                 </FormItem>
               </Col>
-              <Col span={12} >
-                <FormItem {...formItemTwoLayout} label={"确认用户："} >
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"确认用户："} >
                   <Input disabled placeholder="" id="" />
                 </FormItem>
               </Col>
             </Row>
           </Card>
-          <Card>
-            <Row gutter={24}>
-              <Col offset={8}>
-                <ButtonGroup>
-                  {
-                    this.props.buttons_page_addFrame.map((item, index) => {
-                      return(
-                        <Link to={item.url}>
-                          <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                        </Link>
-                      )
-                    })
-                  }
-                </ButtonGroup>
-              </Col>
-            </Row>
-          </Card>
+          <div align="center">
+            <ButtonGroup>
+              {
+                this.props.buttons_page_addFrame.map((item, index) => {
+                  return(
+                    <Link to={item.url}>
+                      <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
+                    </Link>
+                  )
+                })
+              }
+            </ButtonGroup>
+          </div>
         </Form>
       </div>
     )

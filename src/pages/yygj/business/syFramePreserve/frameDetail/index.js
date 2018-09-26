@@ -64,7 +64,7 @@ class damagePresure extends React.Component{
     return(
       <div>
         <Form >
-          <Card title={"基本信息"} headStyle={headStyle}>
+          <Card title={"基本信息"} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"签订日期："} >
@@ -133,7 +133,7 @@ class damagePresure extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"日期和用户"} headStyle={headStyle}>
+          <Card title={"日期和用户"} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"录入日期："} >
@@ -159,15 +159,11 @@ class damagePresure extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card>
-            <Row gutter={24}>
-              <Col offset={10}>
+         <div align="center">
                 <Link to={"/yygj/business/syFrameInsure"}>
                   <Button type="primary" name="确定" className={styles.button}>关闭</Button>
                 </Link>
-              </Col>
-            </Row>
-          </Card>
+         </div>
         </Form>
       </div>
     )

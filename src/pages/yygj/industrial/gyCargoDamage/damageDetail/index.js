@@ -6,7 +6,9 @@ import  Link  from 'umi/link'
 
 const FormItem = Form.Item;
 const ButtonGroup = Button.Group
-
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 const formItemThreeLayout = {
   labelCol: {
     sm: { span: 7 },
@@ -49,19 +51,19 @@ class damagePresure extends React.Component{
     return(
       <div>
         <Form >
-          <Card>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"货损维护："} >
-                  <Input  disabled id="" />
+          <Card title={"基本信息"} headStyle={headStyle} className={styles.cardbottom}>
+            <Row >
+              <Col span={8} >
+                <FormItem {...formItemThreeLayout} label={"货损编号："} >
+                  <Input disabled id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"录入日期："} >
                   <Input disabled placeholder="20180916" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"所属订单："} >
                   <Select disabled defaultValue="会员已有订单" >
                     <Option value="会员已有订单">会员已有订单</Option>
@@ -69,71 +71,61 @@ class damagePresure extends React.Component{
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={21} >
-              <Col span={7} offset={1}>
+            <Row  >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"发起机构："} >
                   <Input disabled placeholder="" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"确认机构："} >
                   <Input disabled placeholder="" id="" />
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+            <Row >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"货损价值："} >
                   <Input disabled  id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"确认日期："} >
                   <Input disabled placeholder="20180916" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} offset={1}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"发票确认日期："} >
                   <Input disabled placeholder="20180916" id="" />
                 </FormItem>
               </Col>
             </Row>
-            <Row gutter={21}>
-              <Col span={7} offset={1}>
+            <Row >
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"冲正发票号："} >
                   <Input disabled placeholder="101010101010101010" id="" />
                 </FormItem>
               </Col>
-              <Col span={7} className={styles.formItemThreeLayout}>
+              <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"货损状态："} >
                   <Input  disabled placeholder="" id="" />
                 </FormItem>
               </Col>
             </Row>
           </Card>
-          <Card title={"货损明细"}>
+          <Card title={"货损明细"}  headStyle={headStyle} className={styles.cardbottom}>
             <Table rowSelection={rowSelection} columns={this.props.columns_detail} dataSource={this.props.data_detail} size="small" />
           </Card>
-          <Card title={"上传文件"}>
+          <Card title={"上传文件"}  headStyle={headStyle} className={styles.cardbottom}>
             <Table rowSelection={rowSelection} columns={this.props.columns_file} dataSource={this.props.data_file} size="small" />
           </Card>
-          <Card>
-            <Row gutter={24}>
-              <Col offset={8}>
-                <ButtonGroup>
-                  {
-                    this.props.buttons.map((item, index) => {
-                      return(
-                        <Link to={item.url}>
-                          <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                        </Link>
-                      )
-                    })
-                  }
-                </ButtonGroup>
-              </Col>
-            </Row>
-          </Card>
+
+          <div align="center">
+            <Link to={"/yygj/industrial/gyCargoDamage"}>
+              <Button  type="primary" name="确定" className={styles.button}>关闭</Button>
+            </Link>
+          </div>
+
         </Form>
       </div>
     )

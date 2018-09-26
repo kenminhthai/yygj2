@@ -25,7 +25,7 @@ export default {
       {
         title: '融资协议',
         dataIndex: 'frameID',
-        render:text => <a href="javascript:;">{text}</a>,
+        render:text => <Link to={'/yygj/service/financingRefund/financingDetail'}><a>{text}</a></Link>,
       },
       {
         title: '所属申请',
@@ -103,7 +103,7 @@ export default {
       {
         title: '申请编号',
         dataIndex: 'ID',
-        render:text =><Link to={"/yygj/service/financingDetail"}> <a>{text}</a></Link>,
+        render:text =><Link to={"/yygj/service/financingApply/financingDetail"}> <a>{text}</a></Link>,
         width:80,
 
       },

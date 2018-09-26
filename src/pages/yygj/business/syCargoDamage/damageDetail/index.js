@@ -74,7 +74,7 @@ class damagePresure extends React.Component{
     return(
       <div>
         <Form >
-          <Card title={"基本信息"} headStyle={headStyle}>
+          <Card title={"基本信息"} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"货损编号："} >
@@ -136,23 +136,19 @@ class damagePresure extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"货损明细"}  headStyle={headStyle}>
+          <Card title={"货损明细"}  headStyle={headStyle} className={styles.cardbottom}>
             <Table rowSelection={rowSelection} columns={this.props.columns_detail} dataSource={this.props.data_detail} size="small" />
           </Card>
-          <Card title={"上传文件"}  headStyle={headStyle}>
+          <Card title={"上传文件"}  headStyle={headStyle} className={styles.cardbottom}>
             <Table rowSelection={rowSelection} columns={this.props.columns_file} dataSource={this.props.data_file} size="small" />
           </Card>
-          <Card>
-            <Row gutter={24}>
-              <Col offset={10}>
-                <div>
+
+                <div align="center">
                   <Link to={"/yygj/business/syCargoDamage"}>
-                  <Button  type="primary" name="确定" className={styles.button}>确定</Button>
+                  <Button  type="primary" name="确定" className={styles.button}>关闭</Button>
                   </Link>
                 </div>
-              </Col>
-            </Row>
-          </Card>
+
         </Form>
       </div>
     )
