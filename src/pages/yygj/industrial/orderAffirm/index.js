@@ -6,12 +6,9 @@ import  Link  from 'umi/link';
 
 const ButtonGroup = Button.Group;
 const namespace = "industrialOrderAffirm"
-function applyMember(){
 
-}
-
-function applyCheck(){
-  alert('审核通过')
+const headStyle={
+  backgroundColor:"#E8E8E8",
 }
 
 const rowSelection = {
@@ -39,24 +36,8 @@ class IndustrialOrderAffirmList extends React.Component{
   render(){
     return(
       <div>
-        <Card title={
-          <ButtonGroup>
-            {this.props.buttons.map((item, index) => {
-              if(item.url != ''){
-                return(
-                  <Link to={item.url}>
-                    <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                  </Link>
-                )
-              }else{
-                return(
-                  <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                )
-              }
-            })}
-          </ButtonGroup>
-        }>
-          <Table bordered={true} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
+        <Card title={<b>订单确认</b>} headStyle={headStyle} >
+          <Table bordered={true} columns={this.props.colums} dataSource={this.props.orderlist}  size="small" />
         </Card>
       </div>
     )

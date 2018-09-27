@@ -4,6 +4,7 @@ import { Form, Input, Col,Row,Select,Button, Card ,Table,DatePicker} from 'antd'
 import { connect } from 'dva'
 const FormItem = Form.Item;
 import Link from 'umi/link'
+import {message} from "antd/lib/index";
 
 const headStyle={
   backgroundColor:"#E8E8E8",
@@ -40,6 +41,10 @@ const formItemThreeLayout = {
     sm: { span: 12 },
   },
 };
+const ok = () =>{
+  message.success("发送成功！")
+}
+
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -70,6 +75,22 @@ class damagePresure extends React.Component{
     };
   }
   render(){
+    let buttons;
+    if(this.props.location.application_status == '待发送'){
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button onClick={ok} type={"primary"} style={{marginRight:'20px'}}>发送订单</Button>
+          <Link  to={"/yygj/industrial/financingApply"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }else{
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button disabled onClick={ok} type={"primary"} style={{marginRight:'20px'}}>发送订单</Button>
+          <Link  to={"/yygj/industrial/financingApply"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }
     return(
       <div>
         <Form >
@@ -157,11 +178,7 @@ class damagePresure extends React.Component{
           <Card title={<b>申请文件</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Table  columns={this.props.cloumns_financing_detail} dataSource={this.props.data_financing_detail} size="small" />
           </Card>
-          <div style={{textAlign:'center'}}>
-            <Link to={"/yygj/industrial/financingApply"}>
-              <Button  type="primary" name="确定" style={{marginRight:'20px'}} >确定</Button>
-            </Link>
-          </div>
+          {buttons}
         </Form>
       </div>
     )

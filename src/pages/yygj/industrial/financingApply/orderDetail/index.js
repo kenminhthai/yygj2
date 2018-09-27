@@ -3,6 +3,7 @@ import styles from './index.less';
 import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
+import {message} from "antd/lib/index";
 
 
 const ButtonGroup = Button.Group;
@@ -54,12 +55,16 @@ const mapStateToProps = (state) =>{
   }
 }
 
+const ok = () =>{
+  message.success("发送成功！")
+}
+
 @connect(mapStateToProps)
 class ServiceOrderDetail extends React.Component{
   render(){
+
     return(
       <div>
-
         <Form>
           <Card title={<b>订单信息</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Row >

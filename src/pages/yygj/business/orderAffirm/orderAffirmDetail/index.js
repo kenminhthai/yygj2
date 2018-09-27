@@ -63,6 +63,22 @@ const ok=()=>{
 @connect(mapStateToProps)
 class BusinessOrderAffirmDetail extends React.Component{
   render(){
+    let buttons;
+    if(this.props.location.order_status == '待确认'){
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button onClick={ok} type={"primary"} style={{marginRight:'20px'}}>确认</Button>
+          <Link  to={"/yygj/business/orderAffirm"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }else{
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button disabled onClick={ok} type={"primary"} style={{marginRight:'20px'}}>确认</Button>
+          <Link  to={"/yygj/business/orderAffirm"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }
     return(
       <div>
         <Form>
@@ -170,23 +186,8 @@ class BusinessOrderAffirmDetail extends React.Component{
             <div>
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
             </div>
-
-           {/* <Row >
-              <Col offset={8}>
-                <ButtonGroup>
-                  <Button disabled type="primary" size={"middle"} className={styles.buttons}>保存</Button>
-                  <Button disabled type="primary" size={"middle"} className={styles.buttons}>保存并发送</Button>
-                  <Button disabled type="primary" size={"middle"} className={styles.buttons}>关闭</Button>
-                </ButtonGroup>
-              </Col>
-            </Row>*/}
           </Card>
-          <div style={{textAlign:'center'}}>
-            <Button onClick={ok}type={"primary"} style={{marginRight:'20px'}}>确认</Button>
-            <Link to={"/yygj/business/orderAffirm"}>
-              <Button type={"primary"}>关闭</Button>
-            </Link>
-          </div>
+          {buttons}
         </Form>
       </div>
     )

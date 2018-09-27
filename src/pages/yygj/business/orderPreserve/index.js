@@ -6,7 +6,9 @@ import  Link  from 'umi/link';
 import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
 import { ApolloProvider,Query  } from "react-apollo";
-
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 /*const client = new ApolloClient({
   //uri: "https://w5xlvm3vzz.lp.gql.zone/graphql"
   uri: "http://192.168.30.10:5000/graphql"
@@ -83,21 +85,11 @@ class BusinessOrderPreserve extends React.Component{
     return(
       <div>
 
-        <Card title={<ButtonGroup>
-          {this.props.buttons.map((item, index) => {
-            if(item.url != ''){
-              return(
-                <Link to={item.url}>
-                  <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                </Link>
-              )
-            }else{
-              return(
-                <Button onClick={ok} type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              )
-            }
-          })}
-        </ButtonGroup>} style={{height:'100%'}} >
+        <Card headStyle={headStyle} title={
+          <Link to={"/yygj/business/orderPreserve/addOrder"}>
+            <Button type="primary">订单新增</Button>
+          </Link>
+        } style={{height:'100%'}} >
           {/*<Query query={GET_ORDER}>
             {({ loading, error, data }) => {
               if (loading) return "Loading...";
@@ -108,7 +100,7 @@ class BusinessOrderPreserve extends React.Component{
               );
             }}
           </Query>*/}
-          <Table bordered={true} pagination={{position:'bottom'}} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection}  />
+          <Table size={'small'} bordered={true} pagination={{position:'bottom'}} columns={this.props.colums} dataSource={this.props.orderlist} />
         </Card>
       </div>
     )

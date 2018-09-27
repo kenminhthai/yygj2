@@ -1,47 +1,102 @@
+import {Popconfirm, Tooltip, Icon} from 'antd'
 import Link from 'umi/link'
+import {message} from "antd/lib/index";
+
+function confirm(e) {
+  message.success('发送完成');
+}
+
+function cancel(e) {
+}
+
 export default {
   namespace: 'industrialOrderData',
   state: {
     colums:[
       {
-        title: '订单日期',
-        dataIndex: 'order_date',
+        title: '操作',
+        dataIndex: 'operation',
+        width:'80px',
+        align:'center',
+        render: (text, record, index) => {
+          if ({record}.record.order_status == '草稿') {
+            return(
+              <div>
+                <Popconfirm title="确定要发送订单吗？" okText="发送" cancelText="取消" onConfirm={confirm} onCancel={cancel}>
+                  <Tooltip title="发送订单" placement="left">
+                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="mail" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+                <Popconfirm title="确定要删除订单吗？" okText="删除" cancelText="取消">
+                  <Tooltip title="删除订单" placement="right">
+                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }else {
+            return(
+              <div>
+                <Popconfirm title="确定要删除订单吗？" okText="删除" cancelText="取消">
+                  <Tooltip title="删除订单" placement="right">
+                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }
+        }
       },
       {
         title: '订单编号',
+        align:'center',
         dataIndex: 'order_number',
-        render:text => <Link to={"/yygj/industrial/orderPreserve/orderDetail"}>{text}</Link>
+        render:(text,record) => <Link to={{pathname:"/yygj/industrial/orderPreserve/orderDetail",order_status:{record}.record.order_status}}>{text}</Link>
+      },
+      {
+        title: '订单日期',
+        align:'center',
+        dataIndex: 'order_date',
       },
       {
         title: '买方机构',
+        align:'center',
         dataIndex: 'buyer_organization',
       },
       {
         title: '卖方机构',
+        align:'center',
         dataIndex: 'seller_organization',
       },
       {
         title: '订单金额',
+        align:'right',
         dataIndex: 'order_amount',
       },
       {
         title: '所属合同',
+        align:'center',
         dataIndex: 'belonging_contract',
       },
       {
         title: '约定交货日',
+        align:'center',
         dataIndex: 'agreed_delivery_date',
       },
       {
         title: '约定付款日期',
+        align:'center',
         dataIndex: 'agreed_payment_date',
       },
       {
         title: '订单状态',
+        defaultSortOrder:'ascend',
+        align:'center',
         dataIndex: 'order_status',
       },
       {
         title: '关联订单',
+        align:'center',
         dataIndex: 'associated_order',
       },
     ],

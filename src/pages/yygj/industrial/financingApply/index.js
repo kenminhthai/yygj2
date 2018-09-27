@@ -9,7 +9,9 @@ const rowSelection = {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
 }
-
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 const namespace = 'industrialFinancingData'
 const mapStateToProps = (state) =>{
   const DataList = state[namespace]
@@ -25,19 +27,11 @@ class CargoDamage extends React.Component{
   render(){
     return(
       <Card title={
-        <ButtonGroup>
-          {
-            this.props.buttons.map((item, index) => {
-              return(
-                <Link to={item.url}>
-                  <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                </Link>
-              )
-            })
-          }
-        </ButtonGroup>
-      }>
-        <Table bordered={true} rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" />
+        <Link to={"/yygj/industrial/financingApply/addFinancing"}>
+        <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}}>新增申请</Button>
+        </Link>
+      } headStyle={headStyle}>
+        <Table bordered={true} columns={this.props.columns} dataSource={this.props.data} size="small" />
       </Card>
     )
   }

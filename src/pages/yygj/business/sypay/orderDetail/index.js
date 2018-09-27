@@ -57,12 +57,28 @@ const mapStateToProps = (state) =>{
 }
 
 const ok=()=>{
-  message.info("操作完成！")
+  message.info("付款成功")
 }
 
 @connect(mapStateToProps)
 class BusinessOrderDetail extends React.Component{
   render(){
+    let buttons;
+    if(this.props.location.order_status == '待付'){
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button onClick={ok} type={"primary"} style={{marginRight:'20px'}}>付款</Button>
+          <Link  to={"/yygj/business/sypay"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }else{
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button onClick={ok} disabled type={"primary"} style={{marginRight:'20px'}}>付款</Button>
+          <Link  to={"/yygj/business/sypay"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }
     return(
       <div>
         <Form>
@@ -154,9 +170,7 @@ class BusinessOrderDetail extends React.Component{
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
             </div>
           </Card>
-          <div style={{textAlign:'center'}}>
-            <Link  to={"/yygj/business/sypay"}><Button type={'primary'}>关闭</Button></Link>
-          </div>
+          {buttons}
         </Form>
       </div>
     )

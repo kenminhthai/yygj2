@@ -44,7 +44,7 @@ const formItemThreeLayout = {
 };
 
 const ok = () =>{
-  message.info("操作完成")
+  message.success("订单确定成功！")
 }
 
 const mapStateToProps = (state) =>{
@@ -63,6 +63,22 @@ const mapStateToProps = (state) =>{
 @connect(mapStateToProps)
 class IndustrialOrderAffirmDetail extends React.Component{
   render(){
+    let buttons;
+    if(this.props.location.order_status == '待确认'){
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button onClick={ok} type={"primary"} style={{marginRight:'20px'}}>确认</Button>
+          <Link  to={"/yygj/industrial/orderAffirm"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }else{
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button disabled onClick={ok} type={"primary"} style={{marginRight:'20px'}}>确认</Button>
+          <Link  to={"/yygj/industrial/orderAffirm"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }
     return(
       <div>
         <Form>
@@ -181,12 +197,7 @@ class IndustrialOrderAffirmDetail extends React.Component{
             </Row>*/}
 
           </Card>
-          <div style={{textAlign:'center'}}>
-            <Button onClick={ok} type={"primary"} style={{marginRight:'20px'}}>确认</Button>
-            <Link to={"/yygj/industrial/orderAffirm"}>
-              <Button type={"primary"}>关闭</Button>
-            </Link>
-          </div>
+          {buttons}
         </Form>
       </div>
     )

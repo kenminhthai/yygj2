@@ -7,6 +7,9 @@ import {message} from "antd/lib/index";
 const ButtonGroup = Button.Group;
 const namespace = "industrialOrderData";
 
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
   },
@@ -31,24 +34,11 @@ class IndustrialOrderPreserve extends React.Component{
     return(
       <div >
         <Card title={
-          <ButtonGroup>
-            {this.props.buttons.map((item, index) => {
-              if(item.url != ''){
-                return(
-                  <Link to={item.url}>
-                    <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                  </Link>
-                )
-              }else{
-                return(
-                  <Button onClick={ok} type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                )
-              }
-
-            })}
-          </ButtonGroup>
-        }>
-          <Table bordered={true} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
+          <Link to={"/yygj/industrial/orderPreserve/addOrder"}>
+            <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}}>新增申请</Button>
+          </Link>
+        } headStyle={headStyle}>
+          <Table bordered={true} columns={this.props.colums} dataSource={this.props.orderlist} size="small" />
         </Card>
       </div>
     )
