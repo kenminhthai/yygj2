@@ -1,24 +1,62 @@
 import Link from 'umi/link'
-function save() {
-  alert("已保存")
+import {Popconfirm, Tooltip, Icon} from 'antd'
+import {message} from "antd/lib/index"
+
+function send(e) {
+  message.success('发送完成');
 }
-function send() {
-  alert("已发送")
+function save(e) {
+  message.success('保存完成');
+
 }
-function del(){
-  alert("已删除")
+function del(e){
+  message.success('删除完成');
 }
-function insure() {
-  alert("已确认")
+function insure(e) {
+  message.success('确认完成');
+
+}
+function confirm(e) {
+  message.success('发送完成');
+}
+
+function cancel(e) {
 }
 export default {
   namespace: 'industrialFrameData',
   state: {
     columns:  [
       {
-        title: '',
+        title: '操作',
         dataIndex: 'choose',
-        render:text => <a href="javascript:;">{text}</a>,
+        render: (text, record, index) => {
+          if ({record}.record.status == '待发送') {
+            return(
+              <div>
+                <Popconfirm title="确定要发送协议吗？" okText="发送" cancelText="取消" onConfirm={confirm} onCancel={cancel}>
+                  <Tooltip title="发送协议" placement="left">
+                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="mail" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+                <Popconfirm title="确定要删除协议吗？" okText="删除" cancelText="取消" onConfirm={del}>
+                  <Tooltip title="删除协议" placement="right">
+                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }else {
+            return(
+              <div>
+                <Popconfirm title="确定要删除协议吗？" okText="删除" cancelText="取消" onConfirm={del}>
+                  <Tooltip title="删除协议" placement="right">
+                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }
+        }
       },
       {
         title: '录入日期',
@@ -72,7 +110,7 @@ export default {
         frame_character:'医药服务',
         frame_preserve_person:'李四',
         frame_insure_person:'张三',
-        status:'待发送/待确认/已确认',
+        status:'待发送',
         date_frame_begin:'20180916',
         date_frame_end:'20181016',
       },
@@ -83,22 +121,28 @@ export default {
         url:'/yygj/industrial/gyFramePreserve/addFrame',
         fun:'',
       },
-      {
-        name:'发送协议',
-        url:'/yygj/industrial/gyFramePreserve/',
-        fun:send,
-      },
-      {
-        name:'删除协议',
-        url:'/yygj/industrial/gyFramePreserve/',
-        fun:del,
-      },
     ],
     columns_insure:  [
       {
-        title: '',
-        dataIndex: 'choose',
-        render:text => <a href="javascript:;">{text}</a>,
+        title: '操作',
+        dataIndex: 'operation',
+        width:'50px',
+        align:'center',
+        render: (text, record, index) => {
+          if ({record}.record.status == '待确认') {
+            return(
+              <div>
+                <Popconfirm title="确定该协议吗？" okText="确定" cancelText="取消" onConfirm={insure} onCancel={cancel}>
+                  <Tooltip title="协议确定" placement="left">
+                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="check-circle" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }else {
+            return;
+          }
+        }
       },
       {
         title: '录入日期',
@@ -142,12 +186,24 @@ export default {
         dataIndex: 'date_frame_end',
       },
     ],
-    buttons_Insure:[
+    data_insure: [
       {
-        name:'确认协议',
-        url:'/yygj/industrial/gyFrameInsure',
-        fun:insure,
+        choose:'',
+        date_typeIn:'20180916',
+        frameID:'0001',
+        frame_date:'2020-10-20',
+        frame_type:'医药合同',
+        frame_character:'医药服务',
+        frame_preserve_person:'李四',
+        frame_insure_person:'张三',
+        status:'待确认',
+        date_frame_begin:'20180916',
+        date_frame_end:'20181016',
       },
+    ],
+
+    buttons_Insure:[
+
     ],
     buttons_page_addFrame:[
 

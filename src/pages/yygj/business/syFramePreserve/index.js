@@ -20,6 +20,9 @@ const mapStateToProps = (state) =>{
     columns, data,buttons,
   }
 }
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 @connect(mapStateToProps)
 class CargoDamage extends React.Component{
   render(){
@@ -34,8 +37,8 @@ class CargoDamage extends React.Component{
             )
           })
         }
-      </ButtonGroup>}>
-        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" bordered/>
+      </ButtonGroup>} headStyle={headStyle}>
+        <Table  columns={this.props.columns} dataSource={this.props.data} size="small" bordered/>
       </Card>
     )
   }

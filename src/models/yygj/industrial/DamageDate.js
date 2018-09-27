@@ -1,19 +1,48 @@
 import Link from 'umi/link'
-function insure() {
-  alert("已确认")
+import {Popconfirm, Tooltip, Icon} from 'antd'
+import {message} from "antd/lib/index"
+function send(e) {
+  message.success('发送完成');
 }
-function send() {
-  alert("已发送")
+function save(e) {
+  message.success('保存完成');
+
+}
+function del(e){
+  message.success('删除完成');
+}
+function insure(e) {
+  message.success('确认完成');
+
+}
+function confirm(e) {
+  message.success('发送完成');
 }
 
+function cancel(e) {
+}
 export default {
   namespace: 'industralDamageData',
   state: {
     columns:[
       {
-        title: '',
+        title: '操作',
         dataIndex: 'choose',
-        render:text => <a href="javascript:;">{text}</a>,
+        render: (text, record, index) => {
+          if ({record}.record.status == '待确认') {
+            return(
+              <div>
+                <Popconfirm title="确定该订单吗？" okText="确定" cancelText="取消" onConfirm={confirm} onCancel={cancel}>
+                  <Tooltip title="订单确定" placement="left">
+                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="check-circle" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }else {
+            return;
+          }
+        }
       },
       {
         title: '录入日期',
@@ -64,7 +93,7 @@ export default {
         cargo_order:'0001',
         date_insure:'20180916',
         date_bill_insure:'20180918',
-        status:'待发送/待确认/发票待确认/完成',
+        status:'待确认',
       },
       {
         choose:"",
@@ -76,7 +105,7 @@ export default {
         cargo_order:'0002',
         date_insure:'20180917',
         date_bill_insure:'20180918',
-        status:'待发送/待确认/发票待确认/完成',
+        status:'待确认',
       },
     ],
     buttons:[

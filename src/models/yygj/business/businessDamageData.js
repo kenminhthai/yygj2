@@ -1,14 +1,62 @@
 import Link from 'umi/link'
-function send() {
-  alert(rowSelection.selectedRowKeys)
+import {Popconfirm, Tooltip, Icon} from 'antd'
+import {message} from "antd/lib/index"
+function send(e) {
+  message.success('发送完成');
 }
-function del(){
-  alert("已删除")
+function save(e) {
+  message.success('保存完成');
+
+}
+function del(e){
+  message.success('删除完成');
+}
+function insure(e) {
+  message.success('确认完成');
+
+}
+function confirm(e) {
+  message.success('发送完成');
+}
+
+function cancel(e) {
 }
 export default {
   namespace: 'businessDamageData',
   state: {
     columns               :[
+      {
+        title: '操作',
+        dataIndex: 'choose',
+        render: (text, record, index) => {
+          if ({record}.record.status == '待发送') {
+            return(
+              <div>
+                <Popconfirm title="确定要发送协议吗？" okText="发送" cancelText="取消" onConfirm={send} onCancel={cancel}>
+                  <Tooltip title="发送协议" placement="left">
+                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="mail" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+                <Popconfirm title="确定要删除协议吗？" okText="删除" cancelText="取消" onConfirm={del}>
+                  <Tooltip title="删除协议" placement="right">
+                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }else {
+            return(
+              <div>
+                <Popconfirm title="确定要删除协议吗？" okText="删除" cancelText="取消" onConfirm={del}>
+                  <Tooltip title="删除协议" placement="right">
+                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }
+        }
+      },
       {
         title: '录入日期',
         dataIndex: 'date_typeIn',

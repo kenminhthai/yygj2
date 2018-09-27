@@ -10,6 +10,9 @@ const rowSelection = {
   },
   type:'radio',
 }
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 
 const namespace = 'businessFrameData'
 const mapStateToProps = (state) =>{
@@ -25,19 +28,9 @@ const mapStateToProps = (state) =>{
 class CargoDamage extends React.Component{
   render(){
     return(
-      <Card title={<ButtonGroup>
-        {
-          this.props.buttons.map((item, index) => {
-            return(
-              <Link to={item.url}>
-                <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              </Link>
-            )
-          })
-        }
-      </ButtonGroup>}>
+      <Card title={<b>协议确认</b>} headStyle={headStyle}>
 
-        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" bordered/>
+        <Table columns={this.props.columns} dataSource={this.props.data} size="small" bordered/>
       </Card>
     )
   }

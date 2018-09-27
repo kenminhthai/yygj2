@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table ,Button} from 'antd'
+import { Table ,Button,Card} from 'antd'
 import { connect } from 'dva'
 import  Link  from 'umi/link'
 
@@ -31,28 +31,23 @@ const mapStateToProps = (state) =>{
     columns, data,buttons,
   }
 }
-
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 @connect(mapStateToProps)
 class CargoDamage extends React.Component{
   render(){
     return(
-      <div>
-        <ButtonGroup>
-          <Link to={'/yygj/business/syCargoDamage/damagePreserve'}>
+      <Card title={<ButtonGroup>
+        <Link to={'/yygj/business/syCargoDamage/damagePreserve'}>
           <Button  type="primary"  style={{ marginRight:'5px',marginBottom:'10px'}} >货损维护</Button>
-          </Link>
-          <Link to={'/yygj/business/syCargoDamage'}>
-          <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} >货损发送</Button>
-          </Link>
-          <Link to={'/yygj/business/syCargoDamage'}>
-          <Button  type="primary"  style={{ marginRight:'5px',marginBottom:'10px'}} >货损删除</Button>
-          </Link>
-          <Link to={'/yygj/business/syCargoDamage/billInsure'}>
+        </Link>
+        <Link to={'/yygj/business/syCargoDamage/billInsure'}>
           <Button  type="primary"  style={{ marginRight:'5px',marginBottom:'10px'}} >发票确认</Button>
-          </Link>
-        </ButtonGroup>
-        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} key={this.props.data.date_typeIn} size="small" />
-      </div>
+        </Link>
+      </ButtonGroup>} headStyle={headStyle}>
+        <Table columns={this.props.columns} dataSource={this.props.data} key={this.props.data.date_typeIn} size="small" />
+      </Card>
     )
   }
 

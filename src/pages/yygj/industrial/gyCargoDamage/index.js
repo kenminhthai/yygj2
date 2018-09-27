@@ -20,23 +20,15 @@ const mapStateToProps = (state) =>{
     columns, data,buttons,
   }
 }
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
 @connect(mapStateToProps)
 class CargoDamage extends React.Component{
   render(){
     return(
-      <Card title={<ButtonGroup>
-        {
-          this.props.buttons.map((item, index) => {
-            return(
-              <Link to={item.url}>
-                <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              </Link>
-            )
-          })
-        }
-      </ButtonGroup>}>
-
-        <Table rowSelection={rowSelection} columns={this.props.columns} dataSource={this.props.data} size="small" bordered/>
+      <Card title={<b>货损确认</b>} headStyle={headStyle}>
+        <Table columns={this.props.columns} dataSource={this.props.data} size="small" bordered/>
       </Card>
     )
   }
