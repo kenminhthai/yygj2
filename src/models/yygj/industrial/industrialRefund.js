@@ -40,7 +40,7 @@ export default {
         title: '融资协议',
         align:'center',
         dataIndex: 'frameID',
-        render:text =><Link to={"/yygj/industrial/financingRefund/financingDetail"}><a >{text}</a></Link>,
+        render:(text,record) =><Link to={{pathname:"/yygj/industrial/financingRefund/financingDetail",status:{record}.record.status}}><a >{text}</a></Link>,
       },
       {
         title: '所属申请',
@@ -156,7 +156,7 @@ export default {
       {
         title: '申请编号',
         dataIndex: 'ID',
-        render:text => <Link to={"/yygj/industrial/financingRefund/financingDetail"}><a >{text}</a></Link>,
+        render:(text,record) => <Link to={{pathname:"/yygj/industrial/financingRefund/financingDetail",status:{record}.record.status}}><a >{text}</a></Link>,
       },
       {
         title: '申请日期',

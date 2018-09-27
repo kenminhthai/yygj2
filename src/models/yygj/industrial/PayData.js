@@ -38,7 +38,7 @@ export default {
       {
         title: '所属订单',
         dataIndex: 'orderID',
-        render:text => <Link to={"/yygj/industrial/gypay/orderDetail"}><a >{text}</a></Link>,
+        render:(text,record) => <Link to={{pathname:"/yygj/industrial/gypay/orderDetail",status:{record}.record.status}}><a >{text}</a></Link>,
       },
       {
         title: '应付日期',

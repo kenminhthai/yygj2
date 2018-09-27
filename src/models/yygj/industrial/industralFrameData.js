@@ -61,7 +61,7 @@ export default {
       {
         title: '合同编号',
         dataIndex: 'frameID',
-        render:text => <Link to={"/yygj/industrial/gyFramePreserve/frameDetail"}><a >{text}</a></Link>,
+        render:(text,record) => <Link to={{pathname:"/yygj/industrial/gyFramePreserve/frameDetail",status:{record}.record.status}}><a >{text}</a></Link>,
       },
       {
         title: '录入日期',
@@ -148,7 +148,7 @@ export default {
       {
         title: '合同编号',
         dataIndex: 'frameID',
-        render:text => <Link to={"/yygj/industrial/gyFrameInsure/frameDetail"}><a >{text}</a></Link>,
+        render:(text,record) => <Link to={{pathname:"/yygj/industrial/gyFrameInsure/frameDetail",status:{record}.record.status}}><a >{text}</a></Link>,
       },
       {
         title: '录入日期',

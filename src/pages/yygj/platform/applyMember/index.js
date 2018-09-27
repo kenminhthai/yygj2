@@ -96,7 +96,7 @@ class ApplyMember extends React.Component{
               this.props.form.validateFields((err, values) => {
                 if (!err) {
                   console.log('Received values of form: ', values.enterprise_name);
-                  createEnterpriseMember({ variables:{member:{enterprise_name:values.enterprise_name }}});
+                  createEnterpriseMember({ variables:{member:{enterprise_name:values.enterprise_name }}}).then(alert("提交成功"));
                   // input.value = "";
                 }
               });

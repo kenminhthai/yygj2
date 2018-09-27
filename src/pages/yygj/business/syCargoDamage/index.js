@@ -42,11 +42,8 @@ class CargoDamage extends React.Component{
         <Link to={'/yygj/business/syCargoDamage/damagePreserve'}>
           <Button  type="primary"  style={{ marginRight:'5px',marginBottom:'10px'}} >货损维护</Button>
         </Link>
-        <Link to={'/yygj/business/syCargoDamage/billInsure'}>
-          <Button  type="primary"  style={{ marginRight:'5px',marginBottom:'10px'}} >发票确认</Button>
-        </Link>
       </ButtonGroup>} headStyle={headStyle}>
-        <Table columns={this.props.columns} dataSource={this.props.data} key={this.props.data.date_typeIn} size="small" />
+        <Table columns={this.props.columns} dataSource={this.props.data} key={this.props.data.date_typeIn} size="small" bordered />
       </Card>
     )
   }

@@ -3,6 +3,7 @@ import styles from './index.less';
 import { Form, Input, Col,Row,Select, Table,Button, Card } from 'antd';
 import { connect } from 'dva'
 import Link from 'umi/link'
+import {message} from "antd/lib/index"
 
 const FormItem = Form.Item;
 const headStyle={
@@ -61,20 +62,40 @@ const mapStateToProps  = (state) =>{
     buttons_demagePreserve,
   }
 }
+const ok = ()=>{
+  message.info("操作完成！")
+}
 @connect(mapStateToProps)
 
 class damagePresure extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-
-    };
-  }
   render(){
+    let buttons;
+    if(this.props.location.status == '待发送'){
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Link to={"/yygj/business/syCargoDamage"}><Button  onClick={ok} type={"primary"} style={{marginRight:'20px'}}>发送</Button></Link>
+          <Link  to={"/yygj/business/syCargoDamage"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }else if(this.props.location.status == '发票待确认'){
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Link to={"/yygj/business/syCargoDamage"}><Button  onClick={ok} type={"primary"} style={{marginRight:'20px'}}>发票确认</Button></Link>
+          <Link  to={"/yygj/business/syCargoDamage"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }else{
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button disabled  type={"primary"} style={{marginRight:'20px'}}>发送</Button>
+          <Link  to={"/yygj/business/syCargoDamage"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }
     return(
       <div>
         <Form >
-          <Card title={"基本信息"} headStyle={headStyle} className={styles.cardbottom}>
+          <Card title={<b>"基本信息"</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"货损编号："} >
@@ -136,19 +157,13 @@ class damagePresure extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={"货损明细"}  headStyle={headStyle} className={styles.cardbottom}>
+          <Card title={<b>"货损明细"</b>}  headStyle={headStyle} className={styles.cardbottom}>
             <Table rowSelection={rowSelection} columns={this.props.columns_detail} dataSource={this.props.data_detail} size="small" />
           </Card>
-          <Card title={"上传文件"}  headStyle={headStyle} className={styles.cardbottom}>
+          <Card title={<b>"上传文件"</b>}  headStyle={headStyle} className={styles.cardbottom}>
             <Table rowSelection={rowSelection} columns={this.props.columns_file} dataSource={this.props.data_file} size="small" />
           </Card>
-
-                <div align="center">
-                  <Link to={"/yygj/business/syCargoDamage"}>
-                  <Button  type="primary" name="确定" className={styles.button}>关闭</Button>
-                  </Link>
-                </div>
-
+          {buttons}
         </Form>
       </div>
     )

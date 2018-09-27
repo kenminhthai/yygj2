@@ -47,7 +47,7 @@ export default {
       {
         title: '货损编号',
         dataIndex: 'cargo_ID',
-        render:text =><Link to={"/yygj/industrial/gyCargoDamage/damageDetail"}> <a>{text}</a></Link>,
+        render:(text,record) =><Link to={{pathname:"/yygj/industrial/gyCargoDamage/damageDetail",status:{record}.record.status}}> <a>{text}</a></Link>,
       },
       {
         title: '录入日期',

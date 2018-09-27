@@ -3,6 +3,7 @@ import styles from './index.less';
 import { Form, Input, Col,Row,Select,Button, Card } from 'antd';
 import { connect } from 'dva'
 import Link from 'umi/link'
+import {message} from "antd/lib/index"
 const FormItem = Form.Item;
 const headStyle={
   backgroundColor:"#E8E8E8",
@@ -55,6 +56,9 @@ const mapStateToProps = (state) =>{
     options_frameCharacter,
   }
 }
+const ok=()=>{
+  message.info("发送成功！")
+}
 @connect(mapStateToProps)
 
 class damagePresure extends React.Component{
@@ -64,6 +68,22 @@ class damagePresure extends React.Component{
     };
   }
   render(){
+    let buttons;
+    if(this.props.location.status == '待发送'){
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Link to={"/yygj/industrial/gyFramePreserve"}><Button  onClick={ok} type={"primary"} style={{marginRight:'20px'}}>发送</Button></Link>
+          <Link  to={"/yygj/industrial/gyFramePreserve"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }else{
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button disabled  type={"primary"} style={{marginRight:'20px'}}>发送</Button>
+          <Link  to={"/yygj/industrial/gyFramePreserve"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }
     return(
       <div>
         <Form >
@@ -162,11 +182,7 @@ class damagePresure extends React.Component{
               </Col>
             </Row>
           </Card>
-          <div align="center">
-            <Link to={"/yygj/industrial/gyFramePreserve"}>
-              <Button type="primary" name="确定" className={styles.button}>关闭</Button>
-            </Link>
-          </div>
+          {buttons}
         </Form>
       </div>
     )
