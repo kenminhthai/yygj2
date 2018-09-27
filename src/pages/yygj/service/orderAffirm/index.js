@@ -6,14 +6,9 @@ import  Link  from 'umi/link';
 
 const ButtonGroup = Button.Group;
 const namespace = "serviceOrderAffirm"
-function applyMember(){
-
+const headStyle={
+  backgroundColor:"#E8E8E8",
 }
-
-function applyCheck(){
-  alert('审核通过')
-}
-
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
   },
@@ -38,18 +33,8 @@ class ServiceOrderAffirmList extends React.Component{
   }
   render(){
     return(
-      <Card title={
-        <ButtonGroup>
-          {this.props.buttons.map((item, index) => {
-            return(
-              <Link to={item.url}>
-                <Button  type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              </Link>
-            )
-          })}
-        </ButtonGroup>
-      }>
-        <Table bordered columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
+      <Card title={<b>订单确认</b>} headStyle={headStyle} >
+        <Table bordered columns={this.props.colums} dataSource={this.props.orderlist}  size="small" />
       </Card>
     )
   }

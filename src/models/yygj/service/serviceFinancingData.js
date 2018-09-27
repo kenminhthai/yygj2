@@ -1,23 +1,17 @@
 import  Link  from 'umi/link';
+import {Popconfirm,Tooltip,Icon,message} from "antd";
 
-function insure() {
-  alert("已还款")
+function confirm(e) {
+  message.success('发送完成');
 }
-function send() {
-  alert("send")
+
+function cancel(e) {
 }
-function del() {
-  alert("del")
-}
+
 export default {
   namespace: 'serviceFinancingData',
   state: {
     columns:  [
-      {
-        title: '',
-        dataIndex: 'choose',
-        render:text => <a href="javascript:;">{text}</a>,
-      },
       {
         title: '款项编号',
         dataIndex: 'ID',
@@ -90,114 +84,159 @@ export default {
       {
         name:'还款',
         url:'/yygj/service/financingRefund',
-        fun:insure,
       },
     ],
     columns_apply:  [
       {
-        title: '',
-        dataIndex: 'choose',
-        render:text => <a href="javascript:;">{text}</a>,
-        width:10,
+        title: '操作',
+        dataIndex: 'operation',
+        width:'80px',
+        align:'center',
+        render: (text, record, index) => {
+          if ({record}.record.application_status == '待发送') {
+            return(
+              <div>
+                <Popconfirm title="确定要发送申请吗？" okText="发送" cancelText="取消" onConfirm={confirm} onCancel={cancel}>
+                  <Tooltip title="发送申请" placement="left">
+                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="mail" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+                <Popconfirm title="确定要删除订单吗？" okText="删除" cancelText="取消">
+                  <Tooltip title="删除订单" placement="right">
+                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }else {
+            return(
+              <div>
+                <Popconfirm title="确定要删除订单吗？" okText="删除" cancelText="取消">
+                  <Tooltip title="删除订单" placement="right">
+                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }
+        }
       },
       {
         title: '申请编号',
+        align:'center',
         dataIndex: 'ID',
-        render:text =><Link to={"/yygj/service/financingApply/financingDetail"}> <a>{text}</a></Link>,
-        width:80,
-
+        render:(text,record) => <Link to={{pathname:"/yygj/service/financingApply/financingDetail",application_status:{record}.record.application_status}}>{text}</Link>,
       },
       {
         title: '申请日期',
+        align:'center',
         dataIndex: 'date_apply',
-        width:80,
-
       },
       {
         title: '融资类型',
+        align:'center',
         dataIndex: 'financing_type',
-        width:80,
-
       },
       {
         title: '申请机构',
+        align:'center',
         dataIndex: 'apply_org',
-        width:80,
-
       },
       {
         title: '资金方',
+        align:'center',
         dataIndex: 'capital_loaner',
-        width:60,
-
       },
       {
         title: '所属订单',
+        align:'center',
         dataIndex: 'order_superior',
         render:text =><Link to={"/yygj/service/financingApply/orderDetail"}> <a>{text}</a></Link>,
-        width:80,
-
       },
       {
         title: '关联订单',
+        align:'center',
         dataIndex: 'order_relevance',
         render:text =><Link to={"/yygj/service/financingApply/orderDetail"}> <a>{text}</a></Link>,
-        width:80,
-
       },
       {
         title: '订单金额',
+        align:'right',
         dataIndex: 'money_order',
-        width:80,
-
       },
       {
         title: '剩余金额',
+        align:'right',
         dataIndex: 'money_residue',
-        width:80,
-
       },
       {
         title: '申请金额',
+        align:'right',
         dataIndex: 'money_apply',
-        width:80,
       },
       {
         title: '受理日期',
+        align:'center',
         dataIndex: 'date_handle',
-        width:80,
-
       },
       {
         title: '审批日期',
+        align:'center',
         dataIndex: 'date_examine',
-        width:80,
-
       },
       {
         title: '申请状态',
-        dataIndex: 'status_apply',
-        width:80,
-
+        align:'center',
+        defaultSortOrder:'ascend',
+        dataIndex: 'application_status',
       },
     ],
 
     data_apply: [
       {
-        choose:'',
-        ID:'20180916023132',
+        ID:'0000001',
         date_apply:'20180916',
-        financing_type:'应收款融资',
-        apply_org:'XX医药服务公司',
-        capital_loaner:'XX投资公司',
+        financing_type:'应收款',
+        apply_org:'医药',
+        capital_loaner:'服务',
         order_superior:'123312',
         order_relevance:'321123',
-        money_order:'1200万',
-        money_residue:'200万',
-        money_apply:'200万',
+        money_order:'1200.00',
+        money_residue:'200.00',
+        money_apply:'200.00',
         date_handle:'20180916',
         date_examine:'20180917',
-        status_apply:'待发送',
+        application_status:'待发送',
+      },
+      {
+        ID:'0000001',
+        date_apply:'20180916',
+        financing_type:'应收款',
+        apply_org:'医药',
+        capital_loaner:'服务',
+        order_superior:'123312',
+        order_relevance:'321123',
+        money_order:'1200.00',
+        money_residue:'200.00',
+        money_apply:'200.00',
+        date_handle:'20180916',
+        date_examine:'20180917',
+        application_status:'待发送',
+      },
+      {
+        ID:'0000001',
+        date_apply:'20180916',
+        financing_type:'应收款',
+        apply_org:'医药',
+        capital_loaner:'服务',
+        order_superior:'123312',
+        order_relevance:'321123',
+        money_order:'1200.00',
+        money_residue:'200.00',
+        money_apply:'200.00',
+        date_handle:'20180916',
+        date_examine:'20180917',
+        application_status:'已发送',
       },
     ],
     buttons_apply:[
@@ -209,12 +248,10 @@ export default {
       {
         name:'申请发送',
         url:'/yygj/service/financingApply',
-        fun:send,
       },
       {
         name:'申请删除',
         url:'/yygj/service/financingApply',
-        fun:del,
       },
     ],
 

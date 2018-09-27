@@ -57,12 +57,28 @@ const mapStateToProps = (state) =>{
 }
 
 const ok =()=>{
-  message.info("操作完成")
+  message.success("发送成功！")
 }
 
 @connect(mapStateToProps)
 class ServiceOrderDetail extends React.Component{
   render(){
+    let buttons;
+    if(this.props.location.order_status == '草稿'){
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button onClick={ok} type={"primary"} style={{marginRight:'20px'}}>发送订单</Button>
+          <Link  to={"/yygj/service/orderPreserve"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }else{
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button onClick={ok} disabled type={"primary"} style={{marginRight:'20px'}}>发送订单</Button>
+          <Link  to={"/yygj/service/orderPreserve"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }
     return(
       <div>
         <Form>
@@ -158,9 +174,7 @@ class ServiceOrderDetail extends React.Component{
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
             </div>
           </Card>
-          <div style={{textAlign:'center'}}>
-            <Link  to={"/yygj/service/orderPreserve"}><Button type={"primary"}>关闭</Button></Link>
-          </div>
+          {buttons}
         </Form>
       </div>
     )

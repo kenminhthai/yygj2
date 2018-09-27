@@ -55,12 +55,28 @@ const mapStateToProps = (state) =>{
     colums, filelist, buttons, colums2, filelist2
   }
 }
-const ok =()=>{
-  message.info("操作完成")
+const ok = () =>{
+  message.success("订单确定成功！")
 }
 @connect(mapStateToProps)
 class ServiceOrderAffirmDetail extends React.Component{
   render(){
+    let buttons;
+    if(this.props.location.order_status == '待确认'){
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button onClick={ok} type={"primary"} style={{marginRight:'20px'}}>确认</Button>
+          <Link  to={"/yygj/service/orderAffirm"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }else{
+      buttons = (
+        <div style={{textAlign:'center'}}>
+          <Button disabled onClick={ok} type={"primary"} style={{marginRight:'20px'}}>确认</Button>
+          <Link  to={"/yygj/service/orderAffirm"}><Button type={"primary"}>关闭</Button></Link>
+        </div>
+      )
+    }
     return(
       <div>
         <Form>
@@ -166,12 +182,7 @@ class ServiceOrderAffirmDetail extends React.Component{
           <Card title={<b>上传文件</b>} headStyle={headStyle} className={styles.cardbottom}>
               <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
           </Card>
-          <div style={{textAlign:'center'}}>
-            <Button onClick={ok} type={"primary"} style={{marginRight:'20px'}}>确认</Button>
-            <Link to={"/yygj/service/orderAffirm"}>
-              <Button type={"primary"}>关闭</Button>
-            </Link>
-          </div>
+          {buttons}
         </Form>
       </div>
     )

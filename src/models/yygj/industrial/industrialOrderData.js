@@ -1,6 +1,5 @@
-import {Popconfirm, Tooltip, Icon} from 'antd'
+import {Popconfirm, Tooltip, Icon, message} from 'antd'
 import Link from 'umi/link'
-import {message} from "antd/lib/index";
 
 function confirm(e) {
   message.success('发送完成');

@@ -33,51 +33,64 @@ export default {
       },
       {
         title: '款项编号',
+        align:'center',
         dataIndex: 'ID',
       },
       {
         title: '融资协议',
+        align:'center',
         dataIndex: 'frameID',
         render:text =><Link to={"/yygj/industrial/financingRefund/financingDetail"}><a >{text}</a></Link>,
       },
       {
         title: '所属申请',
+        align:'center',
         dataIndex: 'relevanceApply',
       },
       {
         title: '资金方',
+        align:'center',
         dataIndex: 'capital_loaner',
       },
       {
         title: '放款日期',
+        align:'center',
         dataIndex: 'date_begin',
       },
       {
         title: '资金规模',
+        align:'center',
         dataIndex: 'capital_scale',
       },
       {
         title: '资金价格',
+        align:'right',
         dataIndex: 'capital_price',
       },
       {
         title: '本息合计',
+        align:'right',
         dataIndex: 'sum',
       },
       {
         title: '到期日期',
+        align:'center',
         dataIndex: 'date_end',
       },
       {
         title: '到期状态',
+        align:'center',
         dataIndex: 'status_date_end',
       },
       {
         title: '实际还款日期',
+        align:'center',
         dataIndex: 'date_end_fact',
       },
       {
         title: '还款状态',
+        align:'center',
+        defaultSortOrder:'ascend',
         dataIndex: 'status_refund',
       },
     ],

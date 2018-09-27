@@ -15,6 +15,10 @@ const ok = () =>{
   message.info("操作完成")
 }
 
+const headStyle={
+  backgroundColor:"#E8E8E8",
+}
+
 const mapStateToProps = (state) =>{
   const serviceOrderData = state[namespace];
   const colums = serviceOrderData.colums;
@@ -30,24 +34,12 @@ class ServiceOrderPreserve extends React.Component{
   render(){
     return(
       <Card title={
-        <ButtonGroup>
-          {this.props.buttons.map((item, index) => {
-            if(item.url != ''){
-              return(
-                <Link to={item.url}>
-                  <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                </Link>
-              )
-            }else{
-              return(
-                <Button onClick={ok} type="primary" style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-              )
-            }
-          })}
-        </ButtonGroup>
-      }>
+        <Link to={"/yygj/service/orderPreserve/addOrder"}>
+          <Button type="primary" style={{ marginRight:'5px',marginBottom:'10px'}}>订单新增</Button>
+        </Link>
+      } headStyle={headStyle}>
         <div>
-          <Table bordered={true} columns={this.props.colums} dataSource={this.props.orderlist} rowSelection={rowSelection} size="small" />
+          <Table bordered={true} columns={this.props.colums} dataSource={this.props.orderlist} size="small" />
         </div>
       </Card>
     )

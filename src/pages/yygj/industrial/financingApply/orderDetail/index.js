@@ -47,17 +47,16 @@ const formItemThreeLayout = {
 const mapStateToProps = (state) =>{
   const commonData = state["commonData"];
   const colums = commonData.file.colums;
-  const filelist = commonData.file.filelist;3
+  const filelist = commonData.file.filelist;
+  const colums2 = commonData.file2.colums;
+  const filelist2 = commonData.file2.filelist;
   const businessOrderData = state["industrialOrderData"];
   const buttons = businessOrderData.buttons;
   return{
-    colums, filelist, buttons
+    colums, filelist, colums2, filelist2, buttons
   }
 }
 
-const ok = () =>{
-  message.success("发送成功！")
-}
 
 @connect(mapStateToProps)
 class ServiceOrderDetail extends React.Component{
@@ -126,7 +125,7 @@ class ServiceOrderDetail extends React.Component{
           </Card>
           <Card title={<b>关联订单明细</b>} headStyle={headStyle} className={styles.cardbottom}>
             <div >
-              <Table columns={this.props.colums} dataSource={this.props.filelist} size={"small"}/>
+              <Table columns={this.props.colums2} dataSource={this.props.filelist2} size={"small"}/>
             </div>
           </Card>
           <Card title={<b>发票信息</b>}headStyle={headStyle} className={styles.cardbottom}>
