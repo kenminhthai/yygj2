@@ -45,14 +45,15 @@ export default {
         }
       },
       {
-        title: '录入日期',
-        dataIndex: 'date_typeIn',
-      },
-      {
         title: '货损编号',
         dataIndex: 'cargo_ID',
         render:text =><Link to={"/yygj/industrial/gyCargoDamage/damageDetail"}> <a>{text}</a></Link>,
       },
+      {
+        title: '录入日期',
+        dataIndex: 'date_typeIn',
+      },
+
       {
         title: '发起机构',
         dataIndex: 'org_begin',
@@ -64,6 +65,7 @@ export default {
       {
         title: '货损价值',
         dataIndex: 'cargo_num',
+        align:"right"
       },
       {
         title: '所属订单',

@@ -44,7 +44,23 @@ export default {
                 </Popconfirm>
               </div>
             )
-          }else {
+          }
+          else if({record}.record.status == '发票待确认'){
+            return(
+              <div>
+                <Popconfirm title="确定该协议吗？" okText="确定" cancelText="取消" onConfirm={insure} onCancel={cancel}>
+                  <Tooltip title="协议确定" placement="left">
+                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="check-circle" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+                <Popconfirm title="确定要删除协议吗？" okText="删除" cancelText="取消" onConfirm={del}>
+                  <Tooltip title="删除协议" placement="right">
+                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }else{
             return(
               <div>
                 <Popconfirm title="确定要删除协议吗？" okText="删除" cancelText="取消" onConfirm={del}>
@@ -58,14 +74,15 @@ export default {
         }
       },
       {
-        title: '录入日期',
-        dataIndex: 'date_typeIn',
-      },
-      {
         title: '货损编号',
         dataIndex: 'cargo_ID',
         render:text =><Link to={'/yygj/business/syCargoDamage/damageDetail'} ><a>{text}</a></Link>,
       },
+      {
+        title: '录入日期',
+        dataIndex: 'date_typeIn',
+      },
+
       {
         title: '发起机构',
         dataIndex: 'org_begin',
@@ -107,7 +124,7 @@ export default {
         cargo_order:'0001',
         date_insure:'20180916',
         date_bill_insure:'20180918',
-        status:'待发送',
+        status:'发票待确认',
       },
       {
 

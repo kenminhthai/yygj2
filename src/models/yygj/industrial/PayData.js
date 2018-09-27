@@ -1,26 +1,50 @@
 import Link from 'umi/link'
+import {Popconfirm, Tooltip,Icon } from 'antd'
 
+import {message} from "antd/lib/index";
 function insure() {
   alert("已付款")
 }
+function confirm(e) {
+  message.success('付款成功');
+}
+
+function cancel(e) {
+}
 export default {
-  namespace: 'industralPayData',
+  namespace: 'industrialPayData',
   state: {
     columns: [
       {
-        title: '',
-        dataIndex: 'choose',
-        render:text => <a href="javascript:;">{text}</a>,
-      },
-      {
-        title: '应付日期',
-        dataIndex: 'date_typeIn',
+        title: '操作',
+        dataIndex: 'operation',
+        width:'50px',
+        render: (text, record, index) => {
+          if ({record}.record.status == '待付') {
+            return(
+              <div>
+                <Popconfirm title="确定要付款吗？" okText="付款" cancelText="取消" onConfirm={confirm} onCancel={cancel}>
+                  <Tooltip title="付款" placement="left">
+                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="dollar" theme="twoTone"/></a>
+                  </Tooltip>
+                </Popconfirm>
+              </div>
+            )
+          }else {
+            return;
+          }
+        }
       },
       {
         title: '所属订单',
         dataIndex: 'orderID',
         render:text => <Link to={"/yygj/industrial/gypay/orderDetail"}><a >{text}</a></Link>,
       },
+      {
+        title: '应付日期',
+        dataIndex: 'date_typeIn',
+      },
+
       {
         title: '收款方机构',
         dataIndex: 'gathering_org',
@@ -40,6 +64,7 @@ export default {
       {
         title: '应付金额',
         dataIndex: 'num_payable',
+        align:"right"
       },
       {
         title: '实付日期',
@@ -62,7 +87,7 @@ export default {
         Bank:'工商银行',
         num_payable:'10000',
         date_OutOfPocket:'20180918',
-        status:'待付/已付',
+        status:'待付',
       },
     ],
     buttons:[

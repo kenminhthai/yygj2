@@ -46,8 +46,6 @@ const formItemThreeLayout = {
   },
 };
 
-
-
 const options = [{
   value: 'zhejiang',
   label: 'Zhejiang',
@@ -98,7 +96,7 @@ class ApplyMember extends React.Component{
               this.props.form.validateFields((err, values) => {
                 if (!err) {
                   console.log('Received values of form: ', values.enterprise_name);
-                  createEnterpriseMember({ member:{enterprise_name:values.enterprise_name }});
+                  createEnterpriseMember({ variables:{member:{enterprise_name:values.enterprise_name }}});
                   // input.value = "";
                 }
               });

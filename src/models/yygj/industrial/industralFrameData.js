@@ -59,14 +59,15 @@ export default {
         }
       },
       {
-        title: '录入日期',
-        dataIndex: 'date_typeIn',
-      },
-      {
         title: '合同编号',
         dataIndex: 'frameID',
         render:text => <Link to={"/yygj/industrial/gyFramePreserve/frameDetail"}><a >{text}</a></Link>,
       },
+      {
+        title: '录入日期',
+        dataIndex: 'date_typeIn',
+      },
+
       {
         title: '合同日期',
         dataIndex: 'frame_date',
@@ -145,14 +146,15 @@ export default {
         }
       },
       {
-        title: '录入日期',
-        dataIndex: 'date_typeIn',
-      },
-      {
         title: '合同编号',
         dataIndex: 'frameID',
         render:text => <Link to={"/yygj/industrial/gyFrameInsure/frameDetail"}><a >{text}</a></Link>,
       },
+      {
+        title: '录入日期',
+        dataIndex: 'date_typeIn',
+      },
+
       {
         title: '合同日期',
         dataIndex: 'frame_date',
