@@ -3,7 +3,9 @@ import styles from './index.less';
 import { Form, Input, Col,Row,Select, DatePicker,  Button, Table, Card, message } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
-
+import moment from 'moment';
+const date = new Date()
+const dateFormat = 'YYYY-MM-DD'
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const headStyle={
@@ -111,7 +113,8 @@ class IndustrialOrderDetail extends React.Component{
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"订单日期"} >
-                  <DatePicker disabled/>
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
+
                 </FormItem>
               </Col>
               <Col span={8}>
@@ -121,7 +124,7 @@ class IndustrialOrderDetail extends React.Component{
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"约定付款日"} >
-                  <DatePicker disabled/>
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
             </Row>
@@ -147,7 +150,8 @@ class IndustrialOrderDetail extends React.Component{
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"出票日期"} >
-                  <DatePicker disabled />
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
+
                 </FormItem>
               </Col>
               <Col span={8}>

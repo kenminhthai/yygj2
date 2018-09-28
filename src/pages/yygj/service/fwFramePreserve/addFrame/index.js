@@ -117,12 +117,14 @@ class damagePresure extends React.Component{
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
-                  <Input   id="" />
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
+
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"结束日期："} >
-                  <Input  id="" />
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
+
                 </FormItem>
               </Col>
               <Col span={8} >
@@ -138,7 +140,8 @@ class damagePresure extends React.Component{
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"录入日期："} >
-                  <Input disabled placeholder="2018/9/16" id="" />
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
+
                 </FormItem>
               </Col>
               <Col span={8} >
@@ -150,7 +153,8 @@ class damagePresure extends React.Component{
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"确认日期："} >
-                  <Input disabled placeholder="2018/9/16" id="" />
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
+
                 </FormItem>
               </Col>
               <Col span={8} >

@@ -1,9 +1,12 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,Button, Card } from 'antd';
+import { Form, Input, Col,Row,Select,Button, Card ,DatePicker} from 'antd';
 import { connect } from 'dva'
 import Link from 'umi/link'
 import {message} from "antd/lib/index"
+import moment from 'moment';
+const date = new Date()
+const dateFormat = 'YYYY-MM-DD'
 const FormItem = Form.Item;
 const headStyle={
   backgroundColor:"#E8E8E8",
@@ -88,7 +91,7 @@ class damagePresure extends React.Component{
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"签订日期："} >
-                  <Input disabled id={""}/>
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
               <Col span={8} >
@@ -143,12 +146,12 @@ class damagePresure extends React.Component{
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
-                  <Input  disabled id="" />
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"结束日期："} >
-                  <Input disabled id="" />
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
             </Row>

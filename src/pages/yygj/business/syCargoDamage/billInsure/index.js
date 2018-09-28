@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select, Table,Button, Card ,} from 'antd';
-
+import { Form, Input, Col,Row,Select, Table,Button, Card ,DatePicker} from 'antd';
+import moment from 'moment';
+const date = new Date()
+const dateFormat = 'YYYY-MM-DD'
 
 const FormItem = Form.Item;
 const headStyle={
@@ -65,7 +67,7 @@ class damagePresure extends React.Component{
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"录入日期："} >
-                  <Input disabled placeholder="20180916" id="" />
+                  <DatePicker defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
@@ -96,12 +98,13 @@ class damagePresure extends React.Component{
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"确认日期："} >
-                  <Input disabled placeholder="20180916" id="" />
+                  <DatePicker defaultValue={moment(date, dateFormat)}/>
+
                 </FormItem>
               </Col>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"发票确认日期："} >
-                  <Input disabled placeholder="20180916" id="" />
+                  <DatePicker defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
             </Row>

@@ -1,10 +1,12 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select, Table,Button, Card } from 'antd';
+import { Form, Input, Col,Row,Select, Table,Button, Card ,DatePicker} from 'antd';
 import { connect } from 'dva'
 import Link from 'umi/link'
 import {message} from "antd/lib/index"
-
+import moment from 'moment';
+const date = new Date()
+const dateFormat = 'YYYY-MM-DD'
 const FormItem = Form.Item;
 const headStyle={
   backgroundColor:"#E8E8E8",
@@ -65,19 +67,20 @@ const mapStateToProps  = (state) =>{
 const ok = ()=>{
   message.info("操作完成！")
 }
-@connect(mapStateToProps)
 
+
+@connect(mapStateToProps)
 class damagePresure extends React.Component{
   render(){
     let buttons;
-    if(this.props.location.status == '待发送'){
+    if(this.props.location.damage_order_status == '待发送'){
       buttons = (
         <div style={{textAlign:'center'}}>
           <Link to={"/yygj/business/syCargoDamage"}><Button  onClick={ok} type={"primary"} style={{marginRight:'20px'}}>发送</Button></Link>
           <Link  to={"/yygj/business/syCargoDamage"}><Button type={"primary"}>关闭</Button></Link>
         </div>
       )
-    }else if(this.props.location.status == '发票待确认'){
+    }else if(this.props.location.damage_order_status == '发票待确认'){
       buttons = (
         <div style={{textAlign:'center'}}>
           <Link to={"/yygj/business/syCargoDamage"}><Button  onClick={ok} type={"primary"} style={{marginRight:'20px'}}>发票确认</Button></Link>
@@ -104,7 +107,7 @@ class damagePresure extends React.Component{
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"录入日期："} >
-                  <Input disabled placeholder="20180916" id="" />
+                  <DatePicker disabled defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
               <Col span={8} >
@@ -135,12 +138,12 @@ class damagePresure extends React.Component{
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"确认日期："} >
-                  <Input disabled placeholder="20180916" id="" />
+                  <DatePicker disabled={true} defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"发票确认日期："} >
-                  <Input disabled placeholder="20180916" id="" />
+                  <DatePicker disabled={true} defaultValue={moment(date, dateFormat)}/>
                 </FormItem>
               </Col>
             </Row>

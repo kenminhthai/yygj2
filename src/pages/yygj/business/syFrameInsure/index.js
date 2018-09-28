@@ -1,8 +1,9 @@
 import React from 'react'
 import { Table ,Button,Card} from 'antd'
 import { connect } from 'dva'
-const ButtonGroup = Button.Group
 import  Link  from 'umi/link'
+import styles from './index.less'
+const ButtonGroup = Button.Group
 
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
@@ -29,8 +30,7 @@ class CargoDamage extends React.Component{
   render(){
     return(
       <Card title={<b>协议确认</b>} headStyle={headStyle}>
-
-        <Table columns={this.props.columns} dataSource={this.props.data} size="small" bordered/>
+        <Table columns={this.props.columns} dataSource={this.props.data} size="small" onHeaderRow={(clumns)=>{return{backgroundColor:"blue"}}}/>
       </Card>
     )
   }

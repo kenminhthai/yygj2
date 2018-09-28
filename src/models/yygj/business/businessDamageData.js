@@ -44,18 +44,12 @@ export default {
                 </Popconfirm>
               </div>
             )
-          }
-          else if({record}.record.status == '发票待确认'){
+          }else if({record}.record.damage_order_status == '发票待确认'){
             return(
               <div>
-                <Popconfirm title="确定该协议吗？" okText="确定" cancelText="取消" onConfirm={insure} onCancel={cancel}>
-                  <Tooltip title="协议确定" placement="left">
+                <Popconfirm title="确定该发票吗？" okText="确定" cancelText="取消" onConfirm={insure} onCancel={cancel}>
+                  <Tooltip title="发票确认" placement="left">
                     <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="check-circle" theme="twoTone"/></a>
-                  </Tooltip>
-                </Popconfirm>
-                <Popconfirm title="确定要删除协议吗？" okText="删除" cancelText="取消" onConfirm={del}>
-                  <Tooltip title="删除协议" placement="right">
-                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
                   </Tooltip>
                 </Popconfirm>
               </div>
@@ -63,11 +57,6 @@ export default {
           }else{
             return(
               <div>
-                <Popconfirm title="确定要删除协议吗？" okText="删除" cancelText="取消" onConfirm={del}>
-                  <Tooltip title="删除协议" placement="right">
-                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
-                  </Tooltip>
-                </Popconfirm>
               </div>
             )
           }
@@ -76,7 +65,7 @@ export default {
       {
         title: '货损编号',
         dataIndex: 'damage_order_number',
-        render:(text,record) => <Link to={{pathname:'/yygj/business/syCargoDamage/damageDetail',status:{record}.record.status}} ><a>{text}</a></Link>,
+        render:(text,record) => <Link to={{pathname:'/yygj/business/syCargoDamage/damageDetail',damage_order_status:{record}.record.damage_order_status}} ><a>{text}</a></Link>,
       },
       {
         title: '录入日期',
