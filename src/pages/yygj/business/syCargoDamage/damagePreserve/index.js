@@ -74,26 +74,38 @@ class damagePresure extends React.Component{
     };
   }
   render(){
+    const { getFieldDecorator } = this.props.form;
     return(
       <div>
         <Form >
           <Card title={"基本信息"} headStyle={headStyle} className={styles.cardbottom}>
             <Row gutter={21}>
               <Col span={7} offset={1}>
-                <FormItem {...formItemThreeLayout} label={"货损维护："} >
-                  <Input  id="" />
+                <FormItem {...formItemThreeLayout} label={"货损编号："} >
+                  {getFieldDecorator('id', {
+                  })(
+                  <Input />
+                  )}
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"录入日期："} >
-                  <DatePicker disabled={true} defaultValue={moment(date, dateFormat)}/>
+                  {getFieldDecorator('gmt_create', {
+                    initialValue:moment(date, dateFormat),
+                  })(
+                  <DatePicker disabled={true}/>
+                  )}
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"所属订单："} >
-                  <Select  defaultValue="会员已有订单" >
+                  {getFieldDecorator('belonging_order', {
+                    initialValue:"会员已有订单"
+                  })(
+                  <Select  >
                     <Option value="会员已有订单">会员已有订单</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
             </Row>
@@ -112,38 +124,55 @@ class damagePresure extends React.Component{
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"货损价值："} >
-                  <Input   id="" />
+                  {getFieldDecorator('loss_value', {
+                  })(
+                  <Input/>
+                  )}
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"确认日期："} >
-                  <DatePicker disabled={true} defaultValue={moment(date,dateFormat)}/>
+                  {getFieldDecorator('date_of_confirmation_of_damage', {
+                    initialValue:moment(date, dateFormat),
+                  })(
+                  <DatePicker disabled={true} />
+                  )}
                 </FormItem>
               </Col>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"发票确认日期："} >
-                  <DatePicker disabled={true} defaultValue={moment(date,dateFormat)}/>
+                  {getFieldDecorator('confirmation_date_of_reversing_invoice', {
+                    initialValue:moment(date, dateFormat),
+                  })(
+                  <DatePicker disabled={true} />
+                  )}
                 </FormItem>
               </Col>
             </Row>
             <Row gutter={21}>
               <Col span={7} offset={1}>
                 <FormItem {...formItemThreeLayout} label={"冲正发票号："} >
+                  {getFieldDecorator('correct_invoice_number', {
+                  })(
                   <Input disabled placeholder="101010101010101010" id="" />
+                  )}
                 </FormItem>
               </Col>
               <Col span={7} className={styles.formItemThreeLayout}>
                 <FormItem {...formItemThreeLayout} label={"货损状态："} >
+                  {getFieldDecorator('damage_order_status', {
+                  })(
                   <Input  disabled placeholder="" id="" />
+                  )}
                 </FormItem>
               </Col>
             </Row>
           </Card>
           <Card title={"货损明细"}  headStyle={headStyle} className={styles.cardbottom}>
-            <Table rowSelection={rowSelection} columns={this.props.columns_detail} dataSource={this.props.data_detail} size="small" />
+            <Table  columns={this.props.columns_detail} dataSource={this.props.data_detail} size="small" bordered/>
           </Card>
           <Card title={"上传文件"}  headStyle={headStyle} className={styles.cardbottom}>
-            <Table rowSelection={rowSelection} columns={this.props.columns_file} dataSource={this.props.data_file} size="small" />
+            <Table  columns={this.props.columns_file} dataSource={this.props.data_file} size="small" bordered />
           </Card>
           <div align={"center"}>
                 <ButtonGroup >
@@ -163,4 +192,4 @@ class damagePresure extends React.Component{
     )
   }
 }
-export default damagePresure
+export default Form.create()(damagePresure)

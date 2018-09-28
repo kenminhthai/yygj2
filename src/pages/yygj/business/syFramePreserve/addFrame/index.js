@@ -1,44 +1,22 @@
 import React from 'react'
 import styles from './index.less';
 import { Form, Input, Col,Row,Select,Button, Card ,DatePicker} from 'antd';
-import {Upload} from "antd/lib/index";
+import {message, Upload} from "antd/lib/index"
 import { connect } from 'dva'
 import moment from 'moment';
 import  Link  from 'umi/link'
-
+import { Mutation } from "react-apollo";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import gql from "graphql-tag"
 const ButtonGroup = Button.Group
 const FormItem = Form.Item;
 const Dragger = Upload.Dragger;
-const { MonthPicker, RangePicker } = DatePicker;
 const date = new Date()
 const dateFormat = 'YYYY-MM-DD';
 const headStyle={
   backgroundColor:"#E8E8E8",
 }
-const formItemOneLayout = {
-  labelCol: {
-    sm: { span: 3 },
-  },
-  wrapperCol: {
-    sm: { span: 20 },
-  },
-};
-const formItemTwoLayout_1 = {
-  labelCol: {
-    sm: { span: 3 },
-  },
-  wrapperCol: {
-    sm: { span: 18 },
-  },
-};
-const formItemTwoLayout_2 = {
-  labelCol: {
-    sm: { span: 10 },
-  },
-  wrapperCol: {
-    sm: { span: 14 },
-  },
-};
 const formItemThreeLayout = {
   labelCol: {
     sm: { span: 9 },
@@ -47,6 +25,20 @@ const formItemThreeLayout = {
     sm: { span: 12 },
   },
 };
+const client = new ApolloClient({
+  uri: 'http://192.168.30.10:5000/graphql',
+})
+const ADD_Member = gql`
+   mutation createEnterpriseMember($member:EnterpriseMemberInput){
+   createEnterpriseMember(member:$member){
+   enterprise_name
+   }
+ }
+ `;
+function option() {
+  message.success('操作完成');
+
+}
 
 const namespace = 'businessFrameData'
 const mapStateToProps = (state) =>{
@@ -67,21 +59,43 @@ const mapStateToProps = (state) =>{
   }
 }
 @connect(mapStateToProps)
-class damagePresure extends React.Component{
+class framePresure extends React.Component{
   render(){
+    const { getFieldDecorator } = this.props.form;
     return(
-      <div>
-        <Form >
+      <ApolloProvider client={client}>
+        <Mutation mutation={ADD_Member}>
+          {(createEnterpriseMember, { data }) => (
+        <Form onSubmit={e=>{
+          e.preventDefault();
+          this.props.form.validateFields((err, fieldsValue) => {
+            if (!err) {
+              const values={
+                ...fieldsValue,
+                'gmt_create':fieldsValue['gmt_create'].format(dateFormat),
+              }
+              console.log('Received values of form: ', values);
+              createEnterpriseMember({ variables:{member:{enterprise_name:values.gmt_create }}}).then(message.info("提交成功"));
+            }
+          });
+        }}>
           <Card title={"基本信息"} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"签订日期："} >
-                  <DatePicker defaultValue={moment(date, dateFormat)}/>
+                  {getFieldDecorator('gmt_create', {
+                    initialValue:moment(date, dateFormat)
+                  })(
+                  <DatePicker/>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同类型："} >
-                  <Select  defaultValue="框架协议" >
+                  {getFieldDecorator('contract_type', {
+                    initialValue:"框架协议",
+                  })(
+                  <Select >
                     {
                       this.props.options_frameType.map((item, index) => {
                         return(
@@ -90,11 +104,15 @@ class damagePresure extends React.Component{
                       })
                     }
                   </Select>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同性质："} >
-                  <Select  defaultValue="医药服务" >
+                  {getFieldDecorator('nature_of_contract', {
+                    initialValue:"医药贸易",
+                  })(
+                  <Select >
                     {
                       this.props.options_frameCharacter.map((item, index) => {
                         return(
@@ -103,6 +121,7 @@ class damagePresure extends React.Component{
                       })
                     }
                   </Select>
+                  )}
                 </FormItem>
               </Col>
             </Row>
@@ -126,12 +145,20 @@ class damagePresure extends React.Component{
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同开始日期："} >
-                  <DatePicker defaultValue={moment(date, dateFormat)}/>
+                  {getFieldDecorator('date_of_contract_signing', {
+                    initialValue:moment(date, dateFormat)
+                  })(
+                  <DatePicker/>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"结束日期："} >
-                  <DatePicker defaultValue={moment(date, dateFormat)}/>
+                  {getFieldDecorator('contract_expiration_date', {
+                    initialValue:moment(date, dateFormat)
+                  })(
+                  <DatePicker/>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8} >
@@ -169,22 +196,23 @@ class damagePresure extends React.Component{
               </Col>
             </Row>
           </Card>
-       <div align="center">
-                <ButtonGroup>
-                  {
-                    this.props.buttons_addFrame.map((item, index) => {
-                      return(
-                        <Link to={item.url}>
-                          <Button  type="primary" onClick={item.fun} style={{ marginRight:'5px',marginBottom:'10px'}} key={index}>{item.name}</Button>
-                        </Link>
-                      )
-                    })
-                  }
-                </ButtonGroup>
-       </div>
-        </Form>
-      </div>
+           <div align="center">
+              <ButtonGroup>
+                <Link to={"/yygj/business/syFramePreserve/"}>
+                  <Button  type="primary" htmlType="submit"  style={{ marginRight:'5px',marginBottom:'10px'}} key={"保存"}>保存</Button>
+                </Link>
+                <Link to={"/yygj/business/syFramePreserve/"}>
+                  <Button  type="primary" htmlType="submit" style={{ marginRight:'5px',marginBottom:'10px'}} key={"保存并发送"}>保存并发送</Button>
+                </Link>
+                <Link to={"/yygj/business/syFramePreserve/"}>
+                  <Button  type="primary"  style={{ marginRight:'5px',marginBottom:'10px'}} key={"取消"}>取消</Button>
+                </Link>
+              </ButtonGroup>
+           </div>
+        </Form>)}
+        </Mutation>
+      </ApolloProvider>
     )
   }
 }
-export default damagePresure
+export default Form.create()(framePresure)

@@ -1,43 +1,37 @@
+import Link from 'umi/link'
+
 export default {
   namespace: 'platformData',
   state: {
     colums:[
       {
         title: '申请编号',
-        dataIndex: 'application_number',
-        render:text => <a href="javascript:;">{text}</a>
+        dataIndex: 'id',
+        render:(text,record) => <Link to={{pathname:'/yygj/platform/applycheck',id:{record}.record.id}}><a>{text}</a></Link>
       },
       {
         title: '申请日期',
         dataIndex: 'date_of_application',
       },
       {
-        title: '企业会员类型',
-        dataIndex: 'enterprise_membership_type',
+        title: '创建时间',
+        dataIndex: 'gmt_create',
       },
       {
-        title: '企业名称',
-        dataIndex: 'enterprise_name',
+        title: '录入人',
+        dataIndex: 'gmt_create',
       },
       {
-        title: '企业性质',
-        dataIndex: 'enterprise_nature',
-      },
-      {
-        title: '企业法人',
-        dataIndex: 'enterprise_legal_person',
-      },
-      {
-        title: '企业联系人',
-        dataIndex: 'corporate_contacts',
-      },
-      {
-        title: '联系人手机',
-        dataIndex: 'business_contact_cell_phone',
+        title: '申请来源',
+        dataIndex: 'source_of_application',
       },
       {
         title: '申请状态',
         dataIndex: 'application_status',
+      },
+      {
+        title: '审核人',
+        dataIndex: 'reviewer',
       },
       {
         title: '审核日期',

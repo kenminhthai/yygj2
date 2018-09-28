@@ -6,6 +6,8 @@ import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
+import moment from 'moment';
+const  date = new Date();
 const namespace = "platformData"
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
@@ -113,6 +115,7 @@ class ApplyMember extends React.Component{
                 console.log(values)
                 if (!err) {
                   createEnterpriseMember({ variables:{member:{
+
                         enterprise_name:values.enterprise_name,
                         enterprise_english_name:values.enterprise_english_name,
                         enterprise_abbreviation:values.enterprise_abbreviation,
@@ -270,7 +273,7 @@ class ApplyMember extends React.Component{
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout} label={"企业联系电话"} >
                         {getFieldDecorator('corporate_contact_number',{
-                          initialValue:'',
+                          initialValue:moment(date,("YYYY-MM-DD")),
                         })(
                         <Input />
                         )}
