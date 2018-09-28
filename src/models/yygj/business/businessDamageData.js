@@ -29,7 +29,7 @@ export default {
         title: '操作',
         dataIndex: 'choose',
         render: (text, record, index) => {
-          if ({record}.record.status == '待发送') {
+          if ({record}.record.damage_order_status == '待发送') {
             return(
               <div>
                 <Popconfirm title="确定要发送协议吗？" okText="发送" cancelText="取消" onConfirm={send} onCancel={cancel}>
@@ -75,68 +75,80 @@ export default {
       },
       {
         title: '货损编号',
-        dataIndex: 'cargo_ID',
+        dataIndex: 'damage_order_number',
         render:(text,record) => <Link to={{pathname:'/yygj/business/syCargoDamage/damageDetail',status:{record}.record.status}} ><a>{text}</a></Link>,
       },
       {
         title: '录入日期',
-        dataIndex: 'date_typeIn',
+        dataIndex: 'gmt_create',
       },
 
       {
         title: '发起机构',
-        dataIndex: 'org_begin',
+        dataIndex: 'cargo_damage_submitting_agency',
       },
       {
         title: '确认机构',
-        dataIndex: 'org_end',
+        dataIndex: 'cargo_damage_confirmation_mechanism',
       },
       {
         title: '货损价值',
-        dataIndex: 'cargo_num',
+        dataIndex: 'loss_value',
         align:'right',
       },
       {
         title: '所属订单',
-        dataIndex: 'cargo_order',
+        dataIndex: 'belonging_order',
       },
       {
         title: '确认日期',
-        dataIndex: 'date_insure',
+        dataIndex: 'date_of_confirmation_of_damage',
       },
       {
         title: '发票确认日期',
-        dataIndex: 'date_bill_insure',
+        dataIndex: 'confirmation_date_of_reversing_invoice',
       },
       {
         title: '货损状态',
-        dataIndex: 'status',
+        dataIndex: 'damage_order_status',
       },
     ],
     data                  :[
       {
 
-        date_typeIn:'20180916',
-        cargo_ID:'0001',
-        org_begin:'XXX',
-        org_end:'SSS',
-        cargo_num:'1000',
-        cargo_order:'0001',
-        date_insure:'20180916',
-        date_bill_insure:'20180918',
-        status:'发票待确认',
+        damage_order_number:'20180916',
+        gmt_create:'0001',
+        cargo_damage_submitting_agency:'XXX',
+        cargo_damage_confirmation_mechanism:'SSS',
+        loss_value:1000,
+        belonging_order:'0001',
+        date_of_confirmation_of_damage:'20180916',
+        confirmation_date_of_reversing_invoice:'20180918',
+        damage_order_status:'发票待确认',
       },
       {
 
-        date_typeIn:'20180915',
-        cargo_ID:'0002',
-        org_begin:'ZZZ',
-        org_end:'XXX',
-        cargo_num:'10000',
-        cargo_order:'0002',
-        date_insure:'20180917',
-        date_bill_insure:'20180918',
-        status:'待发送',
+        damage_order_number:'20180916',
+        gmt_create:'0001',
+        cargo_damage_submitting_agency:'XXX',
+        cargo_damage_confirmation_mechanism:'SSS',
+        loss_value:1000,
+        belonging_order:'0001',
+        date_of_confirmation_of_damage:'20180916',
+        confirmation_date_of_reversing_invoice:'20180918',
+        damage_order_status:'待发送',
+      },
+      {
+
+        damage_order_number:'20180916',
+        gmt_create:'0001',
+        cargo_damage_submitting_agency:'XXX',
+        cargo_damage_confirmation_mechanism:'SSS',
+        loss_value:1000,
+        belonging_order:'0001',
+        date_of_confirmation_of_damage:'20180916',
+        confirmation_date_of_reversing_invoice:'20180918',
+        damage_order_status:'已发送',
       },
     ],
     buttons               :[
@@ -219,29 +231,39 @@ export default {
     ],
     columns_detail        :[
       {
-        title: '序号',
+        title: '编号',
         dataIndex: 'id',
-        render:text => <a href="javascript:;">{text}</a>,
+      },
+      {
+        title:'创建时间',
+        dataIndex:'gmt_create',
+      },
+      {
+        title:'商品编号',
+
+        dataIndex:'commodity_number',
       },
       {
         title: '商品名称',
-        dataIndex: 'name',
+        dataIndex: 'name_of_commodity',
       },
       {
         title: '数量',
         dataIndex: 'quantity',
       },
       {
-        title: '货损价值',
-        dataIndex: 'cost',
+        title: '所属货单',
+        dataIndex: 'goods_damage_list',
       },
     ],
     data_detail           :[
       {
         id:"1",
-        name:'阿司匹林',
+        name_of_commodity:'阿司匹林',
         quantity:'100',
-        cost:'500',
+        commodity_number:'500',
+        goods_damage_list:'',
+        gmt_create:'2018/09/16',
       },
     ],
     buttons_demagePreserve:[

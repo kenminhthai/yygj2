@@ -186,7 +186,6 @@ class ApplyMember extends React.Component{
                         </Select>
                       </FormItem>
                     </Col>
-
                   </Row>
                   <Row >
                     <Col span={8}>
@@ -204,7 +203,6 @@ class ApplyMember extends React.Component{
                         <Input placeholder="机构信用代码 " id="" />
                       </FormItem>
                     </Col>
-
                   </Row>
                   <Row >
                     <Col span={8} >
