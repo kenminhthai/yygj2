@@ -63,68 +63,103 @@ const ok = () =>{
 @connect(mapStateToProps)
 class IndustrialAddOrder extends React.Component{
   render(){
+    const { getFieldDecorator } = this.props.form;
     return(
       <div>
-        <Form>
+        <Form onSubmit={e => {
+          e.preventDefault();
+          this.props.form.validateFields((err, values) => {
+            console.log(values)
+          });
+        }}>
           <Card title={"订单信息"} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"合同性质"} >
-                  <Select defaultValue="zeng" >
+                  {getFieldDecorator('contract_character', {
+                    initialValue:'',
+                  })(
+                  <Select>
                     <Option value="zeng">医药贸易</Option>
                     <Option value="cheng">医药服务</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"买方机构"} >
-                  <Select defaultValue="医药工业" >
+                  {getFieldDecorator('buyer_organization', {
+                    initialValue:'',
+                  })(
+                  <Select>
                     <Option value="industrial">医药工业</Option>
                     <Option value="bussiness">医药商业</Option>
                     <Option value="service">医药服务</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"卖方机构"} >
-                  <Input placeholder={"卖方机构"} id=""/>
+                  {getFieldDecorator('seller_organization', {
+                    initialValue:'',
+                  })(
+                  <Input />
+                  )}
                 </FormItem>
               </Col>
             </Row>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"所属合同"} >
-                  <Select defaultValue="hetong1" >
+                  {getFieldDecorator('belonging_contract', {
+                    initialValue:'',
+                  })(
+                  <Select >
                     <Option value="hetong1">合同1</Option>
                     <Option value="hetong2">合同2</Option>
                     <Option value="hetong3">合同3</Option>
                     <Option value="hetong4">合同4</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"订单日期"} >
+                  {getFieldDecorator('order_date', {
+                  })(
                   <DatePicker />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"订单金额"} >
+                  {getFieldDecorator('order_amount', {
+                    initialValue:'',
+                  })(
                   <Input placeholder="订单金额" id="" />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"约定付款日"} >
+                  {getFieldDecorator('agreed_payment_date', {
+                  })(
                   <DatePicker />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"关联订单"} >
-                  <Select defaultValue="industrial" >
+                  {getFieldDecorator('associated_order', {
+                  })(
+                  <Select >
                     <Option value="industrial">订单1</Option>
                     <Option value="bussiness">订单2</Option>
                     <Option value="service">订单3</Option>
                     <Option value="platform">订单4</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
             </Row>
@@ -138,22 +173,37 @@ class IndustrialAddOrder extends React.Component{
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"出票日期"} >
+                  {getFieldDecorator('date_of_issue', {
+                  })(
                   <DatePicker />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"发票编号"} >
-                  <Input placeholder="发票编号" id="" />
+                  {getFieldDecorator('id', {
+                    initialValue:'',
+                  })(
+                  <Input />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"出票人"} >
-                  <Input disabled placeholder="出票人" id="" />
+                  {getFieldDecorator('drawer', {
+                    initialValue:'',
+                  })(
+                  <Input disabled  />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"发票抬头"} >
-                  <Input disabled placeholder="发票抬头" id="" />
+                  {getFieldDecorator('invoice_title', {
+                    initialValue:'',
+                  })(
+                  <Input disabled />
+                  )}
                 </FormItem>
               </Col>
             </Row>
@@ -174,7 +224,7 @@ class IndustrialAddOrder extends React.Component{
           </Card>
           <div style={{textAlign:'center'}}>
           <ButtonGroup>
-            <Button onClick={ok} type="primary" style={{marginRight:'20px'}}>保存</Button>
+            <Button onClick={ok} type="primary" htmlType="submit" style={{marginRight:'20px'}}>保存</Button>
             <Button onClick={ok} type="primary"  style={{marginRight:'20px'}}>保存并发送</Button>
             <Link to={"/yygj/industrial/orderPreserve"}>
               <Button type="primary"  style={{marginRight:'20px'}}>关闭</Button>
@@ -187,4 +237,4 @@ class IndustrialAddOrder extends React.Component{
   }
 
 }
-export default IndustrialAddOrder
+export default Form.create()(IndustrialAddOrder)

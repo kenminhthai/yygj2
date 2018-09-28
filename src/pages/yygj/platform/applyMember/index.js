@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,Cascader,Upload, Button,  Card, message } from 'antd';
+import { Form, Input, Col,Row,Select,Cascader,Upload, Button,  Card, message,DatePicker } from 'antd';
 import Link from 'umi/link'
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
@@ -105,10 +105,9 @@ class ApplyMember extends React.Component{
             <Form onSubmit={e => {
                 e.preventDefault();
               this.props.form.validateFields((err, values) => {
+                console.log(values)
                 if (!err) {
-                  console.log('Received values of form: ', values.enterprise_name);
                   createEnterpriseMember({ variables:{member:{enterprise_name:values.enterprise_name }}}).then(alert("提交成功"));
-                  // input.value = "";
                 }
               });
               }}>
@@ -116,22 +115,24 @@ class ApplyMember extends React.Component{
                   <FormItem {...formItemOneLayout} label={"企业名称"} >
                     {getFieldDecorator('enterprise_name', {
                       rules: [{ required: false, message: '请输入企业名称!' }],
+                      initialValue:'',
                     })(
-                      <Input placeholder="企业名称" id="" />
+                      <Input/>
                     )}
                   </FormItem>
                   <FormItem {...formItemOneLayout} label={"企业英文名称"} >
                     {getFieldDecorator('enterprise_english_name', {
                       rules: [{ required: false, message: '请输入企业英文名称!' },
-                              {pattern:english,message:'请输入英文！'}
+                              {pattern:english,message:'请输入英文！'},
                       ],
+                      initialValue:'',
                     })(
-                    <Input placeholder="企业英文名称" id="" />
+                    <Input />
                     )}
                   </FormItem>
                   <FormItem {...formItemOneLayout} label={"企业简称"} >
-                    {getFieldDecorator('enterprise_abbreviation')(
-                    <Input placeholder="企业简称" id="" />
+                    {getFieldDecorator('enterprise_abbreviation',{})(
+                    <Input  />
                     )}
                   </FormItem>
                   <Row>
@@ -139,85 +140,125 @@ class ApplyMember extends React.Component{
                       <FormItem {...formItemTwoLayout_1} label={"所在地区"} >
                         {getFieldDecorator('in_the_area', {
                           rules: [{ required: false, message: '请选择所在地区！' }],
+                          initialValue:'',
                         })(
-                        <Cascader options={options} placeholder="所在地区" />
+                        <Cascader options={options} />
                         )}
                       </FormItem>
                     </Col>
                     <Col span={7} pull={1}>
                       <FormItem {...formItemTwoLayout_2} label={"企业会员类型"} >
-                        <Select defaultValue="shagnye" >
+                        {getFieldDecorator('enterprise_membership_type',{
+                          initialValue:'',
+                        })(
+                        <Select >
                           <Option value="shagnye">医药商业</Option>
                           <Option value="gongye">医药工业</Option>
                           <Option value="fuwu">医药服务</Option>
-                          <Option value="pingtai">医药平台</Option>
                         </Select>
+                        )}
                       </FormItem>
                     </Col>
                   </Row>
                   <Row >
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout} label={"所属行业"} >
-                        <Select defaultValue="xin" >
+                        {getFieldDecorator('industry',{
+                          initialValue:'',
+                        })(
+                        <Select >
                           <Option value="nong">农、林、牧、渔业</Option>
                           <Option value="cai">采矿业</Option>
                           <Option value="zhi">制造业</Option>
                           <Option value="xin">信息传输、计算机服务和软件业</Option>
                         </Select>
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8} >
                       <FormItem {...formItemThreeLayout} label={"企业性质"} >
-                        <Select defaultValue="guoyou" >
+                        {getFieldDecorator('enterprise_membership_xingzhi',{
+                          initialValue:'',
+                        })(
+                        <Select >
                           <Option value="guoyou">国有企业</Option>
                           <Option value="jiti">集体企业</Option>
                           <Option value="lianyin">联营企业</Option>
                           <Option value="siyin">私营企业</Option>
                         </Select>
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8} >
                       <FormItem {...formItemThreeLayout} label={"企业规模"} >
-                        <Select defaultValue="td" >
+                        {getFieldDecorator('enterprise_scale',{
+                          initialValue:'',
+                        })(
+                        <Select >
                           <Option value="td">特大型</Option>
                           <Option value="d">大型</Option>
                           <Option value="z">中型</Option>
                           <Option value="x">小型</Option>
                         </Select>
+                        )}
                       </FormItem>
                     </Col>
                   </Row>
                   <Row >
                     <Col span={8}>
+
                       <FormItem {...formItemThreeLayout} label={"组织机构代码"} >
-                        <Input placeholder="组织机构代码" id="" />
+                        {getFieldDecorator('organization_code',{
+                          initialValue:'',
+                        })(
+                        <Input />
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8} >
                       <FormItem {...formItemThreeLayout} label={"工商登记注册号"} >
-                        <Input placeholder="工商登记注册号" id="" />
+                        {getFieldDecorator('business_registration_number',{
+                          initialValue:'',
+                        })(
+                        <Input />
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout} label={"机构信用代码"} >
-                        <Input placeholder="机构信用代码 " id="" />
+                        {getFieldDecorator('institutional_credit_code',{
+                          initialValue:'',
+                        })(
+                        <Input  />
+                        )}
                       </FormItem>
                     </Col>
                   </Row>
                   <Row >
                     <Col span={8} >
                       <FormItem {...formItemThreeLayout} label={"企业注册日期"} >
-                        <Input placeholder="企业注册日期" id="" />
+                        {getFieldDecorator('date_of_enterprise_registration',{
+                        })(
+                        <DatePicker />
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout} label={"企业联系电话"} >
-                        <Input placeholder="企业联系电话" id="" />
+                        {getFieldDecorator('corporate_contact_number',{
+                          initialValue:'',
+                        })(
+                        <Input />
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout} label={"企业传真"} >
-                        <Input placeholder="企业传真 " id="" />
+                        {getFieldDecorator('corporate_fax',{
+                          initialValue:'',
+                        })(
+                        <Input />
+                        )}
                       </FormItem>
                     </Col>
                   </Row>
@@ -226,12 +267,19 @@ class ApplyMember extends React.Component{
                   <Row >
                     <Col span={8}>
                       <FormItem  {...formItemThreeLayout} label={"企业法人"} >
-                        <Input placeholder="企业法人" id="" />
+                        {getFieldDecorator('enterprise_legal_person',{
+                          initialValue:'',
+                        })(
+                        <Input />
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8} >
                       <FormItem {...formItemThreeLayout}  label={"法人证件类型"} >
-                        <Select defaultValue="jack" >
+                        {getFieldDecorator('legal_person_certificate_type',{
+                          initialValue:'',
+                        })(
+                        <Select >
                           <Option value="jack">身份证</Option>
                           <Option value="lucy">居住证</Option>
                           <Option value="disabled" >签证</Option>
@@ -239,30 +287,47 @@ class ApplyMember extends React.Component{
                           <Option value="Yiminghe">军人证</Option>
                           <Option value="Yiminghe">驾驶证</Option>
                         </Select>
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout}  label={"法人证件号码"} >
-                        <Input placeholder="法人证件号码" id="" />
+                        {getFieldDecorator('legal_person_certificate_number',{
+                          initialValue:'',
+                        })(
+                        <Input />
+                        )}
                       </FormItem>
                     </Col>
                   </Row>
                 </Card>
-                <Card title={<b>企业法人信息</b>} headStyle={headStyle} className={styles.cardbottom}>
+                <Card title={<b>企业联系人信息</b>} headStyle={headStyle} className={styles.cardbottom}>
                   <Row >
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout} label={"企业联系人"} >
-                        <Input placeholder="企业联系人" id="" />
+                        {getFieldDecorator('corporate_contacts',{
+                          initialValue:'',
+                        })(
+                        <Input  />
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8} >
                       <FormItem {...formItemThreeLayout} label={"企业联系人职务"} >
-                        <Input placeholder="企业联系人职务" id="" />
+                        {getFieldDecorator('enterprise_contact_job',{
+                          initialValue:'',
+                        })(
+                        <Input  />
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout} label={"联系人手机"} >
-                        <Input placeholder="联系人手机" id="" />
+                        {getFieldDecorator('business_contact_cell_phone',{
+                          initialValue:'',
+                        })(
+                        <Input  />
+                        )}
                       </FormItem>
                     </Col>
                   </Row>

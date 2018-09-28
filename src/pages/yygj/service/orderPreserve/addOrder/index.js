@@ -62,63 +62,95 @@ const ok = () =>{
 @connect(mapStateToProps)
 class ServiceAddOrder extends React.Component{
   render(){
+    const { getFieldDecorator } = this.props.form;
     return(
       <div>
-        <Form>
+        <Form onSubmit={e => {
+          e.preventDefault();
+          this.props.form.validateFields((err, values) => {
+            console.log(values)
+          });
+        }}>
           <Card title={<b>订单信息</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"买方机构"} >
-                  <Select defaultValue="医药工业" >
+                  {getFieldDecorator('buyer_organization', {
+                    initialValue:'industrial',
+                  })(
+                  <Select >
                     <Option value="industrial">医药工业</Option>
                     <Option value="bussiness">医药商业</Option>
                     <Option value="service">医药服务</Option>
                     <Option value="platform">医药平台</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"卖方机构"} >
+                  {getFieldDecorator('seller_organization', {
+                    initialValue:'',
+                  })(
                   <Input disabled placeholder={"默认当前会员"} id=""/>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"所属合同"} >
-                  <Select defaultValue="hetong1" >
+                  {getFieldDecorator('belonging_contract', {
+                    initialValue:'hetong1',
+                  })(
+                  <Select>
                     <Option value="hetong1">合同1</Option>
                     <Option value="hetong2">合同2</Option>
                     <Option value="hetong3">合同3</Option>
                     <Option value="hetong4">合同4</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
             </Row>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"订单日期"} >
+                  {getFieldDecorator('order_date', {
+                  })(
                   <DatePicker />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"订单金额"} >
+                  {getFieldDecorator('order_amount', {
+                    initialValue:'',
+                  })(
                   <Input placeholder="订单金额" id="" />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"约定付款日"} >
+                  {getFieldDecorator('agreed_payment_date', {
+                  })(
                   <DatePicker />
+                  )}
                 </FormItem>
               </Col>
             </Row>
             <Row>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"关联订单"} >
-                  <Select defaultValue="industrial" >
+                  {getFieldDecorator('associated_order', {
+                    initialValue:'industrial',
+                  })(
+                  <Select >
                     <Option value="industrial">订单1</Option>
                     <Option value="bussiness">订单2</Option>
                     <Option value="service">订单3</Option>
                     <Option value="platform">订单4</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
             </Row>
@@ -132,22 +164,38 @@ class ServiceAddOrder extends React.Component{
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"出票日期"} >
+                  {getFieldDecorator('date_of_issue', {
+                    initialValue:'',
+                  })(
                   <DatePicker />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"发票编号"} >
-                  <Input placeholder="发票编号" id="" />
+                  {getFieldDecorator('id', {
+                    initialValue:'',
+                  })(
+                  <Input  />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"出票人"} >
+                  {getFieldDecorator('drawer', {
+                    initialValue:'',
+                  })(
                   <Input disabled placeholder="默认为当前会员" id="" />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"发票抬头"} >
-                  <Input disabled placeholder="发票抬头" id="" />
+                  {getFieldDecorator('invoice_title', {
+                    initialValue:'',
+                  })(
+                  <Input disabled />
+                  )}
                 </FormItem>
               </Col>
             </Row>
@@ -168,7 +216,7 @@ class ServiceAddOrder extends React.Component{
           </Card>
           <div style={{textAlign:'center'}}>
             <ButtonGroup>
-              <Button onClick={ok} type="primary" className={styles.buttons}>保存</Button>
+              <Button onClick={ok} type="primary"  htmlType="submit" className={styles.buttons}>保存</Button>
               <Button onClick={ok}  type="primary"  className={styles.buttons}>保存并发送</Button>
               <Link to={"/yygj/service/orderPreserve"}>
                 <Button type="primary" className={styles.buttons}>关闭</Button>
@@ -181,4 +229,4 @@ class ServiceAddOrder extends React.Component{
   }
 
 }
-export default ServiceAddOrder
+export default Form.create()(ServiceAddOrder)

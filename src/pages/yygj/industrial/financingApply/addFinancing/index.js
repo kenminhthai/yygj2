@@ -71,86 +71,134 @@ class damagePresure extends React.Component{
     };
   }
   render(){
+    const { getFieldDecorator } = this.props.form;
     return(
       <div>
-        <Form >
+        <Form onSubmit={e => {
+          e.preventDefault();
+          this.props.form.validateFields((err, values) => {
+            console.log(values)
+          });
+        }}>
           <Card title={<b>申请信息</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"申请机构："} >
-                  <Input disabled placeholder="登录会员" id={""}/>
+                  {getFieldDecorator('application_agency', {
+                    initialValue:'',
+                  })(
+                  <Input disabled />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"资金方"} >
-                  <Select defaultValue="nong" >
+                  {getFieldDecorator('funding_agency', {
+                    initialValue:'nong',
+                  })(
+                  <Select >
                     <Option value="nong">资金方1</Option>
                     <Option value="cai">资金方2</Option>
                     <Option value="zhi">资金方3</Option>
                     <Option value="xin">资金方4</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"申请日期："} >
+                  {getFieldDecorator('date_of_application', {
+                  })(
                   <DatePicker disabled />
+                  )}
                 </FormItem>
               </Col>
             </Row>
             <Row  >
-
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"融资类型："} >
-                  <Input disabled  id="" placeholder={"应收款融资"} />
+                  {getFieldDecorator('funding_type', {
+                  })(
+                  <Input disabled  placeholder={"应收款融资"} />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"所属订单"} >
-                  <Select defaultValue="nong" >
+                  {getFieldDecorator('belonging_order', {
+                    initialValue:'nong',
+                  })(
+                  <Select >
                     <Option value="nong">订单1</Option>
                     <Option value="cai">订单2</Option>
                     <Option value="zhi">订单3</Option>
                     <Option value="xin">订单4</Option>
                   </Select>
+                  )}
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"关联订单："} >
-                  <Input disabled  id="" />
+                  {getFieldDecorator('associated_order', {
+                    initialValue:'',
+                  })(
+                  <Input disabled />
+                  )}
                 </FormItem>
               </Col>
             </Row>
             <Row  >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"订单金额："} >
-                  <Input disabled  id="" />
+                  {getFieldDecorator('order_amount', {
+                    initialValue:'',
+                  })(
+                  <Input disabled  />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"剩余金额："} >
-                  <Input disabled  id="" />
+                  {getFieldDecorator('residual_amount', {
+                    initialValue:'',
+                  })(
+                  <Input disabled />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"申请金额："} >
-                  <Input  id="" />
+                  {getFieldDecorator('apply_amount', {
+                    initialValue:'',
+                  })(
+                  <Input  />
+                  )}
                 </FormItem>
               </Col>
             </Row>
             <Row >
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"受理日期："} >
+                  {getFieldDecorator('acceptance_date', {
+                  })(
                   <DatePicker disabled />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"审批日期："} >
+                  {getFieldDecorator('check_date', {
+                  })(
                   <DatePicker disabled />
+                  )}
                 </FormItem>
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"申请状态："} >
-                  <Input disabled placeholder="待发送" id="" />
+                  {getFieldDecorator('application_status', {
+                  })(
+                  <Input disabled placeholder="待发送"  />
+                  )}
                 </FormItem>
               </Col>
             </Row>
@@ -185,9 +233,7 @@ class damagePresure extends React.Component{
             </div>
           </Card>
           <div style={{textAlign:'center'}}>
-            <Link to={"/yygj/industrial/financingApply"}>
-              <Button  type="primary" name="确定" style={{marginRight:'20px'}}>保存</Button>
-            </Link>
+              <Button  type="primary" htmlType="submit" name="确定" style={{marginRight:'20px'}}>保存</Button>
             <Link to={"/yygj/industrial/financingApply"}>
               <Button type="primary" name="确定" style={{marginRight:'20px'}}>保存并发送</Button>
             </Link>
@@ -200,4 +246,4 @@ class damagePresure extends React.Component{
     )
   }
 }
-export default damagePresure
+export default Form.create()(damagePresure)
