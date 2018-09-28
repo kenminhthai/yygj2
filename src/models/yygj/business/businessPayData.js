@@ -1,11 +1,18 @@
-import {Popconfirm, Tooltip,Icon } from 'antd'
+import {Popconfirm, Tooltip,Icon,message, Modal } from 'antd'
 import Link from 'umi/link'
-import {message} from "antd/lib/index";
-function confirm(e) {
-  message.success('付款成功');
-}
-
-function cancel(e) {
+const confirm = Modal.confirm;
+function payOrder() {
+  confirm({
+    title: '确认付款吗?',
+    okText: '确定',
+    cancelText: '取消',
+    centered:true,
+    onOk() {
+      message.success('付款成功！');
+    },
+    onCancel() {
+    },
+  });
 }
 
 export default {
@@ -20,11 +27,9 @@ export default {
           if ({record}.record.payable_status == '待付') {
             return(
               <div>
-                <Popconfirm title="确定要付款吗？" okText="付款" cancelText="取消" onConfirm={confirm} onCancel={cancel}>
                   <Tooltip title="付款" placement="left">
-                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="dollar" theme="twoTone"/></a>
+                    <a onClick={payOrder}><Icon style={{fontSize: '22px', marginRight: '10px'}} type="dollar" theme="twoTone"/></a>
                   </Tooltip>
-                </Popconfirm>
               </div>
             )
           }else {

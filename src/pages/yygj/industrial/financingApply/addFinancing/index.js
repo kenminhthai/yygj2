@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,Button, Card ,Table,DatePicker} from 'antd';
+import { Form, Input, Col,Row,Select,Button, Card ,Table,DatePicker,Upload} from 'antd';
 import { connect } from 'dva'
-const FormItem = Form.Item;
 import Link from 'umi/link'
+const Dragger = Upload.Dragger;
+const FormItem = Form.Item;
 
 const headStyle={
   backgroundColor:"#E8E8E8",
@@ -155,7 +156,33 @@ class damagePresure extends React.Component{
             </Row>
           </Card>
           <Card title={<b>申请文件</b>} headStyle={headStyle} className={styles.cardbottom}>
-            <Table  columns={this.props.cloumns_financing_detail} dataSource={this.props.data_financing_detail} size="small" />
+            <div >
+              <FormItem {...formItemOneLayout}  label={"医药服务框架协议"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传医药服务框架协议</p>
+                </Dragger>
+              </FormItem>
+              <FormItem {...formItemOneLayout}  label={"医药服务订单"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传医药服务订单</p>
+                </Dragger>
+              </FormItem>
+              <FormItem {...formItemOneLayout}  label={"关联贸易框架协议"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传关联贸易框架协议</p>
+                </Dragger>
+              </FormItem>
+              <FormItem {...formItemOneLayout}  label={"关联贸易订单"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传关联贸易订单</p>
+                </Dragger>
+              </FormItem>
+              <FormItem {...formItemOneLayout}  label={"贸易订单相关发票"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传贸易订单相关发票</p>
+                </Dragger>
+              </FormItem>
+            </div>
           </Card>
           <div style={{textAlign:'center'}}>
             <Link to={"/yygj/industrial/financingApply"}>

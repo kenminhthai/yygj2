@@ -84,8 +84,19 @@ const ADD_Member = gql`
  }
  `;
 class ApplyMember extends React.Component{
+  handleSubmit = (e) =>{
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      console.log(values)
+      if (!err) {
+        console.log('Received values of form: ', values.enterprise_name);
+        createEnterpriseMember({ variables:{member:{enterprise_name:values.enterprise_name }}});
+        // input.value = "";
+      }
+    });
+  }
   render(){
-
+    let english = new RegExp("[a-zA-Z]");
     const { getFieldDecorator } = this.props.form;
     return(
       <ApolloProvider client={client} >
@@ -104,21 +115,33 @@ class ApplyMember extends React.Component{
                 <Card title={<b>企业基本信息</b>} headStyle={headStyle} bordered={true} className={styles.cardbottom}>
                   <FormItem {...formItemOneLayout} label={"企业名称"} >
                     {getFieldDecorator('enterprise_name', {
-                      rules: [{ required: true, message: 'Please input your username!' }],
+                      rules: [{ required: false, message: '请输入企业名称!' }],
                     })(
                       <Input placeholder="企业名称" id="" />
                     )}
                   </FormItem>
                   <FormItem {...formItemOneLayout} label={"企业英文名称"} >
+                    {getFieldDecorator('enterprise_english_name', {
+                      rules: [{ required: false, message: '请输入企业英文名称!' },
+                              {pattern:english,message:'请输入英文！'}
+                      ],
+                    })(
                     <Input placeholder="企业英文名称" id="" />
+                    )}
                   </FormItem>
                   <FormItem {...formItemOneLayout} label={"企业简称"} >
+                    {getFieldDecorator('enterprise_abbreviation')(
                     <Input placeholder="企业简称" id="" />
+                    )}
                   </FormItem>
                   <Row>
                     <Col span={16} offset={1}>
                       <FormItem {...formItemTwoLayout_1} label={"所在地区"} >
+                        {getFieldDecorator('in_the_area', {
+                          rules: [{ required: false, message: '请选择所在地区！' }],
+                        })(
                         <Cascader options={options} placeholder="所在地区" />
+                        )}
                       </FormItem>
                     </Col>
                     <Col span={7} pull={1}>
@@ -270,9 +293,9 @@ class ApplyMember extends React.Component{
                 </Card>
                 <div style={{textAlign:'center'}}>
                   <ButtonGroup >
-                    <Button type="primary" htmlType="submit" size={"large"} className={styles.firstButton}>保存</Button>
+                    <Button type="primary" htmlType="submit" className={styles.firstButton}>保存</Button>
                     <Link to={"/yygj/platform"}>
-                    <Button type="primary" size={"large"}>取消</Button>
+                    <Button type="primary">取消</Button>
                     </Link>
                   </ButtonGroup>
                 </div>

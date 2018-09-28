@@ -1,11 +1,20 @@
 import Link from 'umi/link'
-import {Popconfirm, Tooltip, Icon, message} from 'antd'
+import {Popconfirm, Tooltip, Icon, message,Modal} from 'antd'
 
-function confirm(e) {
-  message.success('确认完成');
-}
+const confirm = Modal.confirm;
 
-function cancel(e) {
+function checkOrder() {
+  confirm({
+    title: '确认该订单吗?',
+    okText: '确定',
+    cancelText: '取消',
+    centered:true,
+    onOk() {
+      message.success('确认成功！');
+    },
+    onCancel() {
+    },
+  });
 }
 
 export default {
@@ -20,11 +29,9 @@ export default {
           if ({record}.record.order_status == '待确认') {
             return(
               <div>
-                <Popconfirm title="确定该订单吗？" okText="确定" cancelText="取消" onConfirm={confirm} onCancel={cancel}>
                   <Tooltip title="确定订单" placement="left">
-                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="check-circle" theme="twoTone"/></a>
+                    <a onClick={checkOrder}><Icon style={{fontSize: '22px', marginRight: '10px'}} type="check-circle" theme="twoTone"/></a>
                   </Tooltip>
-                </Popconfirm>
               </div>
             )
           }else {

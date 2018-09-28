@@ -1,12 +1,38 @@
 import Link from 'umi/link'
-import {Icon,Tooltip,Popconfirm,message } from 'antd'
+import {Modal,Icon,Tooltip,Popconfirm,message } from 'antd'
 
-function confirm(e) {
-  message.success('发送完成');
+const confirm = Modal.confirm;
+
+
+function sendOrder() {
+  confirm({
+    title: '确认发送订单吗?',
+    okText: '确定',
+    cancelText: '取消',
+    centered:true,
+    onOk() {
+      message.success('发送成功！');
+    },
+    onCancel() {
+      message.info('发送取消！');
+    },
+  });
 }
 
-function cancel(e) {
+function deleteOrder() {
+  confirm({
+    title: '确认删除订单吗?',
+    okText: '确定',
+    cancelText: '取消',
+    centered:true,
+    onOk() {
+      message.success('删除成功！');
+    },
+    onCancel() {
+    },
+  });
 }
+
 
 export default {
   namespace: 'businessOrderData',
@@ -20,28 +46,16 @@ export default {
           if ({record}.record.order_status == '草稿') {
             return(
               <div>
-                <Popconfirm title="确定要发送订单吗？" okText="发送" cancelText="取消" onConfirm={confirm} onCancel={cancel}>
                   <Tooltip title="发送订单" placement="left">
-                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="mail" theme="twoTone"/></a>
+                    <a onClick={sendOrder}><Icon style={{fontSize: '22px', marginRight: '10px'}} type="mail" theme="twoTone"/></a>
                   </Tooltip>
-                </Popconfirm>
-                <Popconfirm title="确定要删除订单吗？" okText="删除" cancelText="取消">
                   <Tooltip title="删除订单" placement="right">
-                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
+                    <a onClick={deleteOrder}><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
                   </Tooltip>
-                </Popconfirm>
               </div>
             )
           }else {
-            return(
-              <div>
-                <Popconfirm title="确定要删除订单吗？" okText="删除" cancelText="取消">
-                  <Tooltip title="删除订单" placement="right">
-                    <a><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
-                  </Tooltip>
-                </Popconfirm>
-              </div>
-            )
+            return;
           }
         }
       },

@@ -240,10 +240,10 @@ class ApplyCheck extends React.Component{
           </Card>
           <div style={{textAlign:'center'}}>
           <ButtonGroup>
-            <Button type="primary" size={"large"}className={styles.firstButton} onClick={agree}>同意</Button>
-            <Button type="primary" size={"large"} className={styles.firstButton}>拒绝</Button>
+            <Button type="primary" className={styles.firstButton} onClick={agree}>同意</Button>
+            <Button type="primary" className={styles.firstButton}>拒绝</Button>
             <Link to={"/yygj/platform"}>
-            <Button type="primary" size={"large"}>关闭</Button>
+            <Button type="primary">关闭</Button>
             </Link>
           </ButtonGroup>
           </div>

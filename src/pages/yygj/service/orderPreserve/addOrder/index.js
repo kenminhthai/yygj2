@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card,message } from 'antd';
+import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card,Upload,message } from 'antd';
 import Link from 'umi/link'
 import { connect } from 'dva';
-
+const Dragger = Upload.Dragger;
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const headStyle={
@@ -152,9 +152,18 @@ class ServiceAddOrder extends React.Component{
               </Col>
             </Row>
           </Card>
-          <Card title={<b>上传文件</b>}headStyle={headStyle} className={styles.cardbottom}>
+          <Card title={<b>上传文件</b>} headStyle={headStyle} className={styles.cardbottom}>
             <div >
-              <Table columns={this.props.colums} dataSource={this.props.filelist} size="small" />
+              <FormItem {...formItemOneLayout}  label={"订单"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传订单</p>
+                </Dragger>
+              </FormItem>
+              <FormItem {...formItemOneLayout}  label={"发票"} >
+                <Dragger  >
+                  <p className="ant-upload-text">点击上传发票</p>
+                </Dragger>
+              </FormItem>
             </div>
           </Card>
           <div style={{textAlign:'center'}}>

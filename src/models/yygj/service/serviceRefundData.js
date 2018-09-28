@@ -1,11 +1,21 @@
 import  Link  from 'umi/link';
-import {Popconfirm,Tooltip,Icon,message} from "antd";
+import {Popconfirm,Tooltip,Icon,message,Modal} from "antd";
 
-function confirm(e) {
-  message.success('还款成功！');
-}
+const confirm = Modal.confirm;
 
-function cancel(e) {
+
+function refund() {
+  confirm({
+    title: '确认还款吗?',
+    okText: '确定',
+    cancelText: '取消',
+    centered:true,
+    onOk() {
+      message.success('还款成功！');
+    },
+    onCancel() {
+    },
+  });
 }
 
 export default {
@@ -21,11 +31,9 @@ export default {
           if ({record}.record.status_refund == '待还款') {
             return(
               <div>
-                <Popconfirm title="确定还款吗？" okText="还款" cancelText="取消" onConfirm={confirm} onCancel={cancel}>
                   <Tooltip title="还款" placement="left">
-                    <a><Icon style={{fontSize: '22px', marginRight: '10px'}} type="money-collect" theme="twoTone"/></a>
+                    <a onClick={refund}><Icon style={{fontSize: '22px', marginRight: '10px'}} type="money-collect" theme="twoTone"/></a>
                   </Tooltip>
-                </Popconfirm>
               </div>
             )
           }else {
