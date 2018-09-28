@@ -190,14 +190,13 @@ class ApplyMember extends React.Component{
                   <Row >
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout} label={"所属行业"} >
-                        {getFieldDecorator('industry',{
-                          initialValue:'',
+                        {getFieldDecorator('sale',{
+                          initialValue:'sale',
                         })(
                         <Select >
-                          <Option value="1">农、林、牧、渔业</Option>
-                          <Option value="2">采矿业</Option>
-                          <Option value="3">制造业</Option>
-                          <Option value="4">信息传输、计算机服务和软件业</Option>
+                          <Option value="sale">医药销售企业</Option>
+                          <Option value="production">医药生产企业</Option>
+                          <Option value="agency">医药代理企业</Option>
                         </Select>
                         )}
                       </FormItem>
@@ -365,14 +364,14 @@ class ApplyMember extends React.Component{
                       <p className="ant-upload-text">点击上传营业执照</p>
                     </Dragger>
                   </FormItem>
-                  <FormItem {...formItemOneLayout}  label={"法人身份证件（正面"} >
+                  <FormItem {...formItemOneLayout}  label={"法人身份证件（正面)"} >
                     <Dragger  >
-                      <p className="ant-upload-text">点击上传法人身份证件（正面）</p>
+                      <p className="ant-upload-text">点击上传法人证件（正面）</p>
                     </Dragger>
                   </FormItem>
                   <FormItem {...formItemOneLayout}  label={"法人身份证件（反面）"} >
                     <Dragger  >
-                      <p className="ant-upload-text">点击上传法人身份证件（反面）</p>
+                      <p className="ant-upload-text">点击上传法人证件（反面）</p>
                     </Dragger>
                   </FormItem>
                   <FormItem {...formItemOneLayout}  label={"平台会员协议书"} >
