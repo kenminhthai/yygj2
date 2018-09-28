@@ -78,23 +78,12 @@ const client = new ApolloClient({
 })
 const ADD_Member = gql`
    mutation createEnterpriseMember($member:EnterpriseMemberInput){
-   createEnterpriseMember(member:$member){
-   enterprise_name
+    createEnterpriseMember(member:$member){
+      enterprise_name
    }
  }
  `;
 class ApplyMember extends React.Component{
-  handleSubmit = (e) =>{
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      console.log(values)
-      if (!err) {
-        console.log('Received values of form: ', values.enterprise_name);
-        createEnterpriseMember({ variables:{member:{enterprise_name:values.enterprise_name }}});
-        // input.value = "";
-      }
-    });
-  }
   render(){
     let english = new RegExp("[a-zA-Z]");
     const { getFieldDecorator } = this.props.form;
@@ -163,14 +152,13 @@ class ApplyMember extends React.Component{
                   <Row >
                     <Col span={8}>
                       <FormItem {...formItemThreeLayout} label={"所属行业"} >
-                        {getFieldDecorator('industry',{
-                          initialValue:'',
+                        {getFieldDecorator('sale',{
+                          initialValue:'sale',
                         })(
                         <Select >
-                          <Option value="nong">农、林、牧、渔业</Option>
-                          <Option value="cai">采矿业</Option>
-                          <Option value="zhi">制造业</Option>
-                          <Option value="xin">信息传输、计算机服务和软件业</Option>
+                          <Option value="sale">医药销售企业</Option>
+                          <Option value="production">医药生产企业</Option>
+                          <Option value="agency">医药代理企业</Option>
                         </Select>
                         )}
                       </FormItem>
@@ -338,14 +326,14 @@ class ApplyMember extends React.Component{
                       <p className="ant-upload-text">点击上传营业执照</p>
                     </Dragger>
                   </FormItem>
-                  <FormItem {...formItemOneLayout}  label={"法人身份证件（正面"} >
+                  <FormItem {...formItemOneLayout}  label={"法人身份证件（正面)"} >
                     <Dragger  >
-                      <p className="ant-upload-text">点击上传法人身份证件（正面）</p>
+                      <p className="ant-upload-text">点击上传法人证件（正面）</p>
                     </Dragger>
                   </FormItem>
                   <FormItem {...formItemOneLayout}  label={"法人身份证件（反面）"} >
                     <Dragger  >
-                      <p className="ant-upload-text">点击上传法人身份证件（反面）</p>
+                      <p className="ant-upload-text">点击上传法人证件（反面）</p>
                     </Dragger>
                   </FormItem>
                   <FormItem {...formItemOneLayout}  label={"平台会员协议书"} >
