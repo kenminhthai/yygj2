@@ -114,6 +114,19 @@ export default {
         date_frame_begin:'20180916',
         date_frame_end:'20181016',
       },
+      {
+
+        date_typeIn:'20180916',
+        frameID:'0002',
+        frame_date:'2020-10-20',
+        frame_type:'医药合同',
+        frame_character:'医药服务',
+        frame_preserve_person:'李四',
+        frame_insure_person:'张三',
+        status:'已发送',
+        date_frame_begin:'20180916',
+        date_frame_end:'20181016',
+      },
     ],
     buttons:[
       {
@@ -189,7 +202,6 @@ export default {
     ],
     data_insure: [
       {
-        choose:'',
         date_typeIn:'20180916',
         frameID:'0001',
         frame_date:'2020-10-20',
@@ -198,6 +210,18 @@ export default {
         frame_preserve_person:'李四',
         frame_insure_person:'张三',
         status:'待确认',
+        date_frame_begin:'20180916',
+        date_frame_end:'20181016',
+      },
+      {
+        date_typeIn:'20180916',
+        frameID:'0001',
+        frame_date:'2020-10-20',
+        frame_type:'医药合同',
+        frame_character:'医药服务',
+        frame_preserve_person:'李四',
+        frame_insure_person:'张三',
+        status:'已确认',
         date_frame_begin:'20180916',
         date_frame_end:'20181016',
       },
