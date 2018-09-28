@@ -78,8 +78,24 @@ const client = new ApolloClient({
 })
 const ADD_Member = gql`
    mutation createEnterpriseMember($member:EnterpriseMemberInput){
-    createEnterpriseMember(member:$member){
-      enterprise_name
+   createEnterpriseMember(member:$member){
+   enterprise_name
+   enterprise_english_name
+   enterprise_abbreviation
+   in_the_area
+   enterprise_membership_type
+   enterprise_scale
+   organization_code
+   business_registration_number
+   institutional_credit_code
+   date_of_enterprise_registration
+   corporate_contact_number
+   corporate_fax
+   legal_person_certificate_type
+   enterprise_legal_person
+   corporate_contacts
+   enterprise_contact_job
+   business_contact_cell_phone
    }
  }
  `;
@@ -96,7 +112,26 @@ class ApplyMember extends React.Component{
               this.props.form.validateFields((err, values) => {
                 console.log(values)
                 if (!err) {
-                  createEnterpriseMember({ variables:{member:{enterprise_name:values.enterprise_name }}}).then(alert("提交成功"));
+                  createEnterpriseMember({ variables:{member:{
+                        enterprise_name:values.enterprise_name,
+                        enterprise_english_name:values.enterprise_english_name,
+                        enterprise_abbreviation:values.enterprise_abbreviation,
+                        in_the_area:parseInt(values.in_the_area),
+                        enterprise_membership_type:values.enterprise_membership_type,
+                        industry:parseInt(values.industry),
+                        enterprise_scale:parseInt(values.enterprise_scale),
+                        organization_code:values.organization_code,
+                        business_registration_number:parseInt(values.business_registration_number),
+                        institutional_credit_code:values.institutional_credit_code,
+                        date_of_enterprise_registration:values.date_of_enterprise_registration.format('YYYY-MM-DD'),
+                        corporate_contact_number:values.corporate_contact_number,
+                        corporate_fax:values.corporate_fax,
+                        legal_person_certificate_type:values.legal_person_certificate_type,
+                        enterprise_legal_person:values.enterprise_legal_person,
+                        corporate_contacts:values.corporate_contacts,
+                        enterprise_contact_job:values.enterprise_contact_job,
+                        business_contact_cell_phone:values.business_contact_cell_phone,
+                      }}}).then(message.info("提交成功"));
                 }
               });
               }}>
@@ -141,9 +176,9 @@ class ApplyMember extends React.Component{
                           initialValue:'',
                         })(
                         <Select >
-                          <Option value="shagnye">医药商业</Option>
-                          <Option value="gongye">医药工业</Option>
-                          <Option value="fuwu">医药服务</Option>
+                          <Option value="1">医药商业</Option>
+                          <Option value="2">医药工业</Option>
+                          <Option value="3">医药服务</Option>
                         </Select>
                         )}
                       </FormItem>
@@ -169,10 +204,10 @@ class ApplyMember extends React.Component{
                           initialValue:'',
                         })(
                         <Select >
-                          <Option value="guoyou">国有企业</Option>
-                          <Option value="jiti">集体企业</Option>
-                          <Option value="lianyin">联营企业</Option>
-                          <Option value="siyin">私营企业</Option>
+                          <Option value="1">国有企业</Option>
+                          <Option value="2">集体企业</Option>
+                          <Option value="3">联营企业</Option>
+                          <Option value="4">私营企业</Option>
                         </Select>
                         )}
                       </FormItem>
@@ -183,10 +218,10 @@ class ApplyMember extends React.Component{
                           initialValue:'',
                         })(
                         <Select >
-                          <Option value="td">特大型</Option>
-                          <Option value="d">大型</Option>
-                          <Option value="z">中型</Option>
-                          <Option value="x">小型</Option>
+                          <Option value="1">特大型</Option>
+                          <Option value="2">大型</Option>
+                          <Option value="3">中型</Option>
+                          <Option value="4">小型</Option>
                         </Select>
                         )}
                       </FormItem>
@@ -268,12 +303,12 @@ class ApplyMember extends React.Component{
                           initialValue:'',
                         })(
                         <Select >
-                          <Option value="jack">身份证</Option>
-                          <Option value="lucy">居住证</Option>
-                          <Option value="disabled" >签证</Option>
-                          <Option value="Yiminghe">护照</Option>
-                          <Option value="Yiminghe">军人证</Option>
-                          <Option value="Yiminghe">驾驶证</Option>
+                          <Option value="1">身份证</Option>
+                          <Option value="2">居住证</Option>
+                          <Option value="3" >签证</Option>
+                          <Option value="4">护照</Option>
+                          <Option value="5">军人证</Option>
+                          <Option value="6">驾驶证</Option>
                         </Select>
                         )}
                       </FormItem>
