@@ -3,8 +3,23 @@ import styles from './index.less';
 import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card,message } from 'antd';
 import { connect } from 'dva';
 import  Link  from 'umi/link';
+import moment from 'moment'
+import { Mutation } from "react-apollo";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import gql from "graphql-tag";
 
+const client = new ApolloClient({
+  uri: 'http://192.168.30.10:5000/graphql',
+})
 
+const sendOrder = gql`
+   mutation sendOrder($id:Int){
+   sendOrder(id:$id){
+      id
+   }
+ }
+ `;
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
 const headStyle={
@@ -67,7 +82,7 @@ class BusinessOrderDetail extends React.Component{
     if(this.props.location.order_status == '草稿'){
       buttons = (
         <div style={{textAlign:'center'}}>
-          <Button onClick={ok} type={"primary"} style={{marginRight:'20px'}}>发送订单</Button>
+          <Button onClick={ok} type={"primary"} htmlType="submit" style={{marginRight:'20px'}}>发送订单</Button>
           <Link  to={"/yygj/business/orderPreserve"}><Button type={"primary"}>关闭</Button></Link>
         </div>
       )
@@ -80,8 +95,18 @@ class BusinessOrderDetail extends React.Component{
       )
     }
     return(
-      <div>
-        <Form>
+        <ApolloProvider client={client} >
+          <Mutation mutation={sendOrder}>
+            {(sendOrder, { data }) => (
+              <Form onSubmit={e => {
+                e.preventDefault();
+                this.props.form.validateFields((err, values) => {
+                  if(!err){
+                    console.log(this.props.location.data.id)
+                    sendOrder({variables:{id:this.props.location.data.id}})
+                  }
+                });
+              }}>
           <Card title={<b>订单信息</b>} headStyle={headStyle} className={styles.cardbottom}>
             <Row >
               <Col span={8}>
@@ -91,16 +116,12 @@ class BusinessOrderDetail extends React.Component{
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"卖方机构"} >
-                  <Select disabled defaultValue="医药工业" >
-                    <Option value="industrial">医药工业</Option>
-                    <Option value="bussiness">医药商业</Option>
-                    <Option value="service">医药服务</Option>
-                  </Select>
+                  <Input disabled value={this.props.location.data.seller_organization} />
                 </FormItem>
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"所属合同"} >
-                  <Select defaultValue="hetong1" disabled>
+                  <Select disabled defaultValue={this.props.location.data.belonging_contract}>
                     <Option value="hetong1">合同1</Option>
                     <Option value="hetong2">合同2</Option>
                     <Option value="hetong3">合同3</Option>
@@ -112,7 +133,7 @@ class BusinessOrderDetail extends React.Component{
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"订单日期"} >
-                  <DatePicker disabled />
+                  <DatePicker disabled defaultValue={ moment(this.props.location.data.order_date,'YYYY-MM-DD')} />
                 </FormItem>
               </Col>
               <Col span={8}>
@@ -122,14 +143,14 @@ class BusinessOrderDetail extends React.Component{
               </Col>
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"约定交货日"} >
-                  <DatePicker disabled />
+                  <DatePicker disabled defaultValue={ moment(this.props.location.data.agreed_delivery_date,'YYYY-MM-DD')} />
                 </FormItem>
               </Col>
             </Row>
             <Row >
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"约定付款日"} >
-                  <DatePicker disabled />
+                  <DatePicker disabled defaultValue={ moment(this.props.location.data.agreed_payment_date,'YYYY-MM-DD')} />
                 </FormItem>
               </Col>
             </Row>
@@ -172,9 +193,11 @@ class BusinessOrderDetail extends React.Component{
           </Card>
           {buttons}
         </Form>
-      </div>
+            )}
+          </Mutation>
+        </ApolloProvider>
     )
   }
 
 }
-export default BusinessOrderDetail
+export default Form.create()(BusinessOrderDetail)

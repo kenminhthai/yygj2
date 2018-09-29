@@ -1,8 +1,39 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select,DatePicker,  Button, Table, Card, message,Upload } from 'antd';
+import { Form, Input, Col,Row,Select,DatePicker,  Button, Table, Card, message,Upload,AutoComplete,Icon } from 'antd';
 import Link from 'umi/link'
 import { connect } from 'dva';
+import gql from "graphql-tag";
+import { Mutation } from "react-apollo";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+
+const client = new ApolloClient({
+  uri: 'http://192.168.30.10:5000/graphql',
+})
+
+const file_type_colums=[
+  {
+    title: '文件类型',
+    align:'center',
+    dataIndex: 'file_type',
+  },
+  {
+    title: '文件',
+    align:'center',
+    dataIndex: 'file_name',
+  },
+]
+const file_list = [
+  {
+    file_type:'发票',
+    file_name:'111.doc'
+  },
+  {
+    file_type:'订单',
+    file_name:'222.doc'
+  }
+]
 const Dragger = Upload.Dragger;
 const ButtonGroup = Button.Group;
 const FormItem = Form.Item;
@@ -41,6 +72,17 @@ const formItemThreeLayout = {
     sm: { span: 12 },
   },
 };
+function RndNum(n){
+  var rnd="";
+  for(var i=0;i<n;i++)
+    rnd+=Math.floor(Math.random()*10);
+  return rnd;
+}
+
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+  },
+};
 
 const mapStateToProps = (state) =>{
   const commonData = state["commonData"];
@@ -50,25 +92,85 @@ const mapStateToProps = (state) =>{
   const filelist2 = commonData.file2.filelist;
   const businessOrderData = state["businessOrderData"];
   const buttons = businessOrderData.buttons;
+  const seller_organization = businessOrderData.seller_organization;
   return{
-    colums, buttons, filelist, buttons,colums2,filelist2
+    colums, buttons, filelist, buttons,colums2,filelist2, seller_organization
   }
 }
 
-const ok =()=>{
-  message.info("操作完成")
-}
+
+
+const ADD_Member = gql`
+   mutation createOrder($order:OrderInput){
+   createOrder(order:$order){
+      id
+      gmt_create
+      gmt_modified
+      purchase_order_no
+      sales_number
+      order_number
+      order_amount
+      order_date
+      order_file
+      financing_status
+      belonging_contract
+      agreed_payment_method
+      agreed_payment_date
+      agreed_delivery_date
+      text_of_order_agreement
+      order_status
+      associated_order
+      entry_party
+      buyer_organization
+      seller_organization
+   }
+ }
+ `;
 
 @connect(mapStateToProps)
 class BusinessAddOrder extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      isSend:'0',
+      order_number:100000
+    };
+    this.props = {
+
+    }
+  }
+
+   ok =()=>{
+    message.info("操作完成")
+  }
+
+   saveAndSend =()=>{
+    this.state.isSend = '2'
+     message.info("操作完成")
+  }
+
   render(){
     const { getFieldDecorator } = this.props.form;
     return(
-      <div>
+      <ApolloProvider client={client} >
+        <Mutation mutation={ADD_Member}>
+          {(createOrder, { data }) => (
         <Form onSubmit={e => {
           e.preventDefault();
           this.props.form.validateFields((err, values) => {
-            console.log(values)
+            console.log(typeof (values.order_date.format('YYYY-MM-DD')))
+            if(!err){
+              createOrder({variables:{order:{
+                    order_number:String(RndNum(5)),
+                    buyer_organization:values.buyer_organization,
+                    seller_organization:values.seller_organization,
+                    belonging_contract:values.belonging_contract,
+                    order_date: values.order_date,
+                    agreed_delivery_date: values.agreed_delivery_date,
+                    agreed_payment_date: values.agreed_payment_date,
+                    order_status:this.state.isSend,
+                  }}})
+            }
           });
         }}>
           <Card title={<b>订单信息</b>} headStyle={headStyle} className={styles.cardbottom}>
@@ -76,7 +178,7 @@ class BusinessAddOrder extends React.Component{
               <Col span={8}>
                 <FormItem  {...formItemThreeLayout} label={"买方机构"} >
                   {getFieldDecorator('buyer_organization', {
-                    initialValue:'',
+                    initialValue:'test23',
                   })(
                   <Input disabled placeholder={"默认当前登录会员"} id=""/>
                   )}
@@ -85,13 +187,10 @@ class BusinessAddOrder extends React.Component{
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"卖方机构"} >
                   {getFieldDecorator('seller_organization', {
-                    initialValue:'industrial',
                   })(
-                  <Select >
-                    <Option value="industrial">医药工业</Option>
-                    <Option value="bussiness">医药商业</Option>
-                    <Option value="service">医药服务</Option>
-                  </Select>
+                    <AutoComplete dataSource={this.props.seller_organization}
+                                  filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+                    />
                   )}
                 </FormItem>
               </Col>
@@ -197,29 +296,53 @@ class BusinessAddOrder extends React.Component{
           </Card>
           <Card title={<b>上传文件</b>} headStyle={headStyle} className={styles.cardbottom}>
             <div >
-              <FormItem {...formItemOneLayout}  label={"订单"} >
-                <Dragger  >
-                  <p className="ant-upload-text">点击上传订单</p>
-                </Dragger>
+                <ButtonGroup >
+                  <Button type="primary"  className={styles.buttons}>添加</Button>
+                  <Button type="primary"  className={styles.buttons}>删除</Button>
+                  <Button type="primary"  className={styles.buttons}>查看</Button>
+                </ButtonGroup>
+            </div>
+            <Row>
+              <Col span={6}>
+              <FormItem {...formItemThreeLayout} label={"文件类型"} >
+                {getFieldDecorator('file_type', {
+                  initialValue:'hetong1',
+                })(
+                  <Select >
+                    <Option value="hetong1">发票</Option>
+                    <Option value="hetong2">订单</Option>
+                    <Option value="hetong3">物流信息</Option>
+                  </Select>
+                )}
               </FormItem>
-              <FormItem {...formItemOneLayout}  label={"发票"} >
-                <Dragger  >
-                  <p className="ant-upload-text">点击上传发票</p>
-                </Dragger>
-              </FormItem>
+              </Col>
+              <Col span={6}>
+                <FormItem {...formItemThreeLayout} label={"文件"} >
+                  <Upload fileList={[]}>
+                    <Button>
+                      <Icon type="upload" /> 点击上传
+                    </Button>
+                  </Upload>
+                </FormItem>
+              </Col>
+            </Row>
+            <div style={{width:'50%'}}>
+              <Table rowSelection={rowSelection} bordered columns={file_type_colums} dataSource={file_list} size="small" />
             </div>
           </Card>
           <div style={{textAlign:'center'}}>
             <ButtonGroup >
-              <Button onClick={ok} type="primary"  htmlType="submit" className={styles.buttons}>保存</Button>
-              <Button onClick={ok} type="primary" className={styles.buttons}>保存并发送</Button>
+              <Button onClick={this.ok} type="primary"  htmlType="submit" className={styles.buttons}>保存</Button>
+              <Button onClick={this.saveAndSend} type="primary" htmlType="submit" className={styles.buttons}>保存并发送</Button>
               <Link to={"/yygj/business/orderPreserve"}>
                 <Button type="primary"  className={styles.buttons}>关闭</Button>
               </Link>
             </ButtonGroup>
           </div>
         </Form>
-      </div>
+          )}
+        </Mutation>
+      </ApolloProvider>
     )
   }
 }

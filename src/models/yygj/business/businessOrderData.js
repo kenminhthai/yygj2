@@ -1,7 +1,8 @@
 import Link from 'umi/link'
 import {Modal,Icon,Tooltip,Popconfirm,message } from 'antd'
-
+import request from '../../../utils/request'
 const confirm = Modal.confirm;
+
 
 
 function sendOrder() {
@@ -60,10 +61,15 @@ export default {
         }
       },
       {
+        title: 'id',
+        dataIndex: 'id',
+        align:'center',
+      },
+      {
         title: '订单编号',
         dataIndex: 'order_number',
         align:'center',
-        render:(text,record) => <Link to={{pathname:"/yygj/business/orderPreserve/orderDetail",order_status:{record}.record.order_status}}>{text}</Link>
+        render:(text,record) => <Link to={{pathname:"/yygj/business/orderPreserve/orderDetail",order_status:{record}.record.order_status,data:record}}>{text}</Link>
       },
       {
         title: '订单日期',
@@ -78,7 +84,7 @@ export default {
       {
         title: '卖方机构',
         align:'center',
-        dataIndex: 'seller_organizatio',
+        dataIndex: 'seller_organization',
       },
       {
         title: '订单金额',
@@ -108,42 +114,7 @@ export default {
       },
     ],
     orderlist:[
-      {
-        key:'1',
-        order_date:'2018-08-08',
-        order_number:'00001',
-        buyer_organization:'强生',
-        seller_organization:'云南白药',
-        order_amount:'6666',
-        belonging_contract:'框架1',
-        agreed_delivery_date:'2018-10-08',
-        agreed_payment_date:'2018-10-31',
-        order_status:'草稿',
-      },
-      {
-        key:'2',
-        order_date:'2018-08-08',
-        order_number:'00001',
-        buyer_organization:'强生',
-        seller_organization:'云南白药',
-        order_amount:'6666',
-        belonging_contract:'框架1',
-        agreed_delivery_date:'2018-10-08',
-        agreed_payment_date:'2018-10-31',
-        order_status:'待确认',
-      },
-      {
-        key:'3',
-        order_date:'2018-08-08',
-        order_number:'00001',
-        buyer_organization:'强生',
-        seller_organization:'云南白药',
-        order_amount:'6666',
-        belonging_contract:'框架1',
-        agreed_delivery_date:'2018-10-08',
-        agreed_payment_date:'2018-10-31',
-        order_status:'已确认',
-      },
+
     ],
     buttons:[
       {
@@ -159,5 +130,30 @@ export default {
         url:''
       },
     ],
-  }
+    seller_organization:[
+      '辉瑞医药','康美药业','云南白药','中国生物制药','华大基因','国药控股','上海医药'
+    ],
+  },
+  effects: {
+    *queryOrders(_, sagaEffects) {
+      const { call, put } = sagaEffects;
+      const endPointURI = 'http://192.168.30.10:5000/graphql?query={ orders { id order_date order_number buyer_organization seller_organization order_amount belonging_contract agreed_delivery_date agreed_payment_date order_status } }';
+      console.log("????")
+      const orders = request(endPointURI)
+      //const orders = yield call(request, endPointURI);
+      console.log(orders)
+      //yield put({ type: 'initOrder', payload: orders });
+    }
+  },
+  reducers: {
+    initOrder(state, { payload: orders }) {
+      console.log(orders)
+     /* const newCardWithId = { ...newCard, id: nextCounter };
+      const nextData = state.data.concat(newCardWithId);
+      return {
+        data: nextData,
+        counter: nextCounter,
+      };*/
+    }
+  },
 };

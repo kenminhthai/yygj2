@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './index.less';
-import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card,Upload,message } from 'antd';
+import { Form, Input, Col,Row,Select, DatePicker, Button, Table, Card,Upload,message,Icon,AutoComplete } from 'antd';
 import Link from 'umi/link'
 import { connect } from 'dva';
 const Dragger = Upload.Dragger;
@@ -9,6 +9,28 @@ const FormItem = Form.Item;
 const headStyle={
   backgroundColor:"#E8E8E8",
 }
+const file_type_colums=[
+  {
+    title: '文件类型',
+    align:'center',
+    dataIndex: 'file_type',
+  },
+  {
+    title: '文件',
+    align:'center',
+    dataIndex: 'file_name',
+  },
+]
+const file_list = [
+  {
+    file_type:'发票',
+    file_name:'111.doc'
+  },
+  {
+    file_type:'订单',
+    file_name:'222.doc'
+  }
+]
 const formItemOneLayout = {
   labelCol: {
     sm: { span: 3 },
@@ -41,7 +63,10 @@ const formItemThreeLayout = {
     sm: { span: 12 },
   },
 };
-
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+  },
+};
 const mapStateToProps = (state) =>{
   const commonData = state["commonData"];
   const colums = commonData.file.colums;
@@ -49,9 +74,10 @@ const mapStateToProps = (state) =>{
   const colums2 = commonData.file2.colums;
   const filelist2 = commonData.file2.filelist;
   const serviceOrderData = state["serviceOrderData"];
+  const seller_organization = serviceOrderData.seller_organization;
   const buttons = serviceOrderData.buttons;
   return{
-    colums,  filelist, buttons, colums2, filelist2
+    colums,  filelist, buttons, colums2, filelist2,seller_organization
   }
 }
 
@@ -90,9 +116,10 @@ class ServiceAddOrder extends React.Component{
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"卖方机构"} >
                   {getFieldDecorator('seller_organization', {
-                    initialValue:'',
                   })(
-                  <Input disabled placeholder={"默认当前会员"} id=""/>
+                    <AutoComplete dataSource={this.props.seller_organization}
+                                  filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
+                    />
                   )}
                 </FormItem>
               </Col>
@@ -202,16 +229,38 @@ class ServiceAddOrder extends React.Component{
           </Card>
           <Card title={<b>上传文件</b>} headStyle={headStyle} className={styles.cardbottom}>
             <div >
-              <FormItem {...formItemOneLayout}  label={"订单"} >
-                <Dragger  >
-                  <p className="ant-upload-text">点击上传订单</p>
-                </Dragger>
-              </FormItem>
-              <FormItem {...formItemOneLayout}  label={"发票"} >
-                <Dragger  >
-                  <p className="ant-upload-text">点击上传发票</p>
-                </Dragger>
-              </FormItem>
+              <ButtonGroup >
+                <Button type="primary"  className={styles.buttons}>添加</Button>
+                <Button type="primary"  className={styles.buttons}>删除</Button>
+                <Button type="primary"  className={styles.buttons}>查看</Button>
+              </ButtonGroup>
+            </div>
+            <Row>
+              <Col span={6}>
+                <FormItem {...formItemThreeLayout} label={"文件类型"} >
+                  {getFieldDecorator('file_type', {
+                    initialValue:'hetong1',
+                  })(
+                    <Select >
+                      <Option value="hetong1">发票</Option>
+                      <Option value="hetong2">订单</Option>
+                      <Option value="hetong3">物流信息</Option>
+                    </Select>
+                  )}
+                </FormItem>
+              </Col>
+              <Col span={6}>
+                <FormItem {...formItemThreeLayout} label={"文件"} >
+                  <Upload fileList={[]}>
+                    <Button>
+                      <Icon type="upload" /> 点击上传
+                    </Button>
+                  </Upload>
+                </FormItem>
+              </Col>
+            </Row>
+            <div style={{width:'50%'}}>
+              <Table rowSelection={rowSelection} bordered columns={file_type_colums} dataSource={file_list} size="small" />
             </div>
           </Card>
           <div style={{textAlign:'center'}}>

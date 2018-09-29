@@ -2,6 +2,9 @@ import React from 'react'
 import { Table } from 'antd';
 import { connect } from 'dva';
 import {Button, Card} from "antd";
+import ApolloClient from "apollo-boost";
+import gql from "graphql-tag";
+import { ApolloProvider,Query  } from "react-apollo";
 import  Link  from 'umi/link';
 
 const ButtonGroup = Button.Group;

@@ -29,7 +29,7 @@ var fetch = function (options) {
             url = url.slice(domain.length);
         }
         var match = path_to_regexp_1.default.parse(url);
-        url = path_to_regexp_1.default.compile(url)(data);
+      url = path_to_regexp_1.default.compile(url)(data);
         for (var _i = 0, match_1 = match; _i < match_1.length; _i++) {
             var item = match_1[_i];
             if (item instanceof Object && item.name in cloneData) {

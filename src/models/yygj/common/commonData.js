@@ -123,25 +123,19 @@ export default {
       filelist:[
         {
           key:'1',
-          file_type:'企业营业执照',
+          file_type:'订单',
           file:'0000.pdf',
           view:''
         },
         {
           key:'2',
-          file_type:'法人身份证正面',
+          file_type:'发票',
           file:'0000.pdf',
           view:''
         },
         {
           key:'3',
-          file_type:'法人身份证反面',
-          file:'0000.pdf',
-          view:''
-        },
-        {
-          key:'4',
-          file_type:'平台会员协议书',
+          file_type:'物流',
           file:'0000.pdf',
           view:''
         },

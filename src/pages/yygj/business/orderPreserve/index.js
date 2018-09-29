@@ -6,13 +6,13 @@ import  Link  from 'umi/link';
 import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
 import { ApolloProvider,Query  } from "react-apollo";
+
+const client = new ApolloClient({
+  uri: 'http://192.168.30.10:5000/graphql',
+})
 const headStyle={
   backgroundColor:"#E8E8E8",
 }
-/*const client = new ApolloClient({
-  //uri: "https://w5xlvm3vzz.lp.gql.zone/graphql"
-  uri: "http://192.168.30.10:5000/graphql"
-});*/
 
 const GET_ORDER = gql`
   {
@@ -21,7 +21,7 @@ const GET_ORDER = gql`
       order_date
       order_number
       buyer_organization
-      seller_organizatio
+      seller_organization
       order_amount
       belonging_contract
       agreed_delivery_date
@@ -36,7 +36,6 @@ const Order  = () => (
     {({ loading, error, data }) => {
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
-      console.log(data)
       return (
         <Table columns={this.props.colums} dataSource={data.order} rowSelection={rowSelection} size="small" />
       );
@@ -69,11 +68,22 @@ const mapStateToProps = (state) =>{
     colums, orderlist, buttons
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    queryOrders: () => {
+      dispatch({
+        type: `${namespace}/queryOrders`,
+      });
+    },
+  };
+};
+
 const ok = ()=>{
   message.info("操作完成！")
 }
 
-@connect(mapStateToProps)
+@connect(mapStateToProps, mapDispatchToProps)
 class BusinessOrderPreserve extends React.Component{
   constructor(props){
     super(props);
@@ -81,27 +91,42 @@ class BusinessOrderPreserve extends React.Component{
 
     };
   }
+  /*componentDidMount(){
+    this.props.queryOrders();
+  }*/
   render(){
     return(
       <div>
-
+        <ApolloProvider client={client} >
         <Card headStyle={headStyle} title={
           <Link to={"/yygj/business/orderPreserve/addOrder"}>
             <Button type="primary">订单新增</Button>
           </Link>
         } style={{height:'100%'}} >
-          {/*<Query query={GET_ORDER}>
+          <Query query={GET_ORDER}>
             {({ loading, error, data }) => {
               if (loading) return "Loading...";
               if (error) return `Error! ${error.message}`;
-              console.log(data)
+              data.orders.map((order, index) => {
+                if(order.order_date != null ) {
+                  data.orders[index].order_date = (new Date(parseInt(order.order_date))).format("yyyy-MM-dd");
+                  data.orders[index].agreed_delivery_date = (new Date(parseInt(order.agreed_delivery_date))).format("yyyy-MM-dd");
+                  data.orders[index].agreed_payment_date = (new Date(parseInt(order.agreed_payment_date))).format("yyyy-MM-dd");
+                }
+                if(order.order_status == '0'){
+                  data.orders[index].order_status = '草稿'
+                }else if (order.order_status == '2'){
+                  data.orders[index].order_status = '已发送'
+                }
+              })
               return (
-                <Table columns={this.props.colums} dataSource={data.orders} rowSelection={rowSelection} size="small" />
+                <Table bordered columns={this.props.colums} dataSource={data.orders}  size="small" />
               );
             }}
-          </Query>*/}
-          <Table size={'small'} bordered={true} pagination={{position:'bottom'}} columns={this.props.colums} dataSource={this.props.orderlist} />
-        </Card>
+          </Query>
+          {/*<Table size={'small'} bordered={true} pagination={{position:'bottom'}} columns={this.props.colums} dataSource={this.props.orderlist} />
+      */}  </Card>
+        </ApolloProvider>
       </div>
     )
   }
