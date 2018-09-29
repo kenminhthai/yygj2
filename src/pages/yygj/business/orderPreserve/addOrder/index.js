@@ -158,7 +158,6 @@ class BusinessAddOrder extends React.Component{
         <Form onSubmit={e => {
           e.preventDefault();
           this.props.form.validateFields((err, values) => {
-            console.log(typeof (values.order_date.format('YYYY-MM-DD')))
             if(!err){
               createOrder({variables:{order:{
                     order_number:String(RndNum(5)),
@@ -197,7 +196,7 @@ class BusinessAddOrder extends React.Component{
               <Col span={8}>
                 <FormItem {...formItemThreeLayout} label={"所属合同"} >
                   {getFieldDecorator('belonging_contract', {
-                    initialValue:'',
+                    initialValue:'hetong1',
                   })(
                   <Select >
                     <Option value="hetong1">合同1</Option>

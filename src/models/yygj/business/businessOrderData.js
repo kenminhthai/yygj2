@@ -3,15 +3,21 @@ import {Modal,Icon,Tooltip,Popconfirm,message } from 'antd'
 import request from '../../../utils/request2'
 const confirm = Modal.confirm;
 
-
-
-function sendOrder() {
+function requestGraphQL () {
+  const endPointURI = 'http://192.168.30.10:5000/graphql?query={ orders { id order_date order_number buyer_organization seller_organization order_amount belonging_contract agreed_delivery_date agreed_payment_date order_status } }';
+  const data = request(endPointURI).then((data2)=>{
+    console.log(data2)
+  })
+}
+function sendOrder(test) {
+  console.log(test);
   confirm({
     title: '确认发送订单吗?',
     okText: '确定',
     cancelText: '取消',
     centered:true,
     onOk() {
+      requestGraphQL();
       message.success('发送成功！');
     },
     onCancel() {
@@ -48,7 +54,7 @@ export default {
             return(
               <div>
                   <Tooltip title="发送订单" placement="left">
-                    <a onClick={sendOrder}><Icon style={{fontSize: '22px', marginRight: '10px'}} type="mail" theme="twoTone"/></a>
+                    <a onClick={sendOrder.bind(this,{record}.record.id)}><Icon style={{fontSize: '22px', marginRight: '10px'}} type="mail" theme="twoTone"/></a>
                   </Tooltip>
                   <Tooltip title="删除订单" placement="right">
                     <a onClick={deleteOrder}><Icon style={{fontSize: '22px'}} type="delete" theme="twoTone"/></a>
@@ -138,9 +144,8 @@ export default {
     *queryOrders(_, sagaEffects) {
       const { call, put } = sagaEffects;
       const endPointURI = 'http://192.168.30.10:5000/graphql?query={ orders { id order_date order_number buyer_organization seller_organization order_amount belonging_contract agreed_delivery_date agreed_payment_date order_status } }';
-      //const orders = request(endPointURI)
       const data = yield call(request, endPointURI);
-      const orders = data.data.orders
+      const orders = data.data.orders;
       yield put({ type: 'initOrder', payload: orders });
     }
   },

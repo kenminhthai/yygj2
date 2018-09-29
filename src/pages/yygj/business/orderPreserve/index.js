@@ -7,8 +7,11 @@ const headStyle={
   backgroundColor:"#E8E8E8",
 }
 
+
+
 const ButtonGroup = Button.Group;
 const namespace = "businessOrderData"
+
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
   },
@@ -32,10 +35,6 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-
-const ok = ()=>{
-  message.info("操作完成！")
-}
 
 @connect(mapStateToProps, mapDispatchToProps)
 class BusinessOrderPreserve extends React.Component{

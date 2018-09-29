@@ -102,7 +102,6 @@ class BusinessOrderDetail extends React.Component{
                 e.preventDefault();
                 this.props.form.validateFields((err, values) => {
                   if(!err){
-                    console.log(this.props.location.data.id)
                     sendOrder({variables:{id:this.props.location.data.id}})
                   }
                 });
