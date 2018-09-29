@@ -99,7 +99,13 @@ const queryMember = gql`
   }
 }
 `;
-
+const pass = gql`
+mutation applyMemberApplication($id:Int){
+  applyMemberApplication(id:$id){
+	id
+  }
+}
+`;
 const mapStateToProps = (state) =>{
   const commonData = state["commonData"];
   const colums = commonData.file.colums;
@@ -132,10 +138,11 @@ class ApplyCheck extends React.Component{
             if (error) return `Error! ${error.message}`;
             console.log(data)
             return (
-              <Mutation >
-                {(createEnterpriseMember, { data }) => (
+              <Mutation mutation={pass}>
+                {(applyMemberApplication, { test }) => (
                   <Form onSubmit={e=>{
                 e.preventDefault();
+                applyMemberApplication({variables:{id:id}}).then(alert("审核通过!\n账户名 :admin_"+data.member.enterprise_name+"\n密码 ：123456"))
               }}>
                 <Card title={<b>企业基本信息</b>} headStyle={headStyle} bordered={true} className={styles.cardbottom}>
                   <FormItem {...formItemOneLayout} label={"企业名称"} >
@@ -364,7 +371,7 @@ class ApplyCheck extends React.Component{
                 </Card>
                 <div style={{textAlign:'center'}}>
                   <ButtonGroup>
-                    <Button type="primary" className={styles.firstButton} onClick={agree}>同意</Button>
+                    <Button type="primary" htmlType="submit" className={styles.firstButton}>同意</Button>
                     <Button type="primary" className={styles.firstButton}>拒绝</Button>
                     <Link to={"/yygj/platform"}>
                       <Button type="primary">关闭</Button>
