@@ -10,6 +10,9 @@ import  Link  from 'umi/link';
 const ButtonGroup = Button.Group;
 const namespace = "businessOrderAffirm"
 
+const client = new ApolloClient({
+  uri: 'http://192.168.30.10:5000/graphql',
+})
 
 const headStyle={
   backgroundColor:"#E8E8E8",
@@ -47,9 +50,11 @@ class BusinessOrderAffirmList extends React.Component{
   render(){
     return(
       <div>
+        <ApolloProvider client={client} >
         <Card title={<b>订单确认</b>} headStyle={headStyle}>
           <Table bordered columns={this.props.colums} dataSource={this.props.orderlist} size="small" />
         </Card>
+        </ApolloProvider>
       </div>
     )
   }

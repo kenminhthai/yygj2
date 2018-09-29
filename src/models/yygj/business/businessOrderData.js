@@ -1,6 +1,6 @@
 import Link from 'umi/link'
 import {Modal,Icon,Tooltip,Popconfirm,message } from 'antd'
-import request from '../../../utils/request'
+import request from '../../../utils/request2'
 const confirm = Modal.confirm;
 
 
@@ -138,22 +138,35 @@ export default {
     *queryOrders(_, sagaEffects) {
       const { call, put } = sagaEffects;
       const endPointURI = 'http://192.168.30.10:5000/graphql?query={ orders { id order_date order_number buyer_organization seller_organization order_amount belonging_contract agreed_delivery_date agreed_payment_date order_status } }';
-      console.log("????")
-      const orders = request(endPointURI)
-      //const orders = yield call(request, endPointURI);
-      console.log(orders)
-      //yield put({ type: 'initOrder', payload: orders });
+      //const orders = request(endPointURI)
+      const data = yield call(request, endPointURI);
+      const orders = data.data.orders
+      yield put({ type: 'initOrder', payload: orders });
     }
   },
   reducers: {
     initOrder(state, { payload: orders }) {
-      console.log(orders)
-     /* const newCardWithId = { ...newCard, id: nextCounter };
-      const nextData = state.data.concat(newCardWithId);
+      orders.map((order, index) => {
+        if(order.order_date != null ) {
+          orders[index].order_date = (new Date(parseInt(order.order_date))).format("yyyy-MM-dd");
+          orders[index].agreed_delivery_date = (new Date(parseInt(order.agreed_delivery_date))).format("yyyy-MM-dd");
+          orders[index].agreed_payment_date = (new Date(parseInt(order.agreed_payment_date))).format("yyyy-MM-dd");
+        }
+        if(order.order_status == '0'){
+          orders[index].order_status = '草稿'
+        }else if (order.order_status == '2'){
+          orders[index].order_status = '已发送'
+        }
+      })
+      let colums = state.colums;
+      let buttons = state.colums;
+      let seller_organization = state.colums;
       return {
-        data: nextData,
-        counter: nextCounter,
-      };*/
+        colums:colums,
+        buttons:buttons,
+        seller_organization:seller_organization,
+        orderlist: orders,
+      };
     }
   },
 };
