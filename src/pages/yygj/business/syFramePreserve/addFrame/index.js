@@ -133,7 +133,7 @@ class framePresure extends React.Component{
               </Col>
               <Col span={8} >
                 <FormItem {...formItemThreeLayout} label={"合同确认方："} >
-                  <Input disabled placeholder="医药工业" id="" />
+                  <Input  placeholder="" id="" />
                 </FormItem>
               </Col>
               <Col span={8} >

@@ -115,7 +115,6 @@ class ApplyMember extends React.Component{
                 console.log(values)
                 if (!err) {
                   createEnterpriseMember({ variables:{member:{
-
                         enterprise_name:values.enterprise_name,
                         enterprise_english_name:values.enterprise_english_name,
                         enterprise_abbreviation:values.enterprise_abbreviation,

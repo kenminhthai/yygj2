@@ -10,10 +10,6 @@ import { ApolloProvider,Query  } from "react-apollo";
 const namespace = 'platformData';
 const ButtonGroup = Button.Group;
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-  },
-};
 const headStyle={
   backgroundColor:"#E8E8E8",
 }
